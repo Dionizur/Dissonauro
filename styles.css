@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(to bottom, #1b4332, #2d6a4f);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #d8f3dc;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.dino-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dino-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+h1 {
+    color: #1b4332;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #000000;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #000000;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #40916c;
+    border-radius: 15px;
+    font-size: 16px;
+    background-color: #ffffff;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #2d6a4f;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #40916c;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #95d5b2;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.links a {
+    color: #1b4332;
+    text-decoration: none;
+    font-size: 极14px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+    color: #2d6a4f;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #000000;
+    font-size: 12px;
+}
+
+.egg {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    bottom: -20px;
+    right: 30px;
+    transform: rotate(30deg);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.paw {
+    position: absolute;
+    font-size: 30px;
+    bottom: 10px;
+    left: 20px;
+    transform: rotate(45deg);
+    color: #40916c;
+    opacity: 0.5;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    input, button {
+        padding: 12px;
+    }
+}
