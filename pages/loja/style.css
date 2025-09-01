@@ -1,126 +1,76 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    body {
-      background-color: #14532d; /* dark green */
-      display: flex;
-      justify-content: center;
-      padding: 20px 10px 40px;
-      min-height: 100vh;
-    }
-    .container {
-      background: white;
-      max-width: 400px;
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 6px 15px rgb(0 0 0 / 0.18);
-      padding: 20px 15px 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    header {
-      width: 100%;
-      background-color: #166534; /* slightly lighter green */
-      padding: 10px 15px;
-      border-radius: 10px 10px 0 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    /* Simplified dinosaur icon - using svg inline */
-    .dino-icon {
-      width: 30px;
-      height: 30px;
-      fill: #31d35c;
-      filter: drop-shadow(1px 2px 1px rgba(0,0,0,0.1));
-    }
-    header h1 {
-      color: #84cc16; /* lime green */
-      font-weight: 700;
-      font-size: 1.6rem;
-      letter-spacing: 1px;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin: 17px 0 25px;
-      width: 100%;
-    }
-    nav button {
-      background-color: #166534;
-      border: none;
-      color: #d9f99d;
-      font-weight: 600;
-      font-size: 0.9rem;
-      padding: 10px 20px;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 3px 8px rgb(0 0 0 / 0.15);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
-      flex: 1;
-      max-width: 120px;
-    }
-    nav button:hover, nav button:focus {
-      background-color: #4ade80;
-      color: #14532d;
-      box-shadow: 0 5px 15px rgb(74 222 128 / 0.7);
-      outline: none;
-    }
-    .cards {
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 18px;
-    }
-    .card {
-      background: linear-gradient(180deg, #4ade80 0%, #a7f3d0 100%);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 7px 17px rgb(74 222 128 / 0.3);
-      cursor: default;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 15px 10px 20px;
-      transition: box-shadow 0.25s ease;
-      min-height: 210px;
-    }
-    .card:hover {
-      box-shadow: 0 10px 25px rgb(74 222 128 / 0.7);
-    }
-    .card img {
-      max-width: 120px;
-      max-height: 110px;
-      margin-bottom: 15px;
-      object-fit: contain;
-      filter: drop-shadow(2px 3px 2px rgba(0,0,0,0.12));
-      border-radius: 12px;
-      background-color: #dcfce7;
-      padding: 7px;
-    }
-    .card p {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: #166534;
-      text-align: center;
-      line-break: anywhere;
-      user-select: none;
-    }
-    @media (max-width: 350px) {
-      .cards {
-        grid-template-columns: 1fr;
-      }
-      nav button {
-        max-width: none;
-        flex: 1;
-      }
-    }
+body {
+  background-color: #ffffff;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
+header {
+  width: 100%;
+  background-color: #1b4332;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dino-icon {
+  width: 35px;
+  height: 35px;
+  fill: #31d35c;
+  filter: drop-shadow(1px 2px 1px rgba(0,0,0,0.1));
+}
+
+header h1 {
+  color: #d9f99d;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.main-options {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.big-button {
+  background-color: #4ade80;
+  color: #14532d;
+  border: none;
+  padding: 20px 40px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  width: 90%;
+  max-width: 400px;
+}
+
+.big-button:hover,
+.big-button:focus {
+  background-color: #22c55e;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  outline: none;
+}
+
+@media (max-width: 400px) {
+  .big-button {
+    font-size: 1.2rem;
+    padding: 18px 30px;
+  }
+}
