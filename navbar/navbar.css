@@ -1,53 +1,83 @@
-.offcanvas {
-    background: linear-gradient(120deg, #a3906f 0%, #7c5c36 100%);
-    color: #3e2c13;
-    border-right: 6px solid #4e3a1e;
-    box-shadow: 0 0 30px rgba(60, 40, 10, 0.25);
-    font-family: 'Segoe UI', 'Impact', 'Arial Black', sans-serif;
-  }
-  .offcanvas-header {
-    background: #d9c7a1;
-    border-bottom: 2px solid #4e3a1e;
-  }
-  .offcanvas-title {
-    color: #4e3a1e;
-    font-size: 2rem;
-    font-weight: bold;
-    letter-spacing: 2px;
+/* Navbar Styles based on provided CSS snippet and site theme */
+
+.header {
+    grid: var(--header-grid);
+    justify-content: center;
+    align-items: center;
+    column-gap: 1.25rem;
+    row-gap: var(--header-padding-block);
+    box-shadow: 0 -1px rgb(var(--header-separation-border-color)) inset;
+    --header-show-transparent-logo: 0;
+    padding-block-start: var(--header-padding-block);
+    padding-block-end: var(--header-padding-block);
+    padding-inline-start: var(--container-gutter);
+    padding-inline-end: var(--container-gutter);
+    transition: background .2s, color .2s, border .2s, box-shadow .2s, transform .15s ease-in-out;
+    display: grid;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #1b4332; /* Dark green background */
+    color: white;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
     display: flex;
     align-items: center;
-    gap: 10px;
-  }
-  .offcanvas-title::before {
-    content: "🦖";
-    font-size: 2.2rem;
-  }
-  .btn-close {
-    filter: hue-rotate(30deg) brightness(0.8);
-  }
-  .offcanvas-body {
-    font-size: 1.1rem;
-  }
-  .dropdown-menu {
-    background: #d9c7a1;
-    border: 2px solid #7c5c36;
-  }
-  .dropdown-item {
-    color: #4e3a1e;
+}
+
+.logo img {
+    max-height: 50px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
     font-weight: bold;
-  }
-  .dropdown-item:hover {
-    background: #a3906f;
-    color: #fff;
-  }
-  /* Botões de abrir o Offcanvas */
-  .btn-primary {
-    background: #7c5c36;
-    border: none;
-    font-weight: bold;
-    letter-spacing: 1px;
-    box-shadow: 0 2px 8px rgba(60, 40, 10, 0.15);
-  }
-  .btn-primary:hover, .btn-primary:focus {
-    background: #4e3a1e;
-  }
+    font-size: 16px;
+    transition: color 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.nav-links a:hover {
+    color: #95d5b2; /* Light green on hover */
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .header {
+        grid-template-columns: 1fr auto;
+        padding-inline-start: 1rem;
+        padding-inline-end: 1rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links {
+        display: none; /* Hide nav links on very small screens, could add hamburger menu later */
+    }
+
+    .header {
+        justify-content: center;
+    }
+}

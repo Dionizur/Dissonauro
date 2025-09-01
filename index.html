@@ -3,44 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DinoLogin - Acesso Pré-histórico</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>DinoVerse - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navbar/navbar.css">
 </head>
 <body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/logo-dinoo.png" alt="DinoVerse Logo" />
+            </a>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="pages/loja/loja.html">Loja</a>
+            <a href="pages/Página Interativa/interativa.html">Página Interativa</a>
+            <a href="login/login.html">Acesse sua conta</a>
+        </nav>
+    </header>
     <div class="container">
         <div class="dino-header">
             <div class="dino-image"><img src="assets/logo-dinoo.png" alt="Dino Image" /></div>
-            <h1>DinoLogin</h1>
-            <p class="subtitle">Entre na era dos dinossauros!</p>
+            <h1>Bem-vindo ao DinoVerse</h1>
+            <p class="subtitle">Explore o mundo dos dinossauros!</p>
         </div>
-        
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" placeholder="seu.email@dino.com" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="password">Senha:</label>
-                <input type="password" id="password" placeholder="Sua senha secreta" required>
-            </div>
-            
-            <button type="submit">Entrar na Pré-História</button>
-        </form>
-        
-        <div class="links">
-            <a href="#">Criar conta</a>
-            <a href="#">Esqueci a senha</a>
+
+        <div class="menu-grid">
+            <a href="login/registrar/registrar.html" class="menu-button">Registrar</a>
+            <a href="pages/loja/loja.html" class="menu-button">Loja</a>
+            <a href="pages/Página Interativa/interativa.html" class="menu-button">Página Interativa</a>
+            <a href="pages/loja/ecomerce/dinossauros.html" class="menu-button">Dinossauros</a>
+            <a href="pages/loja/ecomerce/itens.html" class="menu-button">Itens</a>
         </div>
-        
+
+        <a href="login/login.html" class="login-button">Acesse sua conta</a>
+
         <div class="footer">
             <p>© 2025 DinoVerse - Todos os direitos reservados</p>
         </div>
-        
+
         <div class="egg"></div>
         <div class="paw">🦴</div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
