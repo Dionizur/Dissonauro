@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #14532d;
+  background-color: #ffffff;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -22,12 +22,13 @@ header {
   gap: 10px;
 }
 
-.dino-icon {
-  width: 35px;
-  height: 35px;
-  fill: #31d35c;
-  filter: drop-shadow(1px 2px 1px rgba(0,0,0,0.1));
+.logo-icon {
+  height: 70px; /* ou 50px, dependendo do tamanho desejado */
+  width: auto;
+  object-fit: contain;
+  margin-right: 10px;
 }
+
 
 header h1 {
   color: #d9f99d;
@@ -83,7 +84,67 @@ header h1 {
   border-radius: 50%;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+.navbar {
+  background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+  color: white;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo h1 {
+  font-size: 2rem;
+  margin-left: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo-icon {
+  font-size: 2.5rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+.logo-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
 @media (max-width: 400px) {
   .big-button {
     font-size: 1.2rem;
