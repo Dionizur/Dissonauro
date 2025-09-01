@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #14532d;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@ body {
 
 header {
   width: 100%;
-  background-color: #1b4332;
+  background-color: #166534;
   padding: 15px 20px;
   display: flex;
   align-items: center;
@@ -50,15 +50,20 @@ header h1 {
   background-color: #4ade80;
   color: #14532d;
   border: none;
-  padding: 20px 40px;
+  padding: 25px 20px;
   font-size: 1.5rem;
   font-weight: bold;
-  border-radius: 12px;
+  border-radius: 16px;
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   width: 90%;
   max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  text-align: center;
 }
 
 .big-button:hover,
@@ -68,9 +73,25 @@ header h1 {
   outline: none;
 }
 
+.button-icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  background-color: #dcfce7;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
 @media (max-width: 400px) {
   .big-button {
     font-size: 1.2rem;
-    padding: 18px 30px;
+    padding: 20px 15px;
+  }
+
+  .button-icon {
+    width: 60px;
+    height: 60px;
   }
 }
