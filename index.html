@@ -3,48 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DinoVerse - Home</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="navbar/navbar.css">
+    <title>DinoVerse - O Mundo dos Dinossauros</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
+    <header>
         <div class="logo">
-            <a href="index.html">
-                <img src="assets/logo-dinoo.png" alt="DinoVerse Logo" />
-            </a>
+            <span class="logo-icon">🦖</span>
+            <h1>DinoStore</h1>
         </div>
-        <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="pages/loja/loja.html">Loja</a>
-            <a href="pages/Página Interativa/interativa.html">Página Interativa</a>
-            <a href="login/login.html">Acesse sua conta</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="pages/loja/loja.html">Loja Dino</a></li>
+            </ul>
         </nav>
     </header>
-    <div class="container">
-        <div class="dino-header">
-            <div class="dino-image"><img src="assets/logo-dinoo.png" alt="Dino Image" /></div>
-            <h1>Bem-vindo ao DinoVerse</h1>
-            <p class="subtitle">Explore o mundo dos dinossauros!</p>
+    
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Bem-vindo ao Mundo dos Dinossauros!</h2>
+            <p>Explore nosso universo pré-histórico repleto de informações fascinantes sobre essas criaturas incríveis.</p>
         </div>
+    </section>
+    
+    <section class="button-section">
+        <h2 class="section-title">Navegue por Nossas Páginas</h2>
+        
+        <div class="button-grid">
+            <div class="page-button">
+                <div class="button-icon">🦕</div>
+                <div class="button-content">
+                    <h3>Espécies</h3>
+                    <p>Conheça todos os tipos de dinossauros que habitaram nosso planeta.</p>
+                    <a href="#" class="btn">Explorar</a>
+                </div>
+            </div>
+            
+            <div class="page-button">
+                <div class="button-icon">🦴</div>
+                <div class="button-content">
+                    <h3>Fósseis</h3>
+                    <p>Descubra como os fósseis nos ajudam a entender o passado.</p>
+                    <a href="#" class="btn">Explorar</a>
+                </div>
+            </div>
+            
+            <div class="page-button">
+                <div class="button-icon">🌋</div>
+                <div class="button-content">
+                    <h3>Era Mesozoica</h3>
+                    <p>Viaje no tempo e explore o mundo onde os dinossauros viveram.</p>
+                    <a href="#" class="btn">Explorar</a>
+                </div>
+            </div>
+            
+            <div class="page-button">
+                <div class="button-icon">🔍</div>
+                <div class="button-content">
+                    <h3>Descobertas</h3>
+                    <p>As mais recentes descobertas da paleontologia.</p>
+                    <a href="#" class="btn">Explorar</a>
+                </div>
+            </div>
 
-        <div class="menu-grid">
-            <a href="login/registrar/registrar.html" class="menu-button">Registrar</a>
-            <a href="pages/loja/loja.html" class="menu-button">Loja</a>
-            <a href="pages/Página Interativa/interativa.html" class="menu-button">Página Interativa</a>
-            <a href="pages/loja/ecomerce/dinossauros.html" class="menu-button">Dinossauros</a>
-            <a href="pages/loja/ecomerce/itens.html" class="menu-button">Itens</a>
+            <div class="page-button">
+                <div class="button-icon">🎮</div>
+                <div class="button-content">
+                    <h3>Jogos</h3>
+                    <p>Divirta-se com jogos e atividades sobre dinossauros.</p>
+                    <a href="pages/Página Interativa/interativa.html" class="btn">Explorar</a>
+                </div>
+            </div>
         </div>
-
-        <a href="login/login.html" class="login-button">Acesse sua conta</a>
-
-        <div class="footer">
-            <p>© 2025 DinoVerse - Todos os direitos reservados</p>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <p>DinoVerse &copy; 2025 - Todos os direitos reservados</p>
+            <div class="social-links">
+                <a href="#">📱</a>
+                <a href="#">📷</a>
+                <a href="#">🐦</a>
+                <a href="#">📺</a>
+            </div>
+            <p>Desenvolvido com ❤️ para os amantes de dinossauros</p>
         </div>
-
-        <div class="egg"></div>
-        <div class="paw">🦴</div>
-    </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
