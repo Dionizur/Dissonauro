@@ -95,6 +95,7 @@
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            cursor: pointer;
         }
         
         .dino-card:hover {
@@ -197,55 +198,109 @@
         .timeline-item:nth-child(even)::after {
             left: -13px;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
         
-        .quiz-container {
-            background-color: white;
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
             max-width: 800px;
-            margin: 0 auto;
+            border-radius: 8px;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
         }
         
-        .quiz-question {
-            margin-bottom: 1.5rem;
-        }
-        
-        .quiz-options {
-            display: grid;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .quiz-option {
-            padding: 1rem;
-            background-color: #f0f7ee;
-            border: 2px solid #2c5f2d;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .quiz-option:hover {
-            background-color: #e0efe0;
-        }
-        
-        .quiz-result {
-            text-align: center;
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
             font-weight: bold;
-            margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 4px;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            cursor: pointer;
         }
         
-        .correct {
-            background-color: #d4edda;
-            color: #155724;
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
         }
         
-        .incorrect {
-            background-color: #f8d7da;
-            color: #721c24;
+        .modal-header {
+            margin-bottom: 20px;
+            padding-right: 30px;
+        }
+        
+        .modal-header h2 {
+            color: #2c5f2d;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        
+        .wiki-content {
+            line-height: 1.6;
+        }
+        
+        .wiki-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .error-message {
+            color: #d32f2f;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .search-input {
+            padding: 10px 15px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 20px 0 0 20px;
+            font-size: 16px;
+        }
+        
+        .search-button {
+            padding: 10px 20px;
+            background-color: #2c5f2d;
+            color: white;
+            border: none;
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .search-button:hover {
+            background-color: #4e9c50;
         }
         
         footer {
@@ -287,6 +342,15 @@
             .timeline-item:nth-child(odd)::after {
                 right: auto;
             }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+            
+            .search-input {
+                width: 200px;
+            }
         }
     </style>
 </head>
@@ -299,9 +363,7 @@
     <nav>
         <ul>
             <li><a href="#intro">Introdução</a></li>
-            <li><a href="#dinossauros">Dinossauros</a></li>
-            <li><a href="#eras">Eras</a></li>
-            <li><a href="#quiz">Quiz</a></li>
+            <li><a href="#buscar">Buscar</a></li>
         </ul>
     </nav>
     
@@ -310,108 +372,250 @@
         <p class="intro">Os dinossauros foram um grupo de animais diversificados que dominaram a Terra por mais de 150 milhões de anos. Eles evoluíram em uma variedade incrível de formas e tamanhos, desde pequenos predadores emplumados até os maiores animais que já caminharam sobre a Terra.</p>
     </section>
     
-    <section id="dinossauros">
-        <h2>Conheça os Dinossauros</h2>
-        <div class="era-filter">
-            <button class="era-btn active" data-era="all">Todos</button>
-            <button class="era-btn" data-era="triassico">Triássico</button>
-            <button class="era-btn" data-era="jurassico">Jurássico</button>
-            <button class="era-btn" data-era="cretaceo">Cretáceo</button>
+    <section id="buscar">
+        <h2>Buscar Dinossauro</h2>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Digite o nome de um dinossauro...">
+            <button class="search-button">Buscar</button>
         </div>
-        
-        <div class="dino-grid">
-            <div class="dino-card" data-era="jurassico">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMzAwIDIwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNmMWY4ZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIzMzMiPlRpcmFub3NzdXJ1czwvdGV4dD48L3N2Zz4=" alt="Tiranossauro Rex" class="dino-img">
-                <div class="dino-info">
-                    <h3>Tiranossauro Rex</h3>
-                    <p><strong>Época:</strong> Cretáceo Superior</p>
-                    <p><strong>Dieta:</strong> Carnívoro</p>
-                    <p>Um dos maiores predadores terrestres, com até 12m de comprimento e dentes de 20cm.</p>
-                </div>
-            </div>
-            
-            <div class="dino-card" data-era="jurassico">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMzAwIDIwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNmMWY4ZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIzMzMiPlN0ZWdvc2F1cnVzPC90ZXh0Pjwvc3ZnPg==" alt="Stegossauro" class="dino-img">
-                <div class="dino-info">
-                    <h3>Stegossauro</h3>
-                    <p><strong>Época:</strong> Jurássico Superior</p>
-                    <p><strong>Dieta:</strong> Herbívoro</p>
-                    <p>Reconhecível por suas placas ósseas nas costas e espigões na cauda, media até 9m de comprimento.</p>
-                </div>
-            </div>
-            
-            <div class="dino-card" data-era="cretaceo">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMzAwIDIwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNmMWY4ZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIzMzMiPlRyaWNlcmF0b3BzPC90ZXh0Pjwvc3ZnPg==" alt="Tricerátops" class="dino-img">
-                <div class="dino-info">
-                    <h3>Tricerátops</h3>
-                    <p><strong>Época:</strong> Cretáceo Superior</p>
-                    <p><strong>Dieta:</strong> Herbívoro</p>
-                    <p>Herbívoro com três chifres e um grande escudo cranial, media até 9m de comprimento.</p>
-                </div>
-            </div>
-            
-            <div class="dino-card" data-era="jurassico">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMzAwIDIwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAi IGZpbGw9IiNmMWY4ZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIzMzMiPkJyYWNoaW9zYXVydXM8L3RleHQ+PC9zdmc+" alt="Braquiossauro" class="dino-img">
-                <div class="dino-info">
-                    <h3>Braquiossauro</h3>
-                    <p><strong>Época:</strong> Jurássico Superior</p>
-                    <p><strong>Dieta:</strong> Herbívoro</p>
-                    <p>Um dos maiores dinossauros, com pescoço longo que permitia alcançar folhas no topo das árvores.</p>
-                </div>
-            </div>
-            
-            <div class="dino-card" data-era="cretaceo">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMzAwIDIwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNmMWY4ZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIzMzMiPlZlbG9jaXJhcHRvcjwvdGV4dD48L3N2Zz4=" alt="Velociraptor" class="dino-img">
-                <div class="dino-info">
-                    <h3>Velociraptor</h3>
-                    <p><strong>Época:</strong> Cretáceo Superior</p>
-                    <p><strong>Dieta:</strong> Carnívoro</p>
-                    <p>Pequeno predador ágil e inteligente, com uma garra retrátil em cada pé para caçar.</p>
-                </div>
-            </div>
-            
-            <div class="dino-card" data-era="triassico">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMzAwIDIwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNmMWY4ZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIzMzMiPkNoeXJvbmlzd2FsZGVzPC90ZXh0Pjwvc3ZnPg==" alt="Chironiswaldes" class="dino-img">
-                <div class="dino-info">
-                    <h3>Chironiswaldes</h3>
-                    <p><strong>Época:</strong> Triássico Superior</p>
-                    <p><strong>Dieta:</strong> Herbívoro</p>
-                    <p>Um dos primeiros dinossauros, precursor dos grandes saurópodes do Jurássico.</p>
-                </div>
-            </div>
+        <div id="search-results" class="dino-grid">
         </div>
     </section>
     
-    <section id="eras">
-        <h2>Eras dos Dinossauros</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Período Triássico</h3>
-                    <p><strong>252 - 201 milhões de anos atrás</strong></p>
-                    <p>Os primeiros dinossauros surgiram durante este período. Eram geralmente pequenos e bípedes. Nesta época, os continentes ainda formavam o supercontinente Pangeia.</p>
-                </div>
+    <!-- Modal para exibir informações da Wikipedia -->
+    <div id="dino-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+                <p id="modal-subtitle"></p>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Período Jurássico</h3>
-                    <p><strong>201 - 145 milhões de anos atrás</strong></p>
-                    <p>Os dinossauros tornaram-se a forma de vida dominante na Terra. Grandes saurópodes e predadores como o Alossauro surgiram. Os primeiras aves também evoluíram durante este período.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Período Cretáceo</h3>
-                    <p><strong>145 - 66 milhões de anos atrás</strong></p>
-                    <p>Os dinossauros atingiram seu auge de diversidade. Novos grupos como os ceratopsídeos e tiranossaurídeos evoluíram. O período terminou com o evento de extinção em massa que eliminou todos os dinossauros não-avianos.</p>
-                </div>
+            <div id="modal-body" class="wiki-content">
+                <div class="loading">Carregando informações...</div>
             </div>
         </div>
-    </section>
+    </div>
     
     <footer>
         <p>Página Interativa sobre Dinossauros - Criado para fins educacionais</p>
-        <p>© 2023 Mundo dos Dinossauros</p>
+        <p>Informações fornecidas pela Wikipedia API</p>
+        <p>© 2025 Mundo dos Dinossauros</p>
     </footer>
+
+    <script>
+        // Filtro de eras
+        document.querySelectorAll('.era-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove a classe active de todos os botões
+                document.querySelectorAll('.era-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Adiciona a classe active ao botão clicado
+                button.classList.add('active');
+                
+                const era = button.getAttribute('data-era');
+                const dinoCards = document.querySelectorAll('.dino-card');
+                
+                dinoCards.forEach(card => {
+                    if (era === 'all' || card.getAttribute('data-era') === era) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Modal functionality
+        const modal = document.getElementById('dino-modal');
+        const closeBtn = document.querySelector('.close');
+        const modalTitle = document.getElementById('modal-title');
+        const modalSubtitle = document.getElementById('modal-subtitle');
+        const modalBody = document.getElementById('modal-body');
+        
+        // Fechar modal ao clicar no X
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        // Fechar modal ao clicar fora dele
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Função para buscar informações na Wikipedia
+        async function fetchDinoInfo(dinoName, ptName, era, diet) {
+            modalTitle.textContent = ptName;
+            modalSubtitle.textContent = `Época: ${era} | Dieta: ${diet}`;
+            modalBody.innerHTML = '<div class="loading">Carregando informações...</div>';
+            modal.style.display = 'block';
+            
+            try {
+                // Primeiro, buscar o pageid do artigo
+                const searchResponse = await fetch(`https://pt.wikipedia.org/w/api.php?action=query&list=search&srsearch=${dinoName}&format=json&origin=*`);
+                const searchData = await searchResponse.json();
+                
+                if (searchData.query.search.length === 0) {
+                    throw new Error('Dinossauro não encontrado');
+                }
+                
+                const pageId = searchData.query.search[0].pageid;
+                
+                // Agora buscar o conteúdo do artigo
+                const contentResponse = await fetch(`https://pt.wikipedia.org/w/api.php?action=query&prop=extracts|pageimages&exintro=true&explaintext=true&pithumbsize=400&pageids=${pageId}&format=json&origin=*`);
+                const contentData = await contentResponse.json();
+                
+                const page = contentData.query.pages[pageId];
+                
+                if (page.missing === "") {
+                    throw new Error('Página não encontrada');
+                }
+                
+                let extract = page.extract;
+                
+                // Limitar o texto para não ser muito longo
+                if (extract.length > 1000) {
+                    extract = extract.substring(0, 1000) + '...';
+                }
+                
+                // Formatar o conteúdo
+                let contentHTML = '';
+                
+                if (page.thumbnail) {
+                    contentHTML += `<img src="${page.thumbnail.source}" alt="${page.title}">`;
+                }
+                
+                contentHTML += `<p>${extract}</p>`;
+                contentHTML += `<p><a href="https://pt.wikipedia.org/?curid=${pageId}" target="_blank">Ler mais na Wikipedia</a></p>`;
+                
+                modalBody.innerHTML = contentHTML;
+            } catch (error) {
+                console.error('Erro ao buscar informações:', error);
+                modalBody.innerHTML = `<div class="error-message">Não foi possível carregar informações sobre este dinossauro. Tente novamente mais tarde.</div>`;
+            }
+        }
+        
+        // Adicionar event listeners aos cards de dinossauros
+        document.querySelectorAll('.dino-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const dinoName = card.getAttribute('data-dino');
+                const ptName = card.querySelector('h3').textContent;
+                const era = card.querySelector('p:first-child').textContent.replace('Época: ', '');
+                const diet = card.querySelector('p:nth-child(2)').textContent.replace('Dieta: ', '');
+                
+                fetchDinoInfo(dinoName, ptName, era, diet);
+            });
+        });
+        
+        // Funcionalidade de busca
+        const searchInput = document.querySelector('.search-input');
+        const searchButton = document.querySelector('.search-button');
+        const searchResults = document.getElementById('search-results');
+        
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        async function performSearch() {
+            const query = searchInput.value.trim();
+            
+            if (query === '') {
+                alert('Por favor, digite o nome de um dinossauro para buscar.');
+                return;
+            }
+            
+            searchResults.innerHTML = '<div class="loading">Buscando...</div>';
+            
+            try {
+                const response = await fetch(`https://pt.wikipedia.org/w/api.php?action=query&list=search&srsearch=${query} dinossauro&format=json&origin=*`);
+                const data = await response.json();
+                
+                if (data.query.search.length === 0) {
+                    searchResults.innerHTML = '<div class="error-message">Nenhum resultado encontrado. Tente outro termo.</div>';
+                    return;
+                }
+                
+                let resultsHTML = '';
+                
+                // Limitar a 6 resultados
+                const limitedResults = data.query.search.slice(0, 6);
+                
+                limitedResults.forEach(result => {
+                    // Verificar se parece ser um dinossauro (heurística simples)
+                    if (result.title.toLowerCase().includes('saurus') || 
+                        result.title.toLowerCase().includes('dino') ||
+                        result.snippet.toLowerCase().includes('dinossauro')) {
+                        
+                        resultsHTML += `
+                            <div class="dino-card" onclick="fetchCustomDinoInfo(${result.pageid}, '${result.title}')">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMzAwIDIwMCI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNmMWY4ZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIwIiBmaWxsPSIzMzMiPkRpbm9zc2F1cm88L3RleHQ+PC9zdmc+" alt="${result.title}" class="dino-img">
+                                <div class="dino-info">
+                                    <h3>${result.title}</h3>
+                                    <p>${result.snippet.replace(/<span class="searchmatch">|<\/span>/g, '')}...</p>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+                
+                if (resultsHTML === '') {
+                    searchResults.innerHTML = '<div class="error-message">Nenhum dinossauro encontrado com esse termo.</div>';
+                } else {
+                    searchResults.innerHTML = resultsHTML;
+                }
+                
+            } catch (error) {
+                console.error('Erro na busca:', error);
+                searchResults.innerHTML = '<div class="error-message">Erro na busca. Tente novamente.</div>';
+            }
+        }
+        
+        // Função global para buscar informações customizadas (para os resultados de busca)
+        window.fetchCustomDinoInfo = async function(pageId, title) {
+            modalTitle.textContent = title;
+            modalSubtitle.textContent = '';
+            modalBody.innerHTML = '<div class="loading">Carregando informações...</div>';
+            modal.style.display = 'block';
+            
+            try {
+                const contentResponse = await fetch(`https://pt.wikipedia.org/w/api.php?action=query&prop=extracts|pageimages&exintro=true&explaintext=true&pithumbsize=400&pageids=${pageId}&format=json&origin=*`);
+                const contentData = await contentResponse.json();
+                
+                const page = contentData.query.pages[pageId];
+                
+                if (page.missing === "") {
+                    throw new Error('Página não encontrada');
+                }
+                
+                let extract = page.extract;
+                
+                // Limitar o texto para não ser muito longo
+                if (extract.length > 1000) {
+                    extract = extract.substring(0, 1000) + '...';
+                }
+                
+                // Formatar o conteúdo
+                let contentHTML = '';
+                
+                if (page.thumbnail) {
+                    contentHTML += `<img src="${page.thumbnail.source}" alt="${page.title}">`;
+                }
+                
+                contentHTML += `<p>${extract}</p>`;
+                contentHTML += `<p><a href="https://pt.wikipedia.org/?curid=${pageId}" target="_blank">Ler mais na Wikipedia</a></p>`;
+                
+                modalBody.innerHTML = contentHTML;
+            } catch (error) {
+                console.error('Erro ao buscar informações:', error);
+                modalBody.innerHTML = `<div class="error-message">Não foi possível carregar informações sobre este dinossauro. Tente novamente mais tarde.</div>`;
+            }
+        }
+    </script>
 </body>
 </html>
