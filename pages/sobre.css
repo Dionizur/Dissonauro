@@ -6,14 +6,14 @@
 }
 
 body {
-    background-color: #f0f7ee;
+    background-color: #ffffff;
     color: #333;
     line-height: 1.6;
 }
 
 header {
     background: linear-gradient(to right, #4e9c50, #2c5f2d);
-    color: white;
+    color: rgb(255, 255, 255);
     text-align: center;
     padding: 2rem;
     position: relative;
@@ -83,7 +83,7 @@ h2 {
 }
 
 .dino-card {
-    background-color: rgb(199, 245, 188);
+    background-color: rgb(218, 244, 211);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
