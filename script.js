@@ -23,14 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, index * 100);
     });
     
-    const pageButtons = document.querySelectorAll('.btn');
-    
-    pageButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.location.href = 'pages/Página interativa/interativa.html';
-        });
-    });
+
     
     setTimeout(() => {
         titles.forEach(title => {
