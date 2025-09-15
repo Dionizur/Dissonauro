@@ -1,29 +1,323 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dino - Loja</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Loja DinoMundo — Vanilla</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img class="logo-icon" src="../../assets/logo-dinoo.png">
-      <h1>DinoWorld</h1>
+  <div class="top-actions">
+    <div id="userBadge" class="user-badge">
+      <span id="userName" class="muted">Não conectado</span>
+      <button id="loginBtn" class="btn secondary" style="padding:6px 10px;font-weight:700">Login</button>
     </div>
-    <h1>Loja Dinossauros</h1>
-  </header>
+  </div>
 
-  <main class="main-options" role="main" aria-label="Escolha de loja">
-    <a href="itens.html" class="big-button">
-      <img src="img/itens.png" alt="Ícone de Itens" class="button-icon">
-      Loja de Itens
-    </a>
-    <a href="dinossauros.html" class="big-button">
-      <img src="img/dinossauro.png" alt="Ícone de Dinossauro" class="button-icon">
-      Loja de Dinossauros
-    </a>
+  <main class="container">
+    <header>
+      <h1>Loja DinoMundo</h1>
+      <p class="lead">Leve um pedaço da pré-história para casa!</p>
+    </header>
+
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+          d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/>
+      </svg>
+      <input id="searchInput" placeholder="Buscar produtos..." />
+    </div>
+
+    <div class="categories" id="categories"></div>
+
+    <!-- products grid -->
+    <section id="gridSection">
+      <div id="grid" class="grid"></div>
+      <div id="emptyMsg" class="empty" style="display:none">
+        <h3>Nenhum produto encontrado</h3>
+        <p>Tente ajustar seus filtros de busca.</p>
+      </div>
+    </section>
+
+    <footer>© DinoMundo — Exemplo Vanilla JS</footer>
   </main>
+
+  <!-- toasts -->
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <!-- login modal -->
+  <div id="modalRoot" style="display:none"></div>
+
+<script>
+/* ===== state ===== */
+let products = [];
+let state = {
+  filtered: [],
+  search: '',
+  category: 'todos',
+  loading: true,
+  user: null,
+};
+
+/* ===== categories config ===== */
+const categories = [
+  { id: 'todos', name: 'Todos', icon: '📦' },
+  { id: 'modelos', name: 'Modelos', icon: '🦴' },
+  { id: 'itens', name: 'Itens', icon: '🧸' },
+];
+
+/* ===== utils ===== */
+function moneyBRL(v){ 
+  return Number(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
+}
+
+/* simple toast */
+const toastWrap = document.getElementById('toastWrap');
+function toast(msg, type = 'success', timeout = 3500){
+  const el = document.createElement('div');
+  el.className = 'toast ' + (type === 'success' ? 'success' : 'error');
+  el.innerHTML = '<div style="flex:1">'+msg+'</div><div class="close">✕</div>';
+  el.querySelector('.close').addEventListener('click', ()=> el.remove());
+  toastWrap.appendChild(el);
+  setTimeout(()=> { if(el.parentElement) el.remove(); }, timeout);
+}
+
+/* ===== localStorage helpers ===== */
+const CART_KEY = 'dinomundo_cart_v1';
+const USER_KEY = 'dinomundo_user_v1';
+function getCart(){ try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch { return []; } }
+function saveCart(cart){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
+function getUser(){ try { return JSON.parse(localStorage.getItem(USER_KEY) || 'null'); } catch { return null; } }
+function saveUser(u){ localStorage.setItem(USER_KEY, JSON.stringify(u)); }
+
+/* ===== rendering ===== */
+const gridEl = document.getElementById('grid');
+const emptyEl = document.getElementById('emptyMsg');
+const categoriesEl = document.getElementById('categories');
+const searchInput = document.getElementById('searchInput');
+const loginBtn = document.getElementById('loginBtn');
+const userNameEl = document.getElementById('userName');
+
+function renderCategories(){
+  categoriesEl.innerHTML = '';
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn' + (state.category === cat.id ? ' active' : '');
+    btn.innerHTML = `<span>${cat.icon}</span><span>${cat.name}</span>`;
+    btn.addEventListener('click', ()=>{
+      state.category = cat.id;
+      applyFilters();
+      renderCategories();
+    });
+    categoriesEl.appendChild(btn);
+  });
+}
+
+function makeCard(p){
+  const card = document.createElement('article');
+  card.className = 'card';
+  card.innerHTML = `
+    <div class="media">
+      <img src="${p.image_url}" alt="${escapeHtml(p.name)}" loading="lazy" 
+        onerror="this.style.objectFit='contain';this.src='https://via.placeholder.com/400x400?text=Imagem'"/>
+    </div>
+    <div class="body">
+      <div>
+        <div class="title">${escapeHtml(p.name)}</div>
+        <div class="desc">${escapeHtml(p.description)}</div>
+      </div>
+      <div class="footer">
+        <div class="price">${moneyBRL(p.price)}</div>
+        <div>
+          <button class="btn" data-add="${p.id}">Adicionar</button>
+        </div>
+      </div>
+    </div>
+  `;
+  card.querySelector('[data-add]').addEventListener('click', ()=> handleAddToCart(p));
+  return card;
+}
+
+function renderGrid(){
+  gridEl.innerHTML = '';
+  if(state.loading){
+    for(let i=0;i<8;i++){
+      const c = document.createElement('div');
+      c.className = 'card skeleton';
+      c.style.height = '320px';
+      c.innerHTML = '<div style="height:60%;"></div><div style="padding:12px"><div style="height:18px;width:60%;margin-bottom:8px;background:#eee"></div><div style="height:12px;width:100%;margin-bottom:6px;background:#eee"></div><div style="height:12px;width:50%;background:#eee"></div></div>';
+      gridEl.appendChild(c);
+    }
+    emptyEl.style.display = 'none';
+    return;
+  }
+
+  const list = state.filtered || [];
+  if(list.length === 0){
+    emptyEl.style.display = 'block';
+  } else {
+    emptyEl.style.display = 'none';
+    list.forEach(p => gridEl.appendChild(makeCard(p)));
+  }
+}
+
+/* filters */
+function applyFilters(){
+  let list = products.slice();
+  const s = (state.search || '').trim().toLowerCase();
+  if(s) list = list.filter(p => p.name.toLowerCase().includes(s) || p.description.toLowerCase().includes(s));
+  if(state.category && state.category !== 'todos'){
+    list = list.filter(p => p.category === state.category);
+  }
+  state.filtered = list;
+  renderGrid();
+}
+
+/* add to cart */
+async function handleAddToCart(product){
+  const user = getUser();
+  if(!user){
+    toast('Você precisa estar logado para adicionar itens ao carrinho.', 'error', 5000);
+    openLoginModal();
+    return;
+  }
+
+  try {
+    const cart = getCart();
+    const found = cart.find(i => i.productId === product.id);
+    if(found){
+      found.quantity = (found.quantity || 1) + 1;
+    } else {
+      cart.push({
+        productId: product.id,
+        name: product.name,
+        price: product.price,
+        image_url: product.image_url,
+        quantity: 1,
+        created_by: user.email || user.name
+      });
+    }
+    saveCart(cart);
+    toast(`${product.name} adicionado ao carrinho!`, 'success');
+  } catch(e){
+    console.error('Erro ao adicionar:', e);
+    toast('Erro ao adicionar item ao carrinho.', 'error');
+  }
+}
+
+/* login modal */
+function openLoginModal(){
+  const root = document.getElementById('modalRoot');
+  root.style.display = 'block';
+  root.innerHTML = `
+    <div class="modal-backdrop" id="mb">
+      <div class="modal" role="dialog" aria-modal="true">
+        <h3>Entrar</h3>
+        <p class="muted">Faça login rápido para continuar.</p>
+        <div class="row">
+          <input id="loginName" placeholder="Nome" />
+          <input id="loginEmail" placeholder="Email" />
+          <div style="display:flex;gap:8px;justify-content:flex-end">
+            <button id="cancelLogin" class="btn secondary">Cancelar</button>
+            <button id="confirmLogin" class="btn">Entrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById('cancelLogin').addEventListener('click', closeModal);
+  document.getElementById('mb').addEventListener('click', (ev)=>{ if(ev.target.id === 'mb') closeModal(); });
+  document.getElementById('confirmLogin').addEventListener('click', ()=>{
+    const name = document.getElementById('loginName').value.trim();
+    const email = document.getElementById('loginEmail').value.trim();
+    if(!name || !email){
+      toast('Preencha nome e email.', 'error');
+      return;
+    }
+    const u = { name, email };
+    saveUser(u);
+    state.user = u;
+    updateUserBadge();
+    closeModal();
+    toast('Logado com sucesso!', 'success');
+  });
+}
+function closeModal(){ 
+  const root = document.getElementById('modalRoot'); 
+  root.style.display = 'none'; 
+  root.innerHTML = ''; 
+}
+
+/* user badge */
+function updateUserBadge(){
+  const u = getUser();
+  if(u){
+    userNameEl.textContent = u.name;
+    loginBtn.textContent = 'Logout';
+    loginBtn.classList.remove('secondary');
+    loginBtn.classList.add('btn');
+  } else {
+    userNameEl.textContent = 'Não conectado';
+    loginBtn.textContent = 'Login';
+    loginBtn.classList.remove('btn');
+    loginBtn.classList.add('btn','secondary');
+  }
+}
+
+loginBtn.addEventListener('click', ()=>{
+  const u = getUser();
+  if(!u) openLoginModal();
+  else {
+    localStorage.removeItem(USER_KEY);
+    updateUserBadge();
+    toast('Desconectado', 'success');
+  }
+});
+
+/* search */
+let searchTimeout = null;
+searchInput.addEventListener('input', (e)=>{
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(()=>{
+    state.search = e.target.value;
+    applyFilters();
+  }, 180);
+});
+
+/* escape HTML */
+function escapeHtml(str){
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
+}
+
+/* boot */
+async function boot(){
+  state.loading = true;
+  renderGrid();
+  renderCategories();
+  updateUserBadge();
+
+  try {
+    const res = await fetch('products.json');
+    products = await res.json();
+  } catch(err){
+    console.error("Erro ao carregar produtos:", err);
+    products = [];
+  }
+
+  setTimeout(()=>{
+    state.loading = false;
+    state.user = getUser();
+    applyFilters();
+    renderCategories();
+    updateUserBadge();
+  }, 700);
+}
+boot();
+</script>
 </body>
 </html>

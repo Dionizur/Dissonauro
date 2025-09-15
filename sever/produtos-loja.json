@@ -1,0 +1,21 @@
+{
+    "produtos":[
+    {
+        "id": "p1",
+        "name": "T-Rex Realista",
+        "description": "Modelo realista de Tiranossauro Rex — perfeito para colecionadores.",
+        "price": 1299.90,
+        "image_url": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1400&auto=format&fit=crop",
+        "category": "modelos"
+      },
+      {
+        "id": "p2",
+        "name": "Tricerátops Mini",
+        "description": "Miniatura estilizada, ideal para estantes e mesas.",
+        "price": 89.50,
+        "image_url": "https://images.unsplash.com/photo-1544934952-2d6e2c2f6f3f?q=80&w=1400&auto=format&fit=crop",
+        "category": "itens"
+      }
+]
+}
+  
