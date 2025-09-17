@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Períodos Geológicos - DinoMundo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="periodos.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="text-center mb-12 fade-in">
+            <h1>Períodos Geológicos</h1>
+            <p class="text-xl max-w-3xl mx-auto">
+                Explore os três principais períodos da era Mesozoica e descubra os dinossauros que viveram em cada época
+            </p>
+        </div>
+
+        <!-- Period Navigation -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <button class="btn btn-primary period-btn" data-period="Triássico">
+                🌵 Triássico
+            </button>
+            <button class="btn btn-outline period-btn" data-period="Jurássico">
+                🌿 Jurássico
+            </button>
+            <button class="btn btn-outline period-btn" data-period="Cretáceo">
+                🌺 Cretáceo
+            </button>
+        </div>
+
+        <!-- Selected Period Details -->
+        <div id="periodDetails" class="mb-12 slide-in">
+            <!-- Conteúdo será preenchido via JavaScript -->
+        </div>
+
+        <!-- Dinosaurs from Selected Period -->
+        <section id="dinosaurSection">
+            <h2 id="dinosaurTitle" class="text-center mb-8">Dinossauros do Triássico</h2>
+            
+            <div id="dinosaurGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Conteúdo será preenchido via JavaScript -->
+            </div>
+        </section>
+    </div>
+
+    <script src="periodos.js"></script>
+</body>
+</html>

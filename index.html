@@ -3,95 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DinoVerse - O Mundo dos Dinossauros</title>
+    <title>DinoVerse - Explorando o Mundo dos Dinossauros</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <span class="logo-icon">🦖</span>
-            <h1>DinoVerse</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="pages/loja/loja.html">Loja Dino</a></li>
-            </ul>
-        </nav>
-        <a href="login/login.html" class="login-btn">Login</a>
-    </header>
-    
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h2>Bem-vindo ao Mundo dos Dinossauros!</h2>
-            <p>Explore nosso universo pré-histórico repleto de informações fascinantes sobre essas criaturas incríveis.</p>
-        </div>
-    </section>
-    
-    <section class="button-section">
-        <h2 class="section-title">Navegue por Nossas Páginas</h2>
-        
-        <div class="button-grid">
-            <div class="page-button">
-                <div class="button-icon">🦕</div>
-                <div class="button-content">
-                    <h3>Espécies</h3>
-                    <p>Conheça todos os tipos de dinossauros que habitaram nosso planeta.</p>
-                    <a href="#" class="btn">Explorar</a>
-                </div>
-            </div>
+    <div class="space-y-16">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="absolute inset-0 hero-bg"></div>
+            <div class="absolute inset-0 hero-pattern"></div>
             
-            <div class="page-button">
-                <div class="button-icon">🦴</div>
-                <div class="button-content">
-                    <h3>Fósseis</h3>
-                    <p>Descubra como os fósseis nos ajudam a entender o passado.</p>
-                    <a href="#" class="btn">Explorar</a>
-                </div>
-            </div>
-            
-            <div class="page-button">
-                <div class="button-icon">🌋</div>
-                <div class="button-content">
-                    <h3>Era Mesozoica</h3>
-                    <p>Viaje no tempo e explore o mundo onde os dinossauros viveram.</p>
-                    <a href="#" class="btn">Explorar</a>
-                </div>
-            </div>
-            
-            <div class="page-button">
-                <div class="button-icon">🔍</div>
-                <div class="button-content">
-                    <h3>Dinossauros</h3>
-                    <p>Procure pelo seu dinossauro favorito.</p>
-                    <a href="pages/Página Interativa/interativa.html" class="btn">Explorar</a>
+            <div class="hero-content">
+                <h1>
+                    Bem-vindos ao
+                    <span class="gradient-text">DinoVerse</span>
+                </h1>
+                <p>
+                    Explore o fascinante mundo dos dinossauros e descubra os mistérios das criaturas que dominaram a Terra há milhões de anos
+                </p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <a href="explorer.html" class="btn btn-primary">
+                        Explorar Dinossauros
+                    </a>
+                    <a href="quiz.html" class="btn btn-outline">
+                        Testar Conhecimentos
+                    </a>
                 </div>
             </div>
 
-            <div class="page-button">
-                <div class="button-icon">🎮</div>
-                <div class="button-content">
-                    <h3>A</h3>
-                    <p>Divirta-se com jogos e atividades sobre dinossauros.</p>
-                    <a href="pages/Página Interativa/interativa.html" class="btn">Explorar</a>
+        </section>
+
+        <!-- Stats Section (simplificado) -->
+        <section class="container">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Estatísticas do DinoMundo
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="text-5xl font-bold text-amber-500">42</h3>
+                            <p>Espécies Catalogadas</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="text-5xl font-bold text-amber-500">3</h3>
+                            <p>Períodos Pré-Históricos</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="text-5xl font-bold text-amber-500">4</h3>
+                            <p>Tipos de Dieta</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="footer-content">
-            <p>DinoVerse &copy; 2025 - Todos os direitos reservados</p>
-            <div class="social-links">
-                <a href="#">📱</a>
-                <a href="#">📷</a>
-                <a href="#">🐦</a>
-                <a href="#">📺</a>
+        </section>
+
+        <!-- Daily Fact (simplificado) -->
+        <section class="container">
+            <div class="card">
+                <div class="card-content">
+                    <h2 class="text-2xl font-bold mb-4">Curiosidade do Dia</h2>
+                    <p>O Velociraptor era do tamanho de um peru, muito diferente da representação exagerada que vemos nos filmes.</p>
+                </div>
             </div>
-            <p>Desenvolvido com ❤️ para os amantes de dinossauros</p>
-        </div>
-    </footer>
+        </section>
+
+        <!-- Featured Section (simplificado) -->
+        <section class="container">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Destaques
+                </h2>
+                <p class="text-lg max-w-2xl mx-auto">
+                    Conheça alguns dos dinossauros mais fascinantes de nossa coleção
+                </p>
+            </div>
+        </section>
+
+        <!-- Period Banner (simplificado) -->
+        <section class="bg-stone-800 text-white py-12">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Viaje no Tempo</h2>
+                    <p class="text-xl max-w-2xl mx-auto">Descubra os dinossauros de cada período pré-histórico</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dinosaur Gallery -->
+        <section class="container">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Galeria de Dinossauros
+                </h2>
+                <p class="text-lg max-w-2xl mx-auto">
+                    Conheça algumas das criaturas mais impressionantes que já caminharam pela Terra
+                </p>
+            </div>
+
+            <!-- Search and Filters -->
+            <div class="mb-8 space-y-4">
+                <div class="relative max-w-md mx-auto">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-stone-400"></i>
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Buscar dinossauros..."
+                        class="input pl-10"
+                    />
+                </div>
+                
+                <div class="filters">
+                    <div class="filter-group">
+                        <span class="filter-label">
+                            <i class="fas fa-filter mr-1"></i>
+                            Período:
+                        </span>
+                        <button class="btn btn-sm active-filter" data-period="Todos">Todos</button>
+                        <button class="btn btn-sm" data-period="Triássico">Triássico</button>
+                        <button class="btn btn-sm" data-period="Jurássico">Jurássico</button>
+                        <button class="btn btn-sm" data-period="Cretáceo">Cretáceo</button>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <span class="filter-label">Dieta:</span>
+                        <button class="btn btn-sm active-filter diet" data-diet="Todos">Todos</button>
+                        <button class="btn btn-sm" data-diet="Carnívoro">Carnívoro</button>
+                        <button class="btn btn-sm" data-diet="Herbívoro">Herbívoro</button>
+                        <button class="btn btn-sm" data-diet="Onívoro">Onívoro</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="text-center mb-6">
+                <p id="resultsCount">42 dinossauros encontrados</p>
+            </div>
+
+            <!-- Dinosaur Grid -->
+            <div id="dinosaurGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dinossauros serão carregados via JavaScript -->
+            </div>
+
+            <div id="viewAll" class="text-center mt-8 hidden">
+                <a href="explorer.html" class="btn btn-outline">
+                    Ver Todos os Dinossauros
+                    <i class="fas fa-chevron-right ml-2"></i>
+                </a>
+            </div>
+
+            <div id="noResults" class="text-center py-12 hidden">
+                <div class="text-6xl mb-4">🔍</div>
+                <h3 class="text-xl font-semibold mb-2">Nenhum dinossauro encontrado</h3>
+                <p class="text-stone-600">Tente ajustar os filtros ou termo de busca</p>
+            </div>
+        </section>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

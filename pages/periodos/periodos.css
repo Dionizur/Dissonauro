@@ -1,0 +1,339 @@
+/* Variáveis e reset */
+:root {
+    --red-400: #f87171;
+    --red-600: #dc2626;
+    --blue-400: #60a5fa;
+    --blue-600: #2563eb;
+    --green-400: #4ade80;
+    --green-600: #16a34a;
+    --stone-50: #fafaf9;
+    --stone-100: #f5f5f4;
+    --stone-200: #e7e5e4;
+    --stone-600: #57534e;
+    --stone-800: #292524;
+    --white: #ffffff;
+    --amber-50: #fffbeb;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    color: var(--stone-800);
+    background: linear-gradient(to bottom, var(--stone-50), var(--amber-50));
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Texto */
+.text-center {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Espaçamentos */
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+.mb-12 {
+    margin-bottom: 3rem;
+}
+
+.py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+/* Flexbox e Grid */
+.flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.grid {
+    display: grid;
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.gap-6 {
+    gap: 1.5rem;
+}
+
+/* Card */
+.card {
+    background: var(--white);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    padding: 1.5rem 1.5rem 0;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+/* Botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, var(--red-400), var(--red-600));
+    color: white;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border-color: currentColor;
+}
+
+.btn-ghost {
+    background-color: transparent;
+    border: none;
+    color: var(--stone-600);
+}
+
+.btn-ghost:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Utilidades */
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.max-w-3xl {
+    max-width: 48rem;
+}
+
+.max-w-4xl {
+    max-width: 56rem;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Animações */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-pulse div {
+    background-color: var(--stone-200);
+    border-radius: 0.5rem;
+}
+
+/* Períodos específicos */
+.triassic-color {
+    background: linear-gradient(to right, var(--red-400), var(--red-600));
+}
+
+.triassic-bg {
+    background-color: rgba(248, 113, 113, 0.1);
+}
+
+.jurassic-color {
+    background: linear-gradient(to right, var(--blue-400), var(--blue-600));
+}
+
+.jurassic-bg {
+    background-color: rgba(96, 165, 250, 0.1);
+}
+
+.cretaceous-color {
+    background: linear-gradient(to right, var(--green-400), var(--green-600));
+}
+
+.cretaceous-bg {
+    background-color: rgba(74, 222, 128, 0.1);
+}
+
+/* Lista de características */
+.characteristics-grid {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .characteristics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .characteristics-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.characteristic-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 0.5rem;
+}
+
+.characteristic-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* Dinossauro card */
+.dino-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dino-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.dino-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.dino-card-content {
+    padding: 1rem;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.badge-amber {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.badge-emerald {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+/* Transições */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
