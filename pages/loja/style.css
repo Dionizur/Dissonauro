@@ -85,10 +85,10 @@ p.lead {
 }
 
 .cat-btn.active {
-  background: #f59e0b;
+  background: #10b981;
   color: white;
   border-color: transparent;
-  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.18);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.18);
 }
 
 /* Grid de cards */
@@ -194,7 +194,7 @@ p.lead {
 
 /* Botões */
 .btn {
-  background: linear-gradient(180deg, #f59e0b, #f59e0b);
+  background: linear-gradient(180deg, #10b981, #10b981);
   color: white;
   padding: 8px 12px;
   border-radius: 10px;
