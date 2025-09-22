@@ -111,8 +111,10 @@ $('#searchInput').oninput=e=>{ state.search=e.target.value.toLowerCase(); render
 /* ===== boot ===== */  
 async function boot(){
     products = await fetch('http://localhost:3000/produtos')
+  
     .then(r => {
       if (!r.ok) throw new Error('Erro ao carregar produtos');
+      else console.log(produtos)
       return r.json();
     })
     .catch(err => {
