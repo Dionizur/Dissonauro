@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo dos Dinossauros</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="https://imagensempng.com.br/wp-content/uploads/2023/05/Logo-Jurassic-World-Png-300x300.png">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="dino-header">Dino<span class="gradient-text">Verse</span></h1>
+            <p>Explore os incríveis dinossauros</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="\pages\blog\blog.html">Blog</a></li>
+                <li><a href="\pages\blog\blog.html">Busca</a></li>
+                <li><a href="pages/periodos/periodos.html">Períodos</a></li>
+                <li><a href="pages\quiz\quiz.html">Quiz</a></li>
+                <li><a href="pages\sobre.html">Sobre nós</a></li>
+            </ul>
+        </nav>
+        
+        <section id="intro">
+            <h2>Introdução</h2>
+            <p class="intro">Os dinossauros foram um grupo de animais diversificados que dominaram a Terra por mais de 150 milhões de anos. Eles evoluíram em uma variedade incrível de formas e tamanhos, desde pequenos predadores emplumados até os maiores animais que já caminharam sobre a Terra.</p>
+        </section>
+        
+        <section id="buscar">
+            <h2>Buscar Dinossauro</h2>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Digite o nome de um dinossauro...">
+                <button class="search-button">Buscar</button>
+            </div>
+            <div id="search-results" class="dino-grid">
+                <!-- Resultados da busca aparecerão aqui -->
+            </div>
+        </section>
+        
+        <!-- Modal para exibir informações da Wikipedia -->
+        <div id="dino-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal-header">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-subtitle"></p>
+                </div>
+                <div id="modal-body" class="wiki-content">
+                    <div class="loading">Carregando informações...</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Página Interativa sobre Dinossauros - Criado para fins educacionais</p>
+            <p>Informações fornecidas pela Wikipedia API</p>
+            <p>© 2025 Mundo dos Dinossauros</p>
+        </footer>
+    </div>
+
+    <script src="scripts.js"></script>
+        
+</body>
+</html>
