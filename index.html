@@ -6,8 +6,12 @@
     <title>DinoVerse - Explorando o Mundo dos Dinossauros</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
     <div class="space-y-16">
         <!-- Hero Section -->
         <section class="hero">
@@ -23,10 +27,10 @@
                     Explore o fascinante mundo dos dinossauros e descubra os mistérios das criaturas que dominaram a Terra há milhões de anos
                 </p>
                 <div class="flex flex-col md:flex-row gap-4 justify-center">
-                    <a href="explorer.html" class="btn btn-primary">
+                    <a href="/pages/periodos/periodos.html" class="btn btn-primary">
                         Explorar Dinossauros
                     </a>
-                    <a href="quiz.html" class="btn btn-outline">
+                    <a href="pages/quiz/quiz.html" class="btn btn-outline">
                         Testar Conhecimentos
                     </a>
                 </div>
@@ -95,76 +99,10 @@
             </div>
         </section>
 
-        <!-- Dinosaur Gallery -->
-        <section class="container">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Galeria de Dinossauros
-                </h2>
-                <p class="text-lg max-w-2xl mx-auto">
-                    Conheça algumas das criaturas mais impressionantes que já caminharam pela Terra
-                </p>
-            </div>
 
-            <!-- Search and Filters -->
-            <div class="mb-8 space-y-4">
-                <div class="relative max-w-md mx-auto">
-                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-stone-400"></i>
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Buscar dinossauros..."
-                        class="input pl-10"
-                    />
-                </div>
-                
-                <div class="filters">
-                    <div class="filter-group">
-                        <span class="filter-label">
-                            <i class="fas fa-filter mr-1"></i>
-                            Período:
-                        </span>
-                        <button class="btn btn-sm active-filter" data-period="Todos">Todos</button>
-                        <button class="btn btn-sm" data-period="Triássico">Triássico</button>
-                        <button class="btn btn-sm" data-period="Jurássico">Jurássico</button>
-                        <button class="btn btn-sm" data-period="Cretáceo">Cretáceo</button>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <span class="filter-label">Dieta:</span>
-                        <button class="btn btn-sm active-filter diet" data-diet="Todos">Todos</button>
-                        <button class="btn btn-sm" data-diet="Carnívoro">Carnívoro</button>
-                        <button class="btn btn-sm" data-diet="Herbívoro">Herbívoro</button>
-                        <button class="btn btn-sm" data-diet="Onívoro">Onívoro</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Results -->
-            <div class="text-center mb-6">
-                <p id="resultsCount">42 dinossauros encontrados</p>
-            </div>
-
-            <!-- Dinosaur Grid -->
-            <div id="dinosaurGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Dinossauros serão carregados via JavaScript -->
-            </div>
-
-            <div id="viewAll" class="text-center mt-8 hidden">
-                <a href="explorer.html" class="btn btn-outline">
-                    Ver Todos os Dinossauros
-                    <i class="fas fa-chevron-right ml-2"></i>
-                </a>
-            </div>
-
-            <div id="noResults" class="text-center py-12 hidden">
-                <div class="text-6xl mb-4">🔍</div>
-                <h3 class="text-xl font-semibold mb-2">Nenhum dinossauro encontrado</h3>
-                <p class="text-stone-600">Tente ajustar os filtros ou termo de busca</p>
-            </div>
-        </section>
     </div>
 
     <script src="script.js"></script>
+    <script src="navbar.js"></script>
 </body>
 </html>
