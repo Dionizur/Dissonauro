@@ -8,19 +8,19 @@
 
     :root {
         --stone-50: #fafaf9;
-        --stone-100: #f5f5f4;
+        --stone-100: #ccf7c3;
         --stone-600: #57534e;
         --stone-700: #44403c;
         --stone-800: #292524;
         --stone-900: #1c1917;
-        --amber-50: #fffbeb;
-        --amber-100: #fef3c7;
-        --amber-400: #fbbf24;
-        --amber-500: #f59e0b;
-        --amber-600: #d97706;
-        --orange-100: #ffedd5;
-        --orange-500: #f97316;
-        --orange-600: #ea580c;
+        --amber-50: #ccf9ba;
+        --amber-100: #b6e99e;
+        --amber-400: #bff2bc;
+        --amber-500: #7bf08f;
+        --amber-600: #64c63e;
+        --orange-100: #69ed78;
+        --orange-500: #74d65d;
+        --orange-600: #26732e;
     }
 
     body {
@@ -35,7 +35,6 @@
         padding: 0 20px;
     }
 
-    /* Estilos gerais */
     h1, h2, h3 {
         font-weight: bold;
         margin-bottom: 1rem;
@@ -59,7 +58,6 @@
         margin-bottom: 1rem;
     }
 
-    /* Cards */
     .card {
         background: white;
         border-radius: 8px;
@@ -85,7 +83,6 @@
         margin-bottom: 0.5rem;
     }
 
-    /* Badges */
     .badge {
         display: inline-block;
         padding: 0.25rem 0.75rem;
@@ -96,12 +93,10 @@
         color: var(--amber-600);
     }
 
-    /* Seções */
     section {
         margin-bottom: 4rem;
     }
 
-    /* Hero Section */
     .hero {
         text-align: center;
         margin-bottom: 4rem;
