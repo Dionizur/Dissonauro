@@ -23,7 +23,7 @@ function toast(msg,type='success'){
 /* ===== categorias ===== */
 const categories = [
   {id:'todos',name:'📦 Todos'}, 
-  {id:'modelos',name:'🦕 Modelos'}, 
+  {id:'modelos',name:'🦕 Dinossauros'}, 
   {id:'itens',name:'🎁 Itens'}
 ];
 function renderCategories(){
@@ -132,3 +132,4 @@ async function boot(){
   updateUser();       // Atualiza nome do usuário no topo (se logado)
 }
 boot();
+  
