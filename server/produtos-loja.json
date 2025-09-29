@@ -3,9 +3,9 @@
     {
       "id": "d1",
       "name": "Tyrannosaurus rex",
-      "description": "O Tiranossauro Rex é um dos dinossauros carnívoros mais conhecidos, com cerca de 12 metros de comprimento e 6 metros de altura. Predador imponente do período Cretáceo.",
+      "description": "O Tiranossauro Rex é um dos Giovane's carnívoros mais conhecidos, com cerca de 12 metros de comprimento e 6 metros de altura. Predador imponente do período Cretáceo.",
       "price": 150000000,
-      "image_url": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://i.pinimg.com/736x/fe/f4/49/fef449a9a7ff09edc995125a1b3ef720.jpg",
       "category": "modelos"
     },
     {
@@ -13,7 +13,7 @@
       "name": "Triceratops horridus",
       "description": "O Tricerátops é conhecido por seu grande crânio com três chifres. Herbívoro do Cretáceo, com um comprimento de até 9 metros.",
       "price": 85000000,
-      "image_url": "https://images.unsplash.com/photo-1544934952-2d6e2c2f6f3f?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://i.pinimg.com/736x/fc/de/d7/fcded7f3d56ee1a5527dcf867ce41c15.jpg",
       "category": "modelos"
     },
     {
@@ -21,7 +21,7 @@
       "name": "Velociraptor mongoliensis",
       "description": "O Velociraptor é famoso por sua agilidade e inteligência. Com cerca de 2 metros de comprimento e 0,5 metros de altura, ele viveu no final do Cretáceo.",
       "price": 25000000,
-      "image_url": "https://images.unsplash.com/photo-1531394176433-51ad5b66b7f9?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://i.pinimg.com/1200x/81/e5/ac/81e5acb1729f792ed3077d5ed6000ad9.jpg",
       "category": "modelos"
     },
     {
@@ -29,7 +29,7 @@
       "name": "Brachiosaurus altithorax",
       "description": "O Brachiosaurus era um dos maiores dinossauros herbívoros, com cerca de 25 metros de comprimento e pesando até 80 toneladas. Ele viveu durante o Jurássico Superior.",
       "price": 180000000,
-      "image_url": "https://images.unsplash.com/photo-1550526820-d8f68184c5e0?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://i.pinimg.com/1200x/2d/24/14/2d241462dcdc93fa1df351e60c75bb39.jpg",
       "category": "modelos"
     },
     {
@@ -37,7 +37,7 @@
       "name": "Spinosaurus aegypticus",
       "description": "O Spinosaurus é famoso por sua vela nas costas e por ser um predador semi-aquático. Com cerca de 15 metros de comprimento, ele habitava as regiões do norte da África.",
       "price": 175000000,
-      "image_url": "https://images.unsplash.com/photo-1611905953430-e10a78c217be?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://media1.tenor.com/m/fh0c7l5B03EAAAAd/spinosaurus.gif",
       "category": "modelos"
     },
     {
@@ -45,7 +45,7 @@
       "name": "Stegosaurus stenops",
       "description": "Conhecido pelas suas grandes placas ósseas nas costas e cauda com espinhos, o Stegosaurus era um herbívoro que viveu no período Jurássico.",
       "price": 60000000,
-      "image_url": "https://images.unsplash.com/photo-1598880746803-f3e91212f168?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://i.pinimg.com/1200x/47/2a/42/472a42c025aabf5cd825fe375b6118be.jpg",
       "category": "modelos"
     },
     {
@@ -53,7 +53,7 @@
       "name": "Allosaurus fragilis",
       "description": "O Allosaurus foi um predador dominante durante o período Jurássico, com até 12 metros de comprimento e uma postura altamente adaptada para caçar.",
       "price": 95000000,
-      "image_url": "https://images.unsplash.com/photo-1544424637-e32d7e2ff8ae?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://i.pinimg.com/736x/72/e4/71/72e471cfec894ab27468500a8e2f9463.jpg",
       "category": "modelos"
     },
     {
@@ -61,7 +61,7 @@
       "name": "Apatosaurus ajax",
       "description": "O Apatosaurus era um herbívoro de grande porte, com um pescoço longo e um corpo volumoso. Ele viveu no final do período Jurássico.",
       "price": 110000000,
-      "image_url": "https://images.unsplash.com/photo-1561139125-944d7f26bc9e?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1561139125-944d7f26bc9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "modelos"
     },
     {
@@ -69,7 +69,7 @@
       "name": "Carnotaurus sastrei",
       "description": "Carnotaurus é um dinossauro carnívoro de porte médio, com características únicas como chifres acima dos olhos e uma estrutura corporal altamente especializada para corrida.",
       "price": 82000000,
-      "image_url": "https://images.unsplash.com/photo-1586353972839-32d0d3c1c72e?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1586353972839-32d0d3c1c72e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "modelos"
     },
     {
@@ -77,7 +77,7 @@
       "name": "Diplodocus longus",
       "description": "O Diplodocus é um dos maiores herbívoros conhecidos, com até 27 metros de comprimento e uma cauda que podia atingir grandes distâncias.",
       "price": 120000000,
-      "image_url": "https://images.unsplash.com/photo-1555025306-5e4e7420332e?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1555025306-5e4e7420332e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "modelos"
     },
     {
@@ -85,7 +85,7 @@
       "name": "Giganotosaurus carolinii",
       "description": "O Giganotosaurus foi um dos maiores predadores terrestres que já existiram, com um comprimento de até 13 metros e uma impressionante mandíbula.",
       "price": 160000000,
-      "image_url": "https://images.unsplash.com/photo-1621792563431-7f17d5153a47?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1621792563431-7f17d5153a47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "modelos"
     },
     {
@@ -93,7 +93,7 @@
       "name": "Pachycephalosaurus wyomingensis",
       "description": "Este dinossauro é conhecido pelo seu crânio incrivelmente espesso e arredondado, que poderia ter sido usado para bater com outros machos.",
       "price": 45000000,
-      "image_url": "https://images.unsplash.com/photo-1562471885-1262262f5d8b?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1562471885-1262262f5d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "modelos"
     },
     {
@@ -101,7 +101,7 @@
       "name": "Deinonychus antirrhopus",
       "description": "O Deinonychus é um dinossauro carnívoro, semelhante ao Velociraptor, conhecido por sua garras retráteis em cada pé, usadas para caçar suas presas.",
       "price": 75000000,
-      "image_url": "https://images.unsplash.com/photo-1627663051095-3e56b496d732?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1627663051095-3e56b496d732?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "modelos"
     },
     {
@@ -109,7 +109,7 @@
       "name": "Hadrosaurus foulkii",
       "description": "Este dinossauro herbívoro, conhecido como 'o primeiro dinossauro completo', era caracterizado por um bico semelhante ao de um pato e dentes adaptados para mastigar vegetação.",
       "price": 65000000,
-      "image_url": "https://images.unsplash.com/photo-1562565090-ff4cdbd45d8c?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1562565090-ff4cdbd45d8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "modelos"
     },
     {
@@ -117,7 +117,7 @@
       "name": "Iguanodon bernissartensis",
       "description": "O Iguanodon é famoso por seus polegares espinhosos e uma dieta herbívora. Ele foi um dos primeiros dinossauros a serem descobertos.",
       "price": 72000000,
-      "image_url": "https://images.unsplash.com/photo-1592836881386-819d0802a60b?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1592836881386-819d0802a60b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "modelos"
     },
     {
@@ -125,7 +125,7 @@
       "name": "Microraptor gui",
       "description": "O Microraptor era um dinossauro pequeno e ágil, com penas e asas, e possivelmente o primeiro dinossauro a voar. Ele media apenas cerca de 0,7 metros de comprimento.",
       "price": 25000000,
-      "image_url": "https://images.unsplash.com/photo-1581061148692-7d7d26a73652?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1581061148692-7d7d26a73652?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "modelos"
     },
     {
@@ -133,7 +133,7 @@
       "name": "Celas para Dinossauros",
       "description": "Celas feitas sob medida para o seu dinossauro, garantindo conforto e segurança.",
       "price": 300000,
-      "image_url": "https://images.unsplash.com/photo-1567763176-e5cc16c7988c?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1567763176-e5cc16c7988c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "itens"
     },
     {
@@ -141,7 +141,7 @@
       "name": "Escova de Dentes para Dinossauros",
       "description": "Escova de dentes especialmente projetada para os dentes afiados dos dinossauros.",
       "price": 15000,
-      "image_url": "https://images.unsplash.com/photo-1576101055631-b5bda6f4c7cc?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1576101055631-b5bda6f4c7cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "itens"
     },
     {
@@ -149,7 +149,7 @@
       "name": "Coleira para Dinossauros",
       "description": "Coleiras duráveis e estilosas, para manter seu dinossauro sempre na linha.",
       "price": 25000,
-      "image_url": "https://images.unsplash.com/photo-1586841097481-254ad5b7c578?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1586841097481-254ad5b7c578?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "itens"
     },
     {
@@ -157,7 +157,7 @@
       "name": "Pelúcia de Dinossauro",
       "description": "Dinossauros de pelúcia fofos e colecionáveis, perfeitos para os amantes de dinossauros.",
       "price": 5000,
-      "image_url": "https://images.unsplash.com/photo-1601000152790-47e44efb77b0?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1601000152790-47e44efb77b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "itens"
     },
     {
@@ -165,7 +165,7 @@
       "name": "Ração para Dinossauros Herbívoros",
       "description": "Ração especialmente formulada para dinossauros herbívoros como o Brachiosaurus e o Triceratops.",
       "price": 12000,
-      "image_url": "https://images.unsplash.com/photo-1577484745031-58cdbf9ef5f8?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1577484745031-58cdbf9ef5f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "itens"
     },
     {
@@ -173,7 +173,7 @@
       "name": "Garrafa de Água para Dinossauros",
       "description": "Garrafa resistente e grande capacidade, ideal para manter seu dinossauro bem hidratado durante o dia.",
       "price": 20000,
-      "image_url": "https://images.unsplash.com/photo-1587560631532-1baaf2375865?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1587560631532-1baaf2375865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "itens"
     },
     {
@@ -181,7 +181,7 @@
       "name": "Camiseta de Dinossauro",
       "description": "Camisetas estilosas com estampas de dinossauros, para os amantes de dinossauros em qualquer idade.",
       "price": 4000,
-      "image_url": "https://images.unsplash.com/photo-1582567863062-e4c1f97b92d9?q=80&w=1400&auto=format&fit=crop",
+      "image_url": "https://images.unsplash.com/photo-1582567863062-e4c1f97b92d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       "category": "itens"
     }
   ]

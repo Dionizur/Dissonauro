@@ -11,6 +11,17 @@ const money = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const get = k => JSON.parse(localStorage.getItem(k) || 'null');
 const set = (k,v)=> localStorage.setItem(k, JSON.stringify(v));
 
+/* ===== formatação de preço ===== */
+function formatPrice(value) {
+  if (value >= 1_000_000) {
+    return Math.floor(value / 1_000_000) + 'M';
+  }
+  if (value >= 1_000) {
+    return Math.floor(value / 1_000) + 'MIL';
+  }
+  return money(value);
+}
+
 /* ===== toasts ===== */
 function toast(msg,type='success'){
   const el = document.createElement('div');
@@ -45,7 +56,7 @@ function renderProducts(){
         <div class="title">${p.name}</div>
         <div class="desc">${p.description}</div>
         <div class="footer">
-          <div class="price">${money(p.price)}</div>
+          <div class="price">${formatPrice(p.price)}</div>
           <button class="btn" data-add="${p.id}">🛒 Adicionar</button>
         </div>
       </div>
@@ -132,4 +143,3 @@ async function boot(){
   updateUser();       // Atualiza nome do usuário no topo (se logado)
 }
 boot();
-  
