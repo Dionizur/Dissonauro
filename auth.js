@@ -1,113 +1,59 @@
-// Sistema de Autenticação DinoVerse com Supabase
-class AuthSystem {
-    constructor() {
-        this.currentUser = null;
-        this.supabase = window.supabaseClient.client;
-        this.init();
-    }
+// Funções comuns de autenticação
 
-    async init() {
-        await this.checkSession();
-    }
-
-    async register(userData) {
-        // Validar dados
-        if (!userData.name || !userData.email || !userData.password) {
-            throw new Error('Todos os campos são obrigatórios');
-        }
-
-        if (userData.password.length < 6) {
-            throw new Error('A senha deve ter pelo menos 6 caracteres');
-        }
-
-        const { data, error } = await this.supabase.auth.signUp({
-            email: userData.email,
-            password: userData.password,
-            options: {
-                data: {
-                    name: userData.name,
-                    role: 'user'
-                }
-            }
-        });
-
-        if (error) {
-            throw new Error(error.message);
-        }
-
-        // Para usuários novos, definir como user
-        const newUser = {
-            id: data.user.id,
-            name: userData.name,
-            email: userData.email,
-            role: 'user'
-        };
-
-        this.currentUser = newUser;
-        localStorage.setItem('dinoUser', JSON.stringify(this.currentUser));
-
-        return newUser;
-    }
-
-    async login(email, password) {
-        const { data, error } = await this.supabase.auth.signInWithPassword({
-            email,
-            password
-        });
-
-        if (error) {
-            throw new Error(error.message);
-        }
-
-        const user = data.user;
-        this.currentUser = {
-            id: user.id,
-            name: user.user_metadata.name || 'Usuário',
-            email: user.email,
-            role: user.user_metadata.role || 'user'
-        };
-
-        localStorage.setItem('dinoUser', JSON.stringify(this.currentUser));
-
-        return this.currentUser;
-    }
-
-    async logout() {
-        const { error } = await this.supabase.auth.signOut();
-        if (error) {
-            console.error('Erro ao fazer logout:', error);
-        }
-        this.currentUser = null;
-        localStorage.removeItem('dinoUser');
-    }
-
-    async checkSession() {
-        const { data: { user } } = await this.supabase.auth.getUser();
-        if (user) {
-            this.currentUser = {
-                id: user.id,
-                name: user.user_metadata.name || 'Usuário',
-                email: user.email,
-                role: user.user_metadata.role || 'user'
-            };
-            localStorage.setItem('dinoUser', JSON.stringify(this.currentUser));
-        } else {
-            // Fallback para localStorage se Supabase não tiver sessão
-            const userData = localStorage.getItem('dinoUser');
-            if (userData) {
-                this.currentUser = JSON.parse(userData);
-            }
-        }
-    }
-
-    isAuthenticated() {
-        return this.currentUser !== null;
-    }
-
-    getCurrentUser() {
-        return this.currentUser;
+// Verificar se há um evento de autenticação na URL (para confirmação de email)
+async function handleAuthRedirect() {
+    const { data, error } = await window.supabase.auth.getSessionFromUrl();
+    if (error) {
+        console.error('Erro ao processar redirecionamento:', error.message);
+    } else if (data.session) {
+        console.log('Usuário autenticado com sucesso:', data);
+        // Redirecionar para a página principal
+        window.location.href = '/index.html';
     }
 }
 
-// Instância global do sistema de autenticação
-const auth = new AuthSystem();
+// Chame essa função ao carregar a página
+handleAuthRedirect();
+
+// Listener para mudanças de estado de autenticação
+window.supabase.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_IN' && session) {
+        // Redirecionar para a página principal após login/registro
+        window.location.href = '/index.html';
+    }
+});
+
+// Função para mostrar mensagens de erro/sucesso
+function showMessage(message, type = 'error') {
+    // Criar elemento de mensagem se não existir
+    let msgDiv = document.getElementById('auth-message');
+    if (!msgDiv) {
+        msgDiv = document.createElement('div');
+        msgDiv.id = 'auth-message';
+        msgDiv.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+        `;
+        document.body.appendChild(msgDiv);
+    }
+
+    msgDiv.textContent = message;
+    msgDiv.style.backgroundColor = type === 'success' ? '#4CAF50' : '#f44336';
+
+    // Remover após 5 segundos
+    setTimeout(() => {
+        if (msgDiv) msgDiv.remove();
+    }, 5000);
+}
+
+// Função para verificar se usuário está logado (opcional, para proteger páginas)
+async function checkAuth() {
+    const { data: { session } } = await window.supabase.auth.getSession();
+    return session;
+}
