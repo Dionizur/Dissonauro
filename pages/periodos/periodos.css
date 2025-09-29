@@ -32,7 +32,7 @@ body {
 .container {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 6rem 1rem;
 }
 
 /* Texto */
@@ -89,7 +89,7 @@ h3 {
 }
 
 .py-12 {
-    padding-top: 3rem;
+    padding-top: 5rem;
     padding-bottom: 3rem;
 }
 
@@ -120,6 +120,22 @@ h3 {
 
 .gap-6 {
     gap: 1.5rem;
+}
+
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+    .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .lg\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 
 /* Card */
@@ -205,6 +221,15 @@ h3 {
     }
 }
 
+@keyframes shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
 .animate-pulse {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
@@ -212,6 +237,12 @@ h3 {
 .animate-pulse div {
     background-color: var(--stone-200);
     border-radius: 0.5rem;
+}
+
+.loading-shimmer {
+    background: linear-gradient(90deg, var(--stone-200) 25%, var(--stone-100) 50%, var(--stone-200) 75%);
+    background-size: 200px 100%;
+    animation: shimmer 1.5s infinite;
 }
 
 /* Períodos específicos */
@@ -275,23 +306,213 @@ h3 {
 
 /* Dinossauro card */
 .dino-card {
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--white);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .dino-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.dino-card-image-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 1rem 1rem 0 0;
+    background-color: var(--stone-100);
 }
 
 .dino-card img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 0.5rem 0.5rem 0 0;
+    height: 100%;
+    object-position: center top;
+    transition: transform 0.4s ease, filter 0.3s ease;
+    border-radius: 1rem 1rem 0 0;
+    background-color: var(--stone-100);
+}
+
+.dino-card img[loading] {
+    background: linear-gradient(90deg, var(--stone-200) 25%, var(--stone-100) 50%, var(--stone-200) 75%);
+    background-size: 200px 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.dino-card img:not([loading]) {
+    filter: brightness(1.0) contrast(1.1) saturate(1.1);
+}
+
+.dino-card:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.05) contrast(1.15) saturate(1.2);
+}
+
+.dino-card img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.3) 100%
+    );
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.dino-card:hover img::after {
+    opacity: 0.7;
+}
+
+.dino-card-image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        transparent 100%
+    );
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.dino-card:hover .dino-card-image-overlay {
+    opacity: 1;
+}
+
+.dino-card-image-title {
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsividade das imagens */
+@media (max-width: 640px) {
+    .dino-card-image-container {
+        height: 180px;
+    }
+
+    .dino-card-image-title {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .dino-card-image-container {
+        height: 240px;
+    }
+}
+
+/* Loading states melhorados */
+.dino-card img[loading] {
+    background: linear-gradient(90deg, var(--stone-200) 25%, var(--stone-100) 50%, var(--stone-200) 75%);
+    background-size: 200px 100%;
+    animation: shimmer 1.5s infinite;
+    position: relative;
+}
+
+.dino-card img[loading]::before {
+    content: '🦕';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+/* Fallback para imagens que não carregam */
+.dino-card img[src*="data:image"] {
+    background: linear-gradient(135deg, var(--stone-200), var(--stone-300));
+    position: relative;
+}
+
+.dino-card img[src*="data:image"]::after {
+    content: '📷';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.7;
+}
+
+/* Animações adicionais */
+.dino-card {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                filter 0.3s ease;
+}
+
+.dino-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    filter: brightness(1.05);
+}
+
+/* Efeito de profundidade */
+.dino-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border-radius: 1rem;
+    z-index: 1;
+}
+
+.dino-card:hover::before {
+    opacity: 1;
 }
 
 .dino-card-content {
-    padding: 1rem;
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dino-card h3 {
+    color: var(--stone-800);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.dino-card p {
+    color: var(--stone-600);
+    font-style: italic;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
 }
 
 .badge {
@@ -335,5 +556,180 @@ h3 {
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--stone-800);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.logo-icon {
+    color: var(--amber-500);
+    margin-right: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.logo-text {
+    background: linear-gradient(to right, var(--amber-500), var(--orange-600));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.navbar-item {
+    margin-left: 1.5rem;
+    position: relative;
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: var(--stone-600);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.navbar-link:hover {
+    color: var(--amber-500);
+}
+
+.navbar-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--amber-500);
+    transition: width 0.3s;
+}
+
+.navbar-link:hover::after {
+    width: 100%;
+}
+
+.navbar-link.active {
+    color: var(--amber-500);
+}
+
+.navbar-link.active::after {
+    width: 100%;
+}
+
+.navbar-search {
+    display: flex;
+    align-items: center;
+    background-color: var(--stone-100);
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    margin-left: 1.5rem;
+}
+
+.navbar-search input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 150px;
+    padding: 0.25rem;
+    color: var(--stone-600);
+}
+
+.navbar-search i {
+    color: var(--stone-400);
+}
+
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.navbar-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--stone-800);
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--white);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 2rem;
+        transition: left 0.3s ease;
+    }
+
+    .navbar-menu.active {
+        left: 0;
+    }
+
+    .navbar-item {
+        margin: 1rem 0;
+    }
+
+    .navbar-search {
+        margin: 1rem 0;
+        width: 80%;
+    }
+
+    .navbar-search input {
+        width: 100%;
+    }
+
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .navbar-toggle.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .navbar-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navbar-toggle.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
     }
 }

@@ -3,18 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog DinoMundo</title>
+    <title>Blog DinoVerse</title>
     <link rel="stylesheet" href="blog.css">
-    <link rel="stylesheet" href="../navbar.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <div id="navbar-placeholder"></div>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">
+                <i class="fas fa-dinosaur logo-icon"></i>
+                <span class="logo-text">DinoVerse</span>
+            </a>
+            
+            <div class="navbar-toggle" id="navbarToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item">
+                    <a href="#" class="navbar-link active">Início</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/pages/periodos/periodos.html" class="navbar-link">Períodos</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/pages/dinossauros/dinossauros.html" class="navbar-link">Dinossauros</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/pages/quiz/quiz.html" class="navbar-link">Quiz</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/pages/sobre/sobre.html" class="navbar-link">Sobre</a>
+                </li>
+                <li class="navbar-item">
+                    <div class="navbar-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Pesquisar...">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
 
     <div class="min-h-screen bg-stone-50 p-4 sm:p-6 lg:p-8">
         <div class="max-w-7xl mx-auto">
             <div class="animate-slideInDown text-center mb-12">
-                <h1 class="text-4xl md:text-5xl font-bold text-stone-800">Blog DinoMundo</h1>
+                <h1 class="text-4xl md:text-5xl font-bold text-stone-800">Blog DinoVerse</h1>
                 <p class="text-lg text-stone-600 mt-2">Últimas notícias e descobertas do mundo da paleontologia</p>
             </div>
 
@@ -83,6 +119,5 @@
     </div>
 
     <script src="blog.js"></script>
-    <script src="../navbar.js"></script>
 </body>
 </html>

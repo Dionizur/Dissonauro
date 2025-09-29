@@ -1,30 +1,73 @@
-document.getElementById('registerForm').addEventListener('submit', function(e) {
+document.getElementById('registerForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
+    const button = document.querySelector('button');
+    const errorDiv = document.getElementById('error-message') || createErrorDiv();
 
-    // Simulação de validação
-    if (name && email && password && confirmPassword) {
-        if (password !== confirmPassword) {
-            alert('As senhas não coincidem!');
-            return;
-        }
-        // Animação de sucesso
-        const button = document.querySelector('button');
+    // Limpar mensagens anteriores
+    errorDiv.textContent = '';
+
+    // Validação básica
+    if (!name || !email || !password || !confirmPassword) {
+        showError('Por favor, preencha todos os campos!');
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        showError('As senhas não coincidem!');
+        return;
+    }
+
+    if (password.length < 6) {
+        showError('A senha deve ter pelo menos 6 caracteres!');
+        return;
+    }
+
+    try {
+        // Mostrar loading
         button.textContent = 'Registrando...';
-        button.style.backgroundColor = '#ffb703';
+        button.disabled = true;
+
+        // Tentar registro
+        const user = await auth.register({ name, email, password });
+
+        // Sucesso
+        showSuccess('Conta criada com sucesso! Redirecionando para login...');
 
         setTimeout(() => {
-            alert('Conta registrada com sucesso! Bem-vindo à era dos dinossauros!');
-            button.textContent = 'Registrar';
-            button.style.backgroundColor = '#40916c';
-            document.getElementById('registerForm').reset();
-        }, 1500);
-    } else {
-        alert('Por favor, preencha todos os campos!');
+            window.location.href = '/login/login.html';
+        }, 2000);
+
+    } catch (error) {
+        showError(error.message);
+        resetButton();
+    }
+
+    function showError(message) {
+        errorDiv.textContent = message;
+        errorDiv.className = 'error-message';
+        resetButton();
+    }
+
+    function showSuccess(message) {
+        errorDiv.textContent = message;
+        errorDiv.className = 'success-message';
+    }
+
+    function resetButton() {
+        button.textContent = 'Registrar';
+        button.disabled = false;
+    }
+
+    function createErrorDiv() {
+        const div = document.createElement('div');
+        div.id = 'error-message';
+        document.querySelector('.links').before(div);
+        return div;
     }
 });
 

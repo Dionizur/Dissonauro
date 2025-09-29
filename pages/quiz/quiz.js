@@ -340,3 +340,36 @@ window.addEventListener('DOMContentLoaded', () => {
 
     loadDinosaurs();
 });
+
+// Navbar Toggle Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const navbarToggle = document.getElementById('navbarToggle');
+    const navbarMenu = document.getElementById('navbarMenu');
+    
+    navbarToggle.addEventListener('click', function() {
+        navbarMenu.classList.toggle('active');
+        navbarToggle.classList.toggle('active');
+    });
+    
+    // Fechar o menu ao clicar em um link (em dispositivos móveis)
+    const navbarLinks = document.querySelectorAll('.navbar-link');
+    navbarLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                navbarMenu.classList.remove('active');
+                navbarToggle.classList.remove('active');
+            }
+        });
+    });
+    
+    // Adicionar efeito de scroll na navbar
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            navbar.style.padding = '0';
+        } else {
+            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        }
+    });
+});

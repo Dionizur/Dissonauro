@@ -369,3 +369,88 @@
         .active-filter.diet {
             background-color: var(--emerald-500);
         }
+
+        /* Responsividade melhorada */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.125rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-group {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content {
+                padding: 0 0.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .card-content {
+                padding: 1rem;
+            }
+
+            .floating-icon {
+                font-size: 2rem;
+            }
+        }
+
+        /* Botão de Login */
+        .login-button-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+        }
+
+        .btn-login {
+            background: linear-gradient(to right, var(--emerald-500), var(--amber-500));
+            color: white;
+            padding: 0.75rem;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-login:hover {
+            background-color: var(--emerald-600);
+        }
