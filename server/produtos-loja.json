@@ -61,7 +61,7 @@
       "name": "Apatosaurus ajax",
       "description": "O Apatosaurus era um herbívoro de grande porte, com um pescoço longo e um corpo volumoso. Ele viveu no final do período Jurássico.",
       "price": 110000000,
-      "image_url": "https://images.unsplash.com/photo-1561139125-944d7f26bc9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "image_url": "https://i.pinimg.com/1200x/62/ca/43/62ca43a6e9b43acda404b1c2854d329f.jpg",
       "category": "modelos"
     },
     {
@@ -69,7 +69,7 @@
       "name": "Carnotaurus sastrei",
       "description": "Carnotaurus é um dinossauro carnívoro de porte médio, com características únicas como chifres acima dos olhos e uma estrutura corporal altamente especializada para corrida.",
       "price": 82000000,
-      "image_url": "https://images.unsplash.com/photo-1586353972839-32d0d3c1c72e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "image_url": "https://i.pinimg.com/736x/b0/61/fa/b061fae86d858d9a20cbed4467781ad9.jpg",
       "category": "modelos"
     },
     {
@@ -77,7 +77,7 @@
       "name": "Diplodocus longus",
       "description": "O Diplodocus é um dos maiores herbívoros conhecidos, com até 27 metros de comprimento e uma cauda que podia atingir grandes distâncias.",
       "price": 120000000,
-      "image_url": "https://images.unsplash.com/photo-1555025306-5e4e7420332e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "image_url": "https://i.pinimg.com/736x/e8/68/bc/e868bc45a6f1854e6fea60f903057850.jpg",
       "category": "modelos"
     },
     {
@@ -85,7 +85,7 @@
       "name": "Giganotosaurus carolinii",
       "description": "O Giganotosaurus foi um dos maiores predadores terrestres que já existiram, com um comprimento de até 13 metros e uma impressionante mandíbula.",
       "price": 160000000,
-      "image_url": "https://images.unsplash.com/photo-1621792563431-7f17d5153a47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "image_url": "https://i.pinimg.com/1200x/27/00/0a/27000aced81fcb89e2537eb350ee2f35.jpg",
       "category": "modelos"
     },
     {
@@ -93,7 +93,7 @@
       "name": "Pachycephalosaurus wyomingensis",
       "description": "Este dinossauro é conhecido pelo seu crânio incrivelmente espesso e arredondado, que poderia ter sido usado para bater com outros machos.",
       "price": 45000000,
-      "image_url": "https://images.unsplash.com/photo-1562471885-1262262f5d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "image_url": "https://i.pinimg.com/1200x/9f/46/ba/9f46bae943ac4e9d2944206e565f7f7d.jpg",
       "category": "modelos"
     },
     {
@@ -101,7 +101,7 @@
       "name": "Deinonychus antirrhopus",
       "description": "O Deinonychus é um dinossauro carnívoro, semelhante ao Velociraptor, conhecido por sua garras retráteis em cada pé, usadas para caçar suas presas.",
       "price": 75000000,
-      "image_url": "https://images.unsplash.com/photo-1627663051095-3e56b496d732?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "image_url": "https://i.pinimg.com/1200x/94/a2/4f/94a24f755701de6d6935fc6a85e65c9c.jpg",
       "category": "modelos"
     },
     {
@@ -109,7 +109,7 @@
       "name": "Hadrosaurus foulkii",
       "description": "Este dinossauro herbívoro, conhecido como 'o primeiro dinossauro completo', era caracterizado por um bico semelhante ao de um pato e dentes adaptados para mastigar vegetação.",
       "price": 65000000,
-      "image_url": "https://images.unsplash.com/photo-1562565090-ff4cdbd45d8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "image_url": "https://i.pinimg.com/736x/61/d2/b5/61d2b5f367366658007f5513de19acac.jpg",
       "category": "modelos"
     },
     {
@@ -117,7 +117,7 @@
       "name": "Iguanodon bernissartensis",
       "description": "O Iguanodon é famoso por seus polegares espinhosos e uma dieta herbívora. Ele foi um dos primeiros dinossauros a serem descobertos.",
       "price": 72000000,
-      "image_url": "https://images.unsplash.com/photo-1592836881386-819d0802a60b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "image_url": "https://i.pinimg.com/1200x/e5/4d/04/e54d046b1f82273f7e86476a9edbee42.jpg",
       "category": "modelos"
     },
     {
