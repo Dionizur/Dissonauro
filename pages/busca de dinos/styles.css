@@ -1,10 +1,9 @@
-/* Variáveis e reset */
 :root {
-    --amber-500: #f59e0b;
-    --amber-600: #d97706;
+    --amber-500: #7bf08f;  /* Alterado de laranja para verde */
+    --amber-600: #64c63e;  /* Alterado de laranja para verde */
     --emerald-500: #10b981;
     --emerald-600: #059669;
-    --orange-600: #ea580c;
+    --orange-600: #26732e;  /* Alterado de laranja para verde */
     --stone-50: #fafaf9;
     --stone-100: #f5f5f4;
     --stone-200: #e7e5e4;
@@ -12,6 +11,7 @@
     --stone-600: #57534e;
     --stone-800: #292524;
     --white: #ffffff;
+    
 }
 
 * {
@@ -23,7 +23,7 @@
 
 body {
     color: var(--stone-800);
-    background-color: var(--stone-50);
+    background: linear-gradient(to bottom, #ffffff, #dbfbd4, #c4faab);
     line-height: 1.6;
 }
 
@@ -36,7 +36,7 @@ body {
 
 /* Header */
 header {
-    background: linear-gradient(to bottom right, #d1fae5, #fef3c7, #fed7aa);
+    background: linear-gradient(to bottom right, #d1fae5, #b8ffb8, #44dd51);
     color: var(--stone-800);
     text-align: center;
     padding: 3rem 1rem;
@@ -203,6 +203,7 @@ h2 {
 .dino-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    background-color: #85d180df;
 }
 
 .dino-info {
