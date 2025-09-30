@@ -18,13 +18,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
     color: var(--stone-800);
     background: linear-gradient(to bottom, #ffffff, #dbfbd4, #c4faab);
     line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 450;
 }
 
 /* Container */
@@ -38,6 +39,7 @@ body {
 header {
     background: linear-gradient(to bottom right, #d1fae5, #b8ffb8, #44dd51);
     color: var(--stone-800);
+    font-family: 'Bone', sans-serif;
     text-align: center;
     padding: 3rem 1rem;
     position: relative;
@@ -64,13 +66,14 @@ header::before {
     margin-bottom: 1rem;
     position: relative;
     z-index: 10;
+    color: var(--amber-500); /* Verde para Dino */
 }
 
 .gradient-text {
-    background: linear-gradient(to right, var(--amber-500), var(--orange-600));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--stone-800); /* Preto/cinza escuro para Co */
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
 }
 
 header p {
@@ -132,6 +135,7 @@ h2 {
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
+    font-family: 'Bone', sans-serif;
 }
 
 .intro {
