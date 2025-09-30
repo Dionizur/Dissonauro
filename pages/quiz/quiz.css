@@ -11,9 +11,9 @@
     --green-400: #4ade80;
     --green-500: #22c55e;
     --green-600: #16a34a;
-    --amber-400: #fbbf24;
-    --amber-500: #f59e0b;
-    --amber-600: #d97706;
+    --amber-400: #4ade80;
+    --amber-500: #10b981;
+    --amber-600: #059669;
     --red-400: #f87171;
     --red-500: #ef4444;
     --red-600: #dc2626;
@@ -36,6 +36,7 @@ body {
     min-height: 100vh;
     padding: 2rem 1rem;
     color: var(--stone-800);
+    overflow: hidden; /* Remove a rolagem da página */
 }
 
 /* Utilitários */

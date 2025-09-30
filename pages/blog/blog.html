@@ -4,47 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog DinoVerse</title>
+    <link rel="stylesheet" href="../../navbar.css">
     <link rel="stylesheet" href="blog.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="#" class="navbar-logo">
-                <i class="fas fa-dinosaur logo-icon"></i>
-                <span class="logo-text">DinoVerse</span>
-            </a>
-            
-            <div class="navbar-toggle" id="navbarToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            
-            <ul class="navbar-menu" id="navbarMenu">
-                <li class="navbar-item">
-                    <a href="#" class="navbar-link active">Início</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="/pages/periodos/periodos.html" class="navbar-link">Períodos</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="/pages/dinossauros/dinossauros.html" class="navbar-link">Dinossauros</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="/pages/quiz/quiz.html" class="navbar-link">Quiz</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="/pages/sobre/sobre.html" class="navbar-link">Sobre</a>
-                </li>
-                <li class="navbar-item">
-                    <div class="navbar-search">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Pesquisar...">
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
 
 
     <div class="min-h-screen bg-stone-50 p-4 sm:p-6 lg:p-8">
@@ -118,6 +83,7 @@
         </div>
     </div>
 
+    <script src="../../navbar.js"></script>
     <script src="blog.js"></script>
 </body>
 </html>

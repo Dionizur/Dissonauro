@@ -2,24 +2,23 @@
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
 
-    // Validar se senhas coincidem
     if (password !== confirmPassword) {
-        showMessage('As senhas não coincidem!');
+        showMessage('As senhas não coincidem.');
         return;
     }
 
     try {
-        const { data, error } = await window.supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
             email: email,
             password: password,
             options: {
                 data: {
-                    name: name
+                    full_name: name
                 }
             }
         });
@@ -27,8 +26,9 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
         if (error) {
             showMessage('Erro no registro: ' + error.message);
         } else {
-            showMessage('Registro realizado! Verifique seu email para confirmar.', 'success');
-            // O listener em auth.js redirecionará após confirmação
+            showMessage('Registro realizado com sucesso! Verifique seu e-mail para confirmação.', 'success');
+            // Opcional: redirecionar após registro
+            // window.location.href = '/login/login.html';
         }
     } catch (err) {
         showMessage('Erro inesperado: ' + err.message);
