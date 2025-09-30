@@ -125,23 +125,23 @@
       "name": "Microraptor gui",
       "description": "O Microraptor era um dinossauro pequeno e ágil, com penas e asas, e possivelmente o primeiro dinossauro a voar. Ele media apenas cerca de 0,7 metros de comprimento.",
       "price": 25000000,
-      "image_url": "https://images.unsplash.com/photo-1581061148692-7d7d26a73652?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "image_url": "https://i.pinimg.com/1200x/46/dd/c5/46ddc5f15073b8893c44551a84d4cacb.jpg",
       "category": "modelos"
     },
     {
       "id": "d17",
       "name": "Celas para Dinossauros",
       "description": "Celas feitas sob medida para o seu dinossauro, garantindo conforto e segurança.",
-      "price": 300000,
-      "image_url": "https://images.unsplash.com/photo-1567763176-e5cc16c7988c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "price": 3000,
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxLXP6pVI8LkEp3L5IBbOziwQAhWvSFua7raThq5ohO3Nf1D-45zpiEe5lVyXxB0aOAb4&usqp=CAU",
       "category": "itens"
     },
     {
       "id": "d18",
       "name": "Escova de Dentes para Dinossauros",
       "description": "Escova de dentes especialmente projetada para os dentes afiados dos dinossauros.",
-      "price": 15000,
-      "image_url": "https://images.unsplash.com/photo-1576101055631-b5bda6f4c7cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "price": 150,
+      "image_url": "https://images.tcdn.com.br/img/img_prod/554718/180_escova_para_caixa_de_rodas_cerdas_rigidas_cabo_longo_detailer_3239_1_a079c1e01fa8755c4176e44fd5d93d16.jpg",
       "category": "itens"
     },
     {
@@ -149,39 +149,47 @@
       "name": "Coleira para Dinossauros",
       "description": "Coleiras duráveis e estilosas, para manter seu dinossauro sempre na linha.",
       "price": 25000,
-      "image_url": "https://images.unsplash.com/photo-1586841097481-254ad5b7c578?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "image_url": "https://cdn11.bigcommerce.com/s-uo1k3umhv5/stencil/6a2a5e80-aab5-0139-a81d-0e068489ff69/e/77f43a20-b6e7-013c-05d0-1611693f1af8/img/featured-categories/featured-categories-block-3_WindlassAnchorChain.jpg",
       "category": "itens"
     },
     {
       "id": "d20",
-      "name": "Pelúcia de Dinossauro",
+      "name": "Pelúcia de T-REX",
       "description": "Dinossauros de pelúcia fofos e colecionáveis, perfeitos para os amantes de dinossauros.",
       "price": 5000,
-      "image_url": "https://images.unsplash.com/photo-1601000152790-47e44efb77b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "image_url": "https://i.pinimg.com/736x/7c/ab/14/7cab144559bb7c6c093dcf787452b80b.jpg",
       "category": "itens"
     },
     {
       "id": "d21",
       "name": "Ração para Dinossauros Herbívoros",
       "description": "Ração especialmente formulada para dinossauros herbívoros como o Brachiosaurus e o Triceratops.",
-      "price": 12000,
-      "image_url": "https://images.unsplash.com/photo-1577484745031-58cdbf9ef5f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "price": 2000,
+      "image_url": "https://sdmntprcentralus.oaiusercontent.com/files/00000000-63b8-61f5-afcd-0f1c9a551f9d/raw?se=2025-09-30T13%3A27%3A37Z&sp=r&sv=2024-08-04&sr=b&scid=4e09fa5d-8418-54d0-9087-ea76f86104a1&skoid=9ccea605-1409-4478-82eb-9c83b25dc1b0&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-30T09%3A57%3A17Z&ske=2025-10-01T09%3A57%3A17Z&sks=b&skv=2024-08-04&sig=CxmfV8wbmdkWBS8ZGN2xLtBGYy%2BjcMUdTUxESkJ95NU%3D",
+      "category": "itens"
+    },
+    {
+      "id": "d21",
+      "name": "Ração para Dinossauros Carnivoros",
+      "description": "Ração especialmente formulada para dinossauros herbívoros como o Brachiosaurus e o Triceratops.",
+      "price": 2000,
+      "image_url": "https://sdmntprwestus.oaiusercontent.com/files/00000000-1b34-6230-a254-6127a1ddd3c7/raw?se=2025-09-30T13%3A31%3A08Z&sp=r&sv=2024-08-04&sr=b&scid=475643a5-44b2-52dd-ace1-157c9706d132&skoid=9ccea605-1409-4478-82eb-9c83b25dc1b0&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-30T12%3A28%3A51Z&ske=2025-10-01T12%3A28%3A51Z&sks=b&skv=2024-08-04&sig=VcadQElt25N5KF41SYTheL3xqXC3odQITibkIfy3WSc%3D",
       "category": "itens"
     },
     {
       "id": "d22",
       "name": "Garrafa de Água para Dinossauros",
       "description": "Garrafa resistente e grande capacidade, ideal para manter seu dinossauro bem hidratado durante o dia.",
-      "price": 20000,
-      "image_url": "https://images.unsplash.com/photo-1587560631532-1baaf2375865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "price": 2000,
+      "image_url": "https://pedraopvc.vteximg.com.br/arquivos/ids/200001-500-500/tanque-3000l-azul-acqualimp-1.0.jpg?v=tanque-3000l-azul-acqualimp-1.0?v=638339374653000000",
       "category": "itens"
     },
     {
       "id": "d23",
       "name": "Camiseta de Dinossauro",
       "description": "Camisetas estilosas com estampas de dinossauros, para os amantes de dinossauros em qualquer idade.",
-      "price": 4000,
-      "image_url": "https://images.unsplash.com/photo-1582567863062-e4c1f97b92d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      "price": 89,
+      "image_url": "https://a-static.mlcdn.com.br/1500x1500/camiseta-dinossauros-camisa-paisagem-darkwood/darkwoodshop2/11131477927/21f629d7d360a739d98a1fca28238762.jpeg",
       "category": "itens"
     }
   ]

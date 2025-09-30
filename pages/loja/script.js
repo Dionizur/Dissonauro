@@ -45,19 +45,19 @@ function renderCategories(){
 
 /* ===== produtos ===== */
 function renderProducts(){
-  let list = products.filter(p=>
-    (!state.search || p.name.toLowerCase().includes(state.search)) &&
-    (state.category==='todos' || p.category===state.category)
+  let list = products.filter(response=>
+    (!state.search || response.name.toLowerCase().includes(state.search)) &&
+    (state.category==='todos' || response.category===state.category)
   );
-  $('#grid').innerHTML = list.map(p=>`
+  $('#grid').innerHTML = list.map(response=>`
     <article class="card">
-      <div class="media"><img src="${p.image_url}" alt="${p.name}"></div>
+      <div class="media"><img src="${response.image_url}" alt="${response.name}"></div>
       <div class="body">
-        <div class="title">${p.name}</div>
-        <div class="desc">${p.description}</div>
+        <div class="title">${response.name}</div>
+        <div class="desc">${response.description}</div>
         <div class="footer">
-          <div class="price">${formatPrice(p.price)}</div>
-          <button class="btn" data-add="${p.id}">🛒 Adicionar</button>
+          <div class="price">${formatPrice(response.price)}</div>
+          <button class="btn" data-add="${response.id}">🛒 Adicionar</button>
         </div>
       </div>
     </article>
