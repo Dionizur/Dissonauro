@@ -1,5 +1,5 @@
- // Animação de entrada dos elementos
- document.addEventListener('DOMContentLoaded', function() {
+// Animação de entrada dos elementos
+document.addEventListener('DOMContentLoaded', function() {
     // Observador de interseção para animações
     const observerOptions = {
         threshold: 0.1,
