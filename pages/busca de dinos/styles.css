@@ -86,39 +86,7 @@ header p {
 }
 
 /* Navegação */
-nav {
-    background-color: var(--white);
-    padding: 1rem;
-    margin-bottom: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
 
-nav ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-nav a {
-    color: var(--stone-800);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    transition: all 0.2s;
-    border: 1px solid transparent;
-}
-
-nav a:hover {
-    background-color: #fffbeb;
-    border-color: var(--amber-500);
-}
 
 /* Seções */
 section {

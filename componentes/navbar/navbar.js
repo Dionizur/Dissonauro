@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             <a href="/pages/sobre/sobre.html" class="navbar-link">Sobre</a>
                         </li>
                         <li class="navbar-item">
+                            <a href="/pages/busca de dinos/busca.html" class="navbar-link">Busca</a>
+                        </li>
+                        <li class="navbar-item">
                             <a href="/login/login.html" class="navbar-link" id="loginLink">Login</a>
                         </li>
                     </ul>
@@ -58,6 +61,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         navbarToggle.classList.remove('active');
                     }
                 });
+            });
+
+            // Fechar o menu ao clicar fora dele (em dispositivos móveis)
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768 && !navbarToggle.contains(event.target) && !navbarMenu.contains(event.target)) {
+                    navbarMenu.classList.remove('active');
+                    navbarToggle.classList.remove('active');
+                }
             });
         }
 
@@ -95,7 +106,7 @@ async function updateNavbarForAuth() {
                 // Usuário logado
                 console.log('Usuário logado, mudando para Perfil');
                 loginLink.textContent = 'Perfil';
-                loginLink.href = '/perfil.html'; // Página de perfil (criar depois)
+                loginLink.href = '/login/perfil/perfil.html'; // Página de perfil (criar depois)
             } else {
                 // Usuário não logado
                 console.log('Usuário não logado, mantendo Login');
