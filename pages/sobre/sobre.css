@@ -17,7 +17,7 @@
     --amber-100: #b6e99e;
     --amber-400: #bff2bc;
     --amber-500: #7bf08f;
-    --amber-600: #64c63e;
+    --amber-600: #398e1f;
     --orange-100: #69ed78;
     --orange-500: #74d65d;
     --orange-600: #26732e;
@@ -27,6 +27,7 @@ body {
     background: linear-gradient(to bottom, var(--stone-50), var(--amber-50));
     color: var(--stone-800);
     line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
@@ -38,6 +39,7 @@ body {
 h1, h2, h3 {
     font-weight: bold;
     margin-bottom: 1rem;
+    font-family: 'Bone', sans-serif;
 }
 
 h1 {
@@ -87,6 +89,7 @@ p {
     font-weight: 600;
     background-color: var(--amber-100);
     color: var(--amber-600);
+    font-family: 'Bone', sans-serif;
 }
 
 section {
@@ -110,6 +113,7 @@ section {
     background-clip: text;
     color: transparent;
     display: block;
+    font-family: 'Bone', sans-serif;
 }
 
 .hero p {
@@ -213,6 +217,7 @@ section {
     font-weight: bold;
     color: var(--amber-600);
     margin-bottom: 0.5rem;
+    font-family: 'Bone', sans-serif;
 }
 
 .milestone-dot {
