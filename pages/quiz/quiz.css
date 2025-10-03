@@ -1,15 +1,15 @@
 /* Variáveis CSS para cores e estilos */
 :root {
-    --purple-50: #faf5ff;
-    --purple-100: #f3e8ff;
-    --purple-500: #a855f7;
-    --purple-600: #9333ea;
-    --blue-50: #eff6ff;
-    --blue-100: #dbeafe;
-    --blue-500: #3b82f6;
-    --blue-600: #2563eb;
+    --purple-50: #eefaec;
+    --purple-100: #78e98f;
+    --purple-500: #10862f;
+    --purple-600: #4cba55;
+    --blue-50: #cdfada;
+    --blue-100: #8ce18c;
+    --blue-500: #53c861;
+    --blue-600: #0a9308;
     --green-400: #4ade80;
-    --green-500: #22c55e;
+    --green-500: #67bc86;
     --green-600: #16a34a;
     --amber-400: #4ade80;
     --amber-500: #10b981;
@@ -35,6 +35,7 @@ body {
     background: linear-gradient(to bottom right, var(--purple-50), var(--blue-50));
     min-height: 100vh;
     color: var(--stone-800);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Utilitários */
@@ -203,6 +204,7 @@ body {
 
 .font-semibold {
     font-weight: 600;
+    font-family: 'Bone', sans-serif;
 }
 
 .font-bold {
@@ -234,11 +236,11 @@ body {
 }
 
 .border-stone-200 {
-    border-color: #e7e5e4;
+    border-color: #e4e7e4;
 }
 
 .hover\:border-stone-300:hover {
-    border-color: #d6d3d1;
+    border-color: #d1d6d1;
 }
 
 .border-purple-500 {
@@ -408,6 +410,8 @@ body {
     font-size: 1.5rem;
     line-height: 2rem;
     font-weight: 700;
+    font-family: 'Bone', sans-serif;
+
 }
 
 .button {
@@ -433,12 +437,13 @@ body {
 .button-lg {
     font-size: 1.125rem;
     padding: 1rem 2rem;
+    font-family: 'Bone', sans-serif;
 }
 
 .progress {
     width: 100%;
     height: 0.5rem;
-    background-color: #e5e7eb;
+    background-color: #ebe5e5;
     border-radius: 0.25rem;
     overflow: hidden;
 }
