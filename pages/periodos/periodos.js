@@ -187,7 +187,7 @@ function renderDinosaurs() {
                         <span class="badge badge-emerald">${produtos.diet}</span>
                     </div>
                 </div>
-            </div>
+            </div>  
         `).join('');
     } else {
         dinosaurGrid.innerHTML = `

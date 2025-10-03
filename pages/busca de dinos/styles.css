@@ -45,6 +45,7 @@ header {
     position: relative;
     overflow: hidden;
     margin-bottom: 2rem;
+    border-radius: 0.5rem;
 }
 
 header::before {
@@ -66,11 +67,11 @@ header::before {
     margin-bottom: 1rem;
     position: relative;
     z-index: 10;
-    color: var(--amber-500); /* Verde para Dino */
+    color: var(--amber-600); 
 }
 
 .gradient-text {
-    color: var(--stone-800); /* Preto/cinza escuro para Co */
+    color: var(--stone-800);
     background: none;
     -webkit-background-clip: initial;
     background-clip: initial;
@@ -85,10 +86,6 @@ header p {
     z-index: 10;
 }
 
-/* Navegação */
-
-
-/* Seções */
 section {
     background-color: var(--white);
     padding: 2rem;
@@ -115,7 +112,6 @@ h2 {
     color: var(--stone-600);
 }
 
-/* Busca */
 .search-container {
     display: flex;
     justify-content: center;
