@@ -6,7 +6,9 @@
       "description": "O Tiranossauro Rex é um dos Giovane's carnívoros mais conhecidos, com cerca de 12 metros de comprimento e 6 metros de altura. Predador imponente do período Cretáceo.",
       "price": 150000000,
       "image_url": "https://i.pinimg.com/736x/fe/f4/49/fef449a9a7ff09edc995125a1b3ef720.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Cretáceo",
+      "diet": "Carnívoro"
     },
     {
       "id": "d2",
@@ -14,7 +16,9 @@
       "description": "O Tricerátops é conhecido por seu grande crânio com três chifres. Herbívoro do Cretáceo, com um comprimento de até 9 metros.",
       "price": 85000000,
       "image_url": "https://i.pinimg.com/736x/fc/de/d7/fcded7f3d56ee1a5527dcf867ce41c15.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Cretáceo",
+      "diet": "Herbívoro"
     },
     {
       "id": "d3",
@@ -22,7 +26,9 @@
       "description": "O Velociraptor é famoso por sua agilidade e inteligência. Com cerca de 2 metros de comprimento e 0,5 metros de altura, ele viveu no final do Cretáceo.",
       "price": 25000000,
       "image_url": "https://i.pinimg.com/1200x/81/e5/ac/81e5acb1729f792ed3077d5ed6000ad9.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Cretáceo",
+      "diet": "Carnívoro"
     },
     {
       "id": "d4",
@@ -30,7 +36,9 @@
       "description": "O Brachiosaurus era um dos maiores dinossauros herbívoros, com cerca de 25 metros de comprimento e pesando até 80 toneladas. Ele viveu durante o Jurássico Superior.",
       "price": 180000000,
       "image_url": "https://i.pinimg.com/1200x/2d/24/14/2d241462dcdc93fa1df351e60c75bb39.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Jurássico",
+      "diet": "Herbívoro"
     },
     {
       "id": "d5",
@@ -38,7 +46,9 @@
       "description": "O Spinosaurus é famoso por sua vela nas costas e por ser um predador semi-aquático. Com cerca de 15 metros de comprimento, ele habitava as regiões do norte da África.",
       "price": 175000000,
       "image_url": "https://media1.tenor.com/m/fh0c7l5B03EAAAAd/spinosaurus.gif",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Cretáceo",
+      "diet": "Carnívoro"
     },
     {
       "id": "d6",
@@ -46,7 +56,9 @@
       "description": "Conhecido pelas suas grandes placas ósseas nas costas e cauda com espinhos, o Stegosaurus era um herbívoro que viveu no período Jurássico.",
       "price": 60000000,
       "image_url": "https://i.pinimg.com/1200x/47/2a/42/472a42c025aabf5cd825fe375b6118be.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Jurássico",
+      "diet": "Herbívoro"
     },
     {
       "id": "d7",
@@ -54,7 +66,9 @@
       "description": "O Allosaurus foi um predador dominante durante o período Jurássico, com até 12 metros de comprimento e uma postura altamente adaptada para caçar.",
       "price": 95000000,
       "image_url": "https://i.pinimg.com/736x/72/e4/71/72e471cfec894ab27468500a8e2f9463.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Jurássico",
+      "diet": "Carnívoro"
     },
     {
       "id": "d8",
@@ -62,7 +76,9 @@
       "description": "O Apatosaurus era um herbívoro de grande porte, com um pescoço longo e um corpo volumoso. Ele viveu no final do período Jurássico.",
       "price": 110000000,
       "image_url": "https://i.pinimg.com/1200x/62/ca/43/62ca43a6e9b43acda404b1c2854d329f.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Jurássico",
+      "diet": "Herbívoro"
     },
     {
       "id": "d9",
@@ -70,7 +86,9 @@
       "description": "Carnotaurus é um dinossauro carnívoro de porte médio, com características únicas como chifres acima dos olhos e uma estrutura corporal altamente especializada para corrida.",
       "price": 82000000,
       "image_url": "https://i.pinimg.com/736x/b0/61/fa/b061fae86d858d9a20cbed4467781ad9.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Cretáceo",
+      "diet": "Carnívoro"
     },
     {
       "id": "d10",
@@ -78,7 +96,9 @@
       "description": "O Diplodocus é um dos maiores herbívoros conhecidos, com até 27 metros de comprimento e uma cauda que podia atingir grandes distâncias.",
       "price": 120000000,
       "image_url": "https://i.pinimg.com/736x/e8/68/bc/e868bc45a6f1854e6fea60f903057850.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Jurássico",
+      "diet": "Herbívoro"
     },
     {
       "id": "d11",
@@ -86,7 +106,9 @@
       "description": "O Giganotosaurus foi um dos maiores predadores terrestres que já existiram, com um comprimento de até 13 metros e uma impressionante mandíbula.",
       "price": 160000000,
       "image_url": "https://i.pinimg.com/1200x/27/00/0a/27000aced81fcb89e2537eb350ee2f35.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Cretáceo",
+      "diet": "Carnívoro"
     },
     {
       "id": "d12",
@@ -94,7 +116,9 @@
       "description": "Este dinossauro é conhecido pelo seu crânio incrivelmente espesso e arredondado, que poderia ter sido usado para bater com outros machos.",
       "price": 45000000,
       "image_url": "https://i.pinimg.com/1200x/9f/46/ba/9f46bae943ac4e9d2944206e565f7f7d.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Cretáceo",
+      "diet": "Herbívoro"
     },
     {
       "id": "d13",
@@ -102,7 +126,9 @@
       "description": "O Deinonychus é um dinossauro carnívoro, semelhante ao Velociraptor, conhecido por sua garras retráteis em cada pé, usadas para caçar suas presas.",
       "price": 75000000,
       "image_url": "https://i.pinimg.com/1200x/94/a2/4f/94a24f755701de6d6935fc6a85e65c9c.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Cretáceo",
+      "diet": "Carnívoro"
     },
     {
       "id": "d14",
@@ -110,7 +136,9 @@
       "description": "Este dinossauro herbívoro, conhecido como 'o primeiro dinossauro completo', era caracterizado por um bico semelhante ao de um pato e dentes adaptados para mastigar vegetação.",
       "price": 65000000,
       "image_url": "https://i.pinimg.com/736x/61/d2/b5/61d2b5f367366658007f5513de19acac.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Cretáceo",
+      "diet": "Herbívoro"
     },
     {
       "id": "d15",
@@ -118,7 +146,9 @@
       "description": "O Iguanodon é famoso por seus polegares espinhosos e uma dieta herbívora. Ele foi um dos primeiros dinossauros a serem descobertos.",
       "price": 72000000,
       "image_url": "https://i.pinimg.com/1200x/e5/4d/04/e54d046b1f82273f7e86476a9edbee42.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Cretáceo",
+      "diet": "Herbívoro"
     },
     {
       "id": "d16",
@@ -126,7 +156,9 @@
       "description": "O Microraptor era um dinossauro pequeno e ágil, com penas e asas, e possivelmente o primeiro dinossauro a voar. Ele media apenas cerca de 0,7 metros de comprimento.",
       "price": 25000000,
       "image_url": "https://i.pinimg.com/1200x/46/dd/c5/46ddc5f15073b8893c44551a84d4cacb.jpg",
-      "category": "modelos"
+      "category": "modelos",
+      "period": "Cretáceo",
+      "diet": "Carnívoro"
     },
     {
       "id": "d17",
@@ -156,28 +188,12 @@
       "id": "d20",
       "name": "Pelúcia de T-REX",
       "description": "Dinossauros de pelúcia fofos e colecionáveis, perfeitos para os amantes de dinossauros.",
-      "price": 5000,
+      "price": 150,
       "image_url": "https://i.pinimg.com/736x/7c/ab/14/7cab144559bb7c6c093dcf787452b80b.jpg",
       "category": "itens"
     },
     {
       "id": "d21",
-      "name": "Ração para Dinossauros Herbívoros",
-      "description": "Ração especialmente formulada para dinossauros herbívoros como o Brachiosaurus e o Triceratops.",
-      "price": 2000,
-      "image_url": "https://sdmntprcentralus.oaiusercontent.com/files/00000000-63b8-61f5-afcd-0f1c9a551f9d/raw?se=2025-09-30T13%3A27%3A37Z&sp=r&sv=2024-08-04&sr=b&scid=4e09fa5d-8418-54d0-9087-ea76f86104a1&skoid=9ccea605-1409-4478-82eb-9c83b25dc1b0&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-30T09%3A57%3A17Z&ske=2025-10-01T09%3A57%3A17Z&sks=b&skv=2024-08-04&sig=CxmfV8wbmdkWBS8ZGN2xLtBGYy%2BjcMUdTUxESkJ95NU%3D",
-      "category": "itens"
-    },
-    {
-      "id": "d21",
-      "name": "Ração para Dinossauros Carnivoros",
-      "description": "Ração especialmente formulada para dinossauros herbívoros como o Brachiosaurus e o Triceratops.",
-      "price": 2000,
-      "image_url": "https://sdmntprwestus.oaiusercontent.com/files/00000000-1b34-6230-a254-6127a1ddd3c7/raw?se=2025-09-30T13%3A31%3A08Z&sp=r&sv=2024-08-04&sr=b&scid=475643a5-44b2-52dd-ace1-157c9706d132&skoid=9ccea605-1409-4478-82eb-9c83b25dc1b0&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-30T12%3A28%3A51Z&ske=2025-10-01T12%3A28%3A51Z&sks=b&skv=2024-08-04&sig=VcadQElt25N5KF41SYTheL3xqXC3odQITibkIfy3WSc%3D",
-      "category": "itens"
-    },
-    {
-      "id": "d22",
       "name": "Garrafa de Água para Dinossauros",
       "description": "Garrafa resistente e grande capacidade, ideal para manter seu dinossauro bem hidratado durante o dia.",
       "price": 2000,
@@ -185,7 +201,7 @@
       "category": "itens"
     },
     {
-      "id": "d23",
+      "id": "d22",
       "name": "Camiseta de Dinossauro",
       "description": "Camisetas estilosas com estampas de dinossauros, para os amantes de dinossauros em qualquer idade.",
       "price": 89,
