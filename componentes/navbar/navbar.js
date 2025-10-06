@@ -1,35 +1,56 @@
+// Função para determinar o caminho base correto
+function getBasePath() {
+    const currentPath = window.location.pathname;
+    
+    // Se estiver na raiz
+    if (currentPath === '/' || currentPath === '/index.html') {
+        return '';
+    }
+    
+    // Conta quantos níveis de diretório temos que voltar
+    const pathDepth = currentPath.split('/').length - 2;
+    return '../'.repeat(pathDepth);
+}
+
 // Carregar navbar dinamicamente
+let navbarInitialized = false;
+
 document.addEventListener('DOMContentLoaded', function() {
+    if (navbarInitialized) return;
+    navbarInitialized = true;
+    
     const navbarPlaceholder = document.getElementById('navbar-placeholder');
-    if (navbarPlaceholder) {
+    if (navbarPlaceholder && !navbarPlaceholder.querySelector('.navbar')) {
+        const basePath = getBasePath();
+        
         const navbarHTML = `
             <nav class="navbar">
                 <div class="navbar-container">
-                    <a href="/index.html" class="navbar-logo">
+                    <a href="${basePath}index.html" class="navbar-logo">
                         <i class="fas fa-dinosaur logo-icon"></i>
-                        DinoVerse
+                        Dinoco
                     </a>
                     <ul class="navbar-menu" id="navbarMenu">
                         <li class="navbar-item">
-                            <a href="/index.html" class="navbar-link active">Início</a>
+                            <a href="${basePath}index.html" class="navbar-link active">Início</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="/pages/periodos/periodos.html" class="navbar-link">Períodos</a>
+                            <a href="${basePath}pages/periodos/periodos.html" class="navbar-link">Períodos</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="/pages/loja/loja.html" class="navbar-link">Loja</a>
+                            <a href="${basePath}pages/loja/loja.html" class="navbar-link">Loja</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="/pages/quiz/quiz.html" class="navbar-link">Quiz</a>
+                            <a href="${basePath}pages/quiz/quiz.html" class="navbar-link">Quiz</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="/pages/sobre/sobre.html" class="navbar-link">Sobre</a>
+                            <a href="${basePath}pages/sobre/sobre.html" class="navbar-link">Sobre</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="/pages/busca de dinos/busca.html" class="navbar-link">Busca</a>
+                            <a href="${basePath}pages/busca de dinos/busca.html" class="navbar-link">Busca</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="/login/login.html" class="navbar-link" id="loginLink">Login</a>
+                            <a href="${basePath}login/index.html" class="navbar-link" id="loginLink">Login</a>
                         </li>
                     </ul>
                     <div class="navbar-toggle" id="navbarToggle">
@@ -42,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         navbarPlaceholder.innerHTML = navbarHTML;
 
-        // Funcionalidade do menu mobile
+        // Resto do código permanece igual...
         const navbarToggle = document.getElementById('navbarToggle');
         const navbarMenu = document.getElementById('navbarMenu');
 
@@ -52,10 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 navbarToggle.classList.toggle('active');
             });
 
-            // Fechar o menu ao clicar em um link (em dispositivos móveis)
             const navbarLinks = document.querySelectorAll('.navbar-link');
             navbarLinks.forEach(link => {
-                link.addEventListener('click', function() {
+                link.addEventListener('click', function(e) {
                     if (window.innerWidth <= 768) {
                         navbarMenu.classList.remove('active');
                         navbarToggle.classList.remove('active');
@@ -63,16 +83,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
 
-            // Fechar o menu ao clicar fora dele (em dispositivos móveis)
             document.addEventListener('click', function(event) {
-                if (window.innerWidth <= 768 && !navbarToggle.contains(event.target) && !navbarMenu.contains(event.target)) {
+                if (window.innerWidth <= 768 && 
+                    !navbarToggle.contains(event.target) && 
+                    !navbarMenu.contains(event.target)) {
                     navbarMenu.classList.remove('active');
                     navbarToggle.classList.remove('active');
                 }
             });
         }
 
-        // Efeito de scroll na navbar
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (navbar) {
@@ -85,38 +105,31 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Atualizar navbar baseado no status de login
-        updateNavbarForAuth();
+        updateNavbarForAuth(basePath);
 
-        // Listener para mudanças de estado de autenticação
         window.supabase.auth.onAuthStateChange((event, session) => {
-            updateNavbarForAuth();
+            updateNavbarForAuth(basePath);
         });
     }
 });
 
-// Função para atualizar navbar baseado na autenticação
-async function updateNavbarForAuth() {
+// Atualizar a função de auth para usar o basePath
+async function updateNavbarForAuth(basePath = '') {
     const loginLink = document.getElementById('loginLink');
     if (loginLink) {
         try {
             const { data: { session } } = await window.supabase.auth.getSession();
-            console.log('Sessão atual:', session);
             if (session) {
-                // Usuário logado
-                console.log('Usuário logado, mudando para Perfil');
                 loginLink.textContent = 'Perfil';
-                loginLink.href = '/login/perfil/perfil.html'; // Página de perfil (criar depois)
+                loginLink.href = `${basePath}login/perfil/perfil.html`;
             } else {
-                // Usuário não logado
-                console.log('Usuário não logado, mantendo Login');
                 loginLink.textContent = 'Login';
-                loginLink.href = '/login/login.html';
+                loginLink.href = `${basePath}login/index.html`;
             }
         } catch (error) {
             console.error('Erro ao verificar sessão:', error);
             loginLink.textContent = 'Login';
-            loginLink.href = '/login/login.html';
+            loginLink.href = `${basePath}login/index.html`;
         }
     }
 }

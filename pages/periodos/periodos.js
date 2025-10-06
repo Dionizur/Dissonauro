@@ -207,6 +207,100 @@ function renderDinosaurs() {
 // ==================== Função global usada no botão inline ====================
 window.toggleExpanded = toggleExpanded;
 
+HEAD
+// Função para melhorar o tratamento de imagens
+function handleImageLoad(img) {
+    img.removeAttribute('loading');
+
+    // Adicionar classe para imagens carregadas
+    img.classList.add('loaded');
+
+    // Remover placeholder de loading
+    const placeholder = img.parentElement.querySelector('.image-placeholder');
+    if (placeholder) {
+        placeholder.style.display = 'none';
+    }
+}
+
+function handleImageError(img) {
+    // Criar placeholder elegante para imagens que falharam
+    const container = img.parentElement;
+    const placeholder = document.createElement('div');
+    placeholder.className = 'image-placeholder';
+    placeholder.innerHTML = `
+        <div class="placeholder-content">
+            <div class="placeholder-icon">🦕</div>
+            <div class="placeholder-text">Imagem não disponível</div>
+        </div>
+    `;
+
+    // Esconder a imagem com erro
+    img.style.display = 'none';
+
+    // Adicionar o placeholder
+    container.appendChild(placeholder);
+
+    // Adicionar estilos CSS para o placeholder
+    if (!document.querySelector('#placeholder-styles')) {
+        const style = document.createElement('style');
+        style.id = 'placeholder-styles';
+        style.textContent = `
+            .image-placeholder {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, var(--stone-100), var(--stone-200));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 1rem 1rem 0 0;
+            }
+
+            .placeholder-content {
+                text-align: center;
+                color: var(--stone-500);
+            }
+
+            .placeholder-icon {
+                font-size: 3rem;
+                margin-bottom: 0.5rem;
+                opacity: 0.6;
+            }
+
+            .placeholder-text {
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+
+            .dino-card img.loaded {
+                filter: brightness(1.0) contrast(1.1) saturate(1.1);
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// Função para inicializar melhorias de imagem
+function initializeImageEnhancements() {
+    const images = document.querySelectorAll('.dino-card img');
+
+    images.forEach(img => {
+        // Adicionar event listeners
+        img.addEventListener('load', () => handleImageLoad(img));
+        img.addEventListener('error', () => handleImageError(img));
+
+        // Se a imagem já estiver carregada (cached)
+        if (img.complete && img.naturalHeight !== 0) {
+            handleImageLoad(img);
+        }
+    });
+}
+
+
+
+
 // ==================== Navbar Toggle Functionality ====================
 document.addEventListener('DOMContentLoaded', function() {
     const navbarToggle = document.getElementById('navbarToggle');
@@ -237,3 +331,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
