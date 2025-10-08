@@ -6,13 +6,53 @@
     <title>DinoAuth - Autenticação Pré-histórica</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="../componentes/navbar/navbar.css">
+    <style>
+        /* Loading inicial */
+        #initial-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            font-size: 18px;
+            color: #333;
+            flex-direction: column;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 16px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <div id="navbar-placeholder"></div>
+    <!-- Loading inicial -->
+    <div id="initial-loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Carregando DinoAuth...</div>
+    </div>
 
-    <div class="container">
+    <div class="container" style="display: none;">
         <div class="dino-header">
             <div class="dino-image"><img src="../assets/logo-dinoo.png" alt="Dino Image" /></div>
             <h1 id="authTitle">DinoLogin</h1>
@@ -60,7 +100,7 @@
             <div class="form-group">
                 <label for="registerPassword">Senha:</label>
                 <i class="fas fa-lock input-icon"></i>
-                <input type="password" id="registerPassword" placeholder="Sua senha secreta" required>
+                <input type="password" id="registerPassword" placeholder="Mínimo 6 caracteres" required>
             </div>
 
             <div class="form-group">
@@ -84,7 +124,7 @@
         </form>
 
         <div class="links">
-            <a href="../index.html">Voltar ao Início</a>
+            <a href="../index.html">← Voltar ao Início</a>
         </div>
 
         <div class="footer">
@@ -95,9 +135,9 @@
         <div class="paw">🦴</div>
     </div>
 
+    <!-- SCRIPTS EM ORDEM CORRETA -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../supabase.js"></script>
-    <script src="../componentes/navbar/navbar.js"></script>
+    <script src="../supabase/supabase.js"></script>
     <script src="auth.js"></script>
 </body>
 </html>
