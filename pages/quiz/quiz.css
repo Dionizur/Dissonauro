@@ -35,7 +35,8 @@ body {
     background: linear-gradient(to bottom right, var(--purple-50), var(--blue-50));
     min-height: 100vh;
     color: var(--stone-800);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Revalia", sans-serif;
+    font-size: 15px;
 }
 
 /* Utilitários */
@@ -253,6 +254,7 @@ body {
 
 .text-stone-600 {
     color: var(--stone-600);
+    
 }
 
 .text-stone-700 {

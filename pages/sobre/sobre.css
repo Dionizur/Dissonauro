@@ -1,9 +1,8 @@
-/* Reset e configurações básicas */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Revalia", sans-serif;
 }
 
 :root {
@@ -27,7 +26,8 @@ body {
     background: linear-gradient(to bottom, var(--stone-50), var(--amber-50));
     color: var(--stone-800);
     line-height: 1.6;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Revalia", sans-serif;
+    font-size: 15px;
 }
 
 .container {
@@ -58,6 +58,8 @@ h3 {
 
 p {
     margin-bottom: 1rem;
+    font-family: "Revalia", sans-serif;
+    font-size: 15px;
 }
 
 .card {
