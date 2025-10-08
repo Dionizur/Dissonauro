@@ -1,4 +1,4 @@
-// ==================== Dados dos períodos ====================
+// ==================== Dados dos períodos ====================  
 const periodData = {
     "Triássico": {
         timeRange: "252 - 201 milhões de anos atrás",
@@ -49,7 +49,7 @@ let state = {
     selectedPeriod: "Triássico",
     expandedPeriod: null,
     isLoading: false,
-    dinosaurs: [] // dinossauros carregados do JSON server
+    dinosaurs: []
 };
 
 // ==================== Elementos DOM ====================
@@ -63,7 +63,7 @@ const dinosaurGrid = document.getElementById('dinosaurGrid');
 document.addEventListener('DOMContentLoaded', () => {
     renderPeriodDetails();
     setupEventListeners();
-    fetchDinosaurs(); // carregar dados do JSON Server
+    fetchDinosaurs();
 });
 
 // ==================== Configurar event listeners ====================
@@ -74,23 +74,29 @@ function setupEventListeners() {
             setSelectedPeriod(period);
         });
     });
+
+    // Clique nos cards para abrir o modal
+    document.body.addEventListener('click', e => {
+        const btnVer = e.target.closest('.btn-ver');
+        if (btnVer) {
+            const id = btnVer.dataset.id;
+            const produto = state.dinosaurs.find(d => d.id == id);
+            if (produto) openDinoModal(produto);
+        }
+    });
 }
 
 // ==================== Definir período selecionado ====================
 function setSelectedPeriod(period) {
     state.selectedPeriod = period;
-    
-    // Atualizar botões
+
     periodButtons.forEach(button => {
         const buttonPeriod = button.getAttribute('data-period');
-        if (buttonPeriod === period) {
-            button.className = 'btn btn-primary period-btn';
-        } else {
-            button.className = 'btn btn-outline period-btn';
-        }
+        button.className = buttonPeriod === period ? 
+            'btn btn-primary period-btn' : 
+            'btn btn-outline period-btn';
     });
-    
-    // Renderizar detalhes e dinossauros
+
     renderPeriodDetails();
     renderDinosaurs();
 }
@@ -110,18 +116,14 @@ function renderPeriodDetails() {
             <div class="${period.colorClass} h-2"></div>
             <div class="card-header text-center pb-4">
                 <div class="text-6xl mb-4">${period.icon}</div>
-                <h3 class="text-3xl font-bold mb-2">
-                    Período ${state.selectedPeriod}
-                </h3>
+                <h3 class="text-3xl font-bold mb-2">Período ${state.selectedPeriod}</h3>
                 <div class="flex items-center justify-center">
                     <i class="far fa-clock mr-2"></i>
                     <span class="text-lg">${period.timeRange}</span>
                 </div>
             </div>
             <div class="card-content">
-                <p class="text-lg text-center mb-6 max-w-4xl mx-auto">
-                    ${period.description}
-                </p>
+                <p class="text-lg text-center mb-6 max-w-4xl mx-auto">${period.description}</p>
                 
                 <button class="btn btn-ghost w-full mb-4" onclick="toggleExpanded()">
                     ${state.expandedPeriod === state.selectedPeriod ? 
@@ -144,7 +146,7 @@ function renderPeriodDetails() {
     `;
 }
 
-// ==================== Buscar dinossauros do JSON server ====================
+// ==================== Buscar dinossauros ====================
 async function fetchDinosaurs() {
     try {
         const res = await fetch("http://localhost:3000/produtos");
@@ -171,21 +173,22 @@ function renderDinosaurs() {
     dinosaurTitle.textContent = `Dinossauros do ${state.selectedPeriod}`;
 
     if (periodDinos.length > 0) {
-        dinosaurGrid.innerHTML = periodDinos.map(produtos => `
-            <div class="card dino-card">
+        dinosaurGrid.innerHTML = periodDinos.map(produto => `
+            <div class="card dino-card" data-id="${produto.id}">
                 <div class="dino-card-image-container">
-                    <img src="${produtos.image_url}" alt="${produtos.name}" loading="lazy">
+                    <img src="${produto.image_url}" alt="${produto.name}" loading="lazy">
                     <div class="dino-card-image-overlay">
-                        <div class="dino-card-image-title">${produtos.name}</div>
+                        <div class="dino-card-image-title">${produto.name}</div>
                     </div>
                 </div>
                 <div class="dino-card-content">
-                    <h3 class="text-xl font-bold mb-2">${produtos.name}</h3>
-                    <p class="text-stone-600 mb-3">${produtos.diet}</p>
-                    <div class="flex gap-2">
-                        <span class="badge badge-amber">${produtos.period}</span>
-                        <span class="badge badge-emerald">${produtos.diet}</span>
+                    <h3 class="text-xl font-bold mb-2">${produto.name}</h3>
+                    <p class="text-stone-600 mb-3">${produto.diet}</p>
+                    <div class="flex gap-2 mb-3">
+                        <span class="badge badge-amber">${produto.period}</span>
+                        <span class="badge badge-emerald">${produto.diet}</span>
                     </div>
+                    <button class="btn btn-ver" data-id="${produto.id}">👁️ Ver</button>
                 </div>
             </div>  
         `).join('');
@@ -193,9 +196,7 @@ function renderDinosaurs() {
         dinosaurGrid.innerHTML = `
             <div class="text-center py-12 col-span-3">
                 <div class="text-6xl mb-4">🔍</div>
-                <h3 class="text-xl font-semibold mb-2">
-                    Nenhum dinossauro catalogado
-                </h3>
+                <h3 class="text-xl font-semibold mb-2">Nenhum dinossauro catalogado</h3>
                 <p class="text-stone-600">
                     Ainda não temos dinossauros do período ${state.selectedPeriod} em nossa base de dados
                 </p>
@@ -204,7 +205,32 @@ function renderDinosaurs() {
     }
 }
 
-// ==================== Função global usada no botão inline ====================
+// ==================== Modal do dinossauro ====================
+function openDinoModal(dino) {
+    const modal = document.createElement('div');
+    modal.className = 'modal-backdrop';
+    modal.innerHTML = `
+        <div class="modal dino-modal">
+            <img src="${dino.image_url}" alt="${dino.name}" class="modal-img">
+            <h2>${dino.name}</h2>
+            <p>${dino.description || "Um incrível dinossauro do período " + dino.period}</p>
+            <p><strong>Dieta:</strong> ${dino.diet}</p>
+            <p><strong>Período:</strong> ${dino.period}</p>
+            <div class="modal-actions">
+                <button class="btn secondary" id="closeModalBtn">❌ Fechar</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.id === 'closeModalBtn') {
+            modal.remove();
+        }
+    });
+}
+
+// ==================== Função global ====================
 window.toggleExpanded = toggleExpanded;
 
 // ==================== Navbar Toggle Functionality ====================
