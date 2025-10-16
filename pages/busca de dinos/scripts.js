@@ -166,3 +166,4 @@
                 modalBody.innerHTML = `<div class="error-message">Não foi possível carregar informações sobre este dinossauro. Tente novamente mais tarde.</div>`;
             }
         }
+
