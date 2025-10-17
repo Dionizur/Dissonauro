@@ -1,25 +1,76 @@
-/* Estilos gerais */
+/* Importar estilos globais */
+@import url('../styles.css');
+
+:root {
+    --amber-500: #7bf08f;
+    --amber-600: #64c63e;
+    --emerald-500: #10b981;
+    --emerald-600: #059669;
+    --orange-600: #26732e;
+    --stone-50: #fafaf9;
+    --stone-100: #f5f5f4;
+    --stone-200: #e7e5e4;
+    --stone-400: #a8a29e;
+    --stone-600: #57534e;
+    --stone-800: #292524;
+    --white: #ffffff;
+}
+
+/* Estilos específicos para páginas de login */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: "Revalia", sans-serif;
+    background: linear-gradient(to bottom, #ffffff, #dbfbd4, #c4faab);
+    background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: -1;
 }
 
 .container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 28rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--amber-500), var(--orange-600));
 }
 
 h2 {
     text-align: center;
-    color: #333;
+    color: var(--stone-800);
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    font-family: 'Bone', sans-serif;
 }
 
 form {
@@ -28,48 +79,96 @@ form {
 }
 
 label {
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--stone-600);
 }
 
 input[type="email"],
 input[type="password"] {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--stone-200);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: var(--amber-500);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
 }
 
 button {
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(to right, var(--amber-500), var(--orange-600));
+    color: var(--white);
     border: none;
-    border-radius: 4px;
+    border-radius: 0.5rem;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 0.5rem;
+    font-family: "Revalia", sans-serif;
 }
 
 button:hover {
-    background-color: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
 }
 
 .error {
-    color: red;
-    font-size: 14px;
-    margin-top: -10px;
-    margin-bottom: 10px;
+    color: #dc2626;
+    font-size: 0.875rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
 }
 
 a {
     display: block;
     text-align: center;
-    margin-top: 10px;
-    color: #007bff;
+    margin-top: 1rem;
+    color: var(--amber-500);
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
 }
 
 a:hover {
+    color: var(--orange-600);
     text-decoration: underline;
+}
+
+/* Elementos decorativos */
+.container::after {
+    content: '🦕';
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    opacity: 0.1;
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+    .container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        padding: 0.625rem 0.875rem;
+    }
+
+    button {
+        padding: 0.625rem 0.875rem;
+    }
 }

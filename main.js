@@ -48,7 +48,7 @@ async function fazerLogin(email, senha) {
         } else {
             console.log('Login bem-sucedido!', data);
             alert('Logado com sucesso!');
-            window.location.href = '/dashboard';  // Redireciona para uma página de dashboard (ajuste conforme necessário)
+            window.location.href = '../index.html';  // Redireciona para a página inicial
         }
     } catch (err) {
         console.error('Erro inesperado:', err);
@@ -60,7 +60,7 @@ async function fazerLogin(email, senha) {
 async function resetarSenha(email) {
     try {
         const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-            redirectTo: 'http://localhost:5500/reset-senha.html',  // Ajuste para a URL real da sua página
+            redirectTo: 'http://localhost:5500/login/senha.html',  // Ajuste para a URL real da sua página
         });
 
         if (error) {

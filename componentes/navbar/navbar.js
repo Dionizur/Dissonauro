@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <a href="${basePath}pages/busca de dinos/busca.html" class="navbar-link">Busca</a>
                         </li>
                         <li class="navbar-item" id="authNavItem">
-                            <a href="${basePath}login/index.html" class="navbar-link" id="authLink">
+                            <a href="${basePath}login/login.html" class="navbar-link" id="authLink">
                                 <i class="fas fa-sign-in-alt" id="authIcon"></i>
                                 <span id="authText">Login</span>
                             </a>

@@ -9,32 +9,23 @@
 <body>
     <div class="container">
         <h2>Fazer Login</h2>
+        <p style="text-align: center; color: var(--stone-600); margin-bottom: 1.5rem;">Entre na sua conta para explorar o mundo dos dinossauros</p>
         <form id="form-login">
             <label for="email-login">Email:</label>
-            <input type="email" id="email-login" required>
-            
+            <input type="email" id="email-login" placeholder="seu@email.com" required>
+
             <label for="senha-login">Senha:</label>
-            <input type="password" id="senha-login" required>
-            
+            <input type="password" id="senha-login" placeholder="Sua senha" required>
+
             <button type="submit">Entrar</button>
         </form>
-        <p>Esqueceu a senha? <a href="reset-senha.html">Resetar senha</a></p>
+        <p>Esqueceu a senha? <a href="senha.html">Resetar senha</a></p>
         <p>Ainda não tem uma conta? <a href="registro.html">Registre-se</a></p>
     </div>
     
     <script type="module">
-        // Mesmo código do script.js
-        import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js';
-        const supabaseUrl = 'https://your-project.supabase.co'; // Substitua
-        const supabaseAnonKey = 'sua-anon-key-aqui'; // Substitua
-        const supabase = createClient(supabaseUrl, supabaseAnonKey);
-        
-        async function fazerLogin(email, senha) {
-            // ... (código completo)
-        }
-        
-        // Outras funções...
-        
+        import { fazerLogin } from '../main.js';
+
         document.getElementById('form-login').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('email-login').value;
