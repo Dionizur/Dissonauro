@@ -7,7 +7,7 @@ body {
   margin: 0;
   background: linear-gradient(180deg, #f7f6f4, #eef0f2 120%);
   color: #111827;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: "Revalia", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -23,6 +23,7 @@ body {
 header {
   text-align: center;
   margin-bottom: 24px;
+  font-family: 'Bone', sans-serif;
 }
 
 h1 {
@@ -133,8 +134,12 @@ p.lead {
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.09);
 }
 
+/* ========================= */
+/*    🔧 AJUSTE DAS IMAGENS  */
+/* ========================= */
 .card .media {
-  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: 220px;               /* altura fixa e igual para todos os cards */
   background: #f3f3f3;
   display: flex;
   align-items: center;
@@ -145,7 +150,8 @@ p.lead {
 .card .media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;           /* mantém proporção e preenche o espaço */
+  object-position: center;     /* centraliza o foco da imagem */
   transition: transform 0.45s;
 }
 
@@ -153,6 +159,7 @@ p.lead {
   transform: scale(1.05);
 }
 
+/* Corpo do card */
 .card .body {
   padding: 12px 14px;
   display: flex;
@@ -219,6 +226,11 @@ p.lead {
   padding: 48px;
   text-align: center;
   color: #7a7a7a;
+}
+
+img.modal-img {
+  width: 100%;
+  max-height: 90%;
 }
 
 /* Toast */
@@ -331,6 +343,34 @@ p.lead {
   padding: 10px;
   border: 1px solid #e6e6e6;
   border-radius: 8px;
+}
+
+/* ========================= */
+/*   📦 AJUSTE DE IMAGEM NO MODAL  */
+/* ========================= */
+.modal .media {
+  width: 100%;
+  max-height: 260px;
+  background: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.modal .media img {
+  max-width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.modal .media img:hover {
+  transform: scale(1.04);
 }
 
 /* Utilitários */

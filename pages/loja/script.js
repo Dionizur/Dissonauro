@@ -2,7 +2,6 @@
 let products = [];
 let state = { search: '', category: 'todos' };
 
-const CART_KEY = 'cart';
 const USER_KEY = 'user';
 
 /* ===== utilidades ===== */
@@ -13,12 +12,8 @@ const set = (k,v)=> localStorage.setItem(k, JSON.stringify(v));
 
 /* ===== formatação de preço ===== */
 function formatPrice(value) {
-  if (value >= 1_000_000) {
-    return Math.floor(value / 1_000_000) + 'M';
-  }
-  if (value >= 1_000) {
-    return Math.floor(value / 1_000) + 'MIL';
-  }
+  if (value >= 1_000_000) return Math.floor(value / 1_000_000) + 'M';
+  if (value >= 1_000) return Math.floor(value / 1_000) + 'MIL';
   return money(value);
 }
 
@@ -49,19 +44,23 @@ function renderProducts(){
     (!state.search || response.name.toLowerCase().includes(state.search)) &&
     (state.category==='todos' || response.category===state.category)
   );
+
   $('#grid').innerHTML = list.map(response=>`
     <article class="card">
-      <div class="media"><img src="${response.image_url}" alt="${response.name}"></div>
+      <div class="media">
+        <img src="${response.image_url}" alt="${response.name}">
+      </div>
       <div class="body">
         <div class="title">${response.name}</div>
         <div class="desc">${response.description}</div>
         <div class="footer">
           <div class="price">${formatPrice(response.price)}</div>
-          <button class="btn" data-add="${response.id}">🛒 Adicionar</button>
+          <button class="btn view-btn" data-view="${response.id}">👁️ Visualizar</button>
         </div>
       </div>
     </article>
   `).join('');
+
   $('#emptyMsg').style.display = list.length ? 'none' : 'block';
 }
 
@@ -93,37 +92,79 @@ function openLogin(){
 }
 function closeModal(){ $('#modalRoot').style.display = 'none'; }
 
-/* ===== eventos ===== */
+/* ===== abrir modal de produto ===== */
+function openProductModal(product){
+  const u = get(USER_KEY);
+  if (!u) return openLogin();
+
+  $('#modalRoot').style.display = 'block';
+  $('#modalRoot').innerHTML = `
+    <div class="modal-backdrop">
+      <div class="modal">
+        <img src="${product.image_url}" alt="${product.name}" class="modal-img">
+        <h2>${product.name}</h2>
+        <p>${product.description}</p>
+        <div class="price-modal">💰 ${money(product.price)}</div>
+        <div class="modal-actions">
+          <button id="buyBtn" class="btn buy-btn">🛒 Comprar</button>
+          <button id="closeModalBtn" class="btn secondary">❌ Fechar</button>
+        </div>
+      </div>
+    </div>`;
+
+  $('#closeModalBtn').onclick = closeModal;
+  $('#buyBtn').onclick = async ()=>{
+    $('#buyBtn').textContent = '⌛ Processando...';
+    $('#buyBtn').disabled = true;
+    try {
+      const res = await fetch('https://fakestoreapi.com/carts', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          userId: 1,
+          date: new Date().toISOString(),
+          products: [{ productId: product.id, quantity: 1 }]
+        })
+      });
+      if (!res.ok) throw new Error('Erro na compra');
+      toast('✅ Compra simulada com sucesso!');
+      $('#buyBtn').textContent = '✅ Concluído';
+    } catch (err){
+      toast('❌ Falha na compra','error');
+      $('#buyBtn').textContent = 'Tentar novamente';
+      $('#buyBtn').disabled = false;
+    }
+  };
+}
+
+/* ===== eventos globais ===== */
 document.body.addEventListener('click', e => {
   if (e.target.dataset.cat) {
     state.category = e.target.dataset.cat;
     renderCategories();
     renderProducts();
   }
-  if (e.target.dataset.add) {
-    const u = get(USER_KEY);
-    if (!u) return openLogin();
-    let cart = get(CART_KEY) || [];
-    let item = cart.find(i => i.id == e.target.dataset.add);
-    item ? item.qtd++ : cart.push({ id: e.target.dataset.add, qtd: 1 });
-    set(CART_KEY, cart);
-    toast('🛒 Adicionado ao carrinho!');
+
+  if (e.target.dataset.view) {
+    const product = products.find(p => p.id == e.target.dataset.view);
+    if (product) openProductModal(product);
   }
 });
+
 $('#loginBtn').onclick = () => {
   if (get(USER_KEY)) { 
     localStorage.removeItem(USER_KEY); 
     updateUser(); 
     toast('👋 Desconectado'); 
-  }
-  else openLogin();
+  } else openLogin();
 };
+
 $('#searchInput').oninput = e => { 
   state.search = e.target.value.toLowerCase(); 
   renderProducts(); 
 };
 
-/* ===== boot ===== */  
+/* ===== inicialização ===== */  
 async function boot(){
   products = await fetch('http://localhost:3000/produtos')
     .then(r => {
@@ -136,10 +177,8 @@ async function boot(){
       return [];
     });
 
-  console.log(products); // Exibe no console os produtos carregados
-
-  renderCategories(); // Cria os botões de categoria
-  renderProducts();   // Mostra os produtos na tela
-  updateUser();       // Atualiza nome do usuário no topo (se logado)
+  renderCategories();
+  renderProducts();
+  updateUser();
 }
 boot();
