@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resetar Senha</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Resetar Senha</h2>
+        <form id="form-reset">
+            <label for="email-reset">Email:</label>
+            <input type="email" id="email-reset" required>
+            
+            <button type="submit">Enviar Email de Reset</button>
+        </form>
+        <p><a href="login.html">Voltar para Login</a></p>
+    </div>
+    
+    <script type="module">
+        // Mesmo código
+        import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js';
+        const supabaseUrl = 'https://your-project.supabase.co'; // Substitua
+        const supabaseAnonKey = 'sua-anon-key-aqui'; // Substitua
+        const supabase = createClient(supabaseUrl, supabaseAnonKey);
+        
+        async function resetarSenha(email) {
+            // ... (código completo)
+        }
+        
+        document.getElementById('form-reset').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email-reset').value;
+            await resetarSenha(email);
+        });
+    </script>
+</body>
+</html>
