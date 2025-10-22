@@ -4,15 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Loja Dinoco</title>
-  <link rel="stylesheet" href="../../componentes/navbar/navbar.css">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/bones" rel="stylesheet">
+  <!-- Removendo referências a componentes externos que podem não existir -->
 </head>
 <body>
-  <div id="navbar-placeholder"></div>
   <div class="top-actions">
     <div class="user-badge">
       <span id="userName" class="muted">🙍 Não conectado</span>
@@ -33,6 +32,9 @@
     <div id="categories" class="categories"></div>
 
     <section>
+      <div id="loadingMsg" class="loading" style="display: none;">
+        <h3>🦕 Carregando produtos...</h3>
+      </div>
       <div id="grid" class="grid"></div>
       <div id="emptyMsg" class="empty" style="display:none">
         <h3>😕 Nenhum produto encontrado</h3>
@@ -46,8 +48,8 @@
   <div class="toast-wrap" id="toastWrap"></div>
   <div id="modalRoot" style="display:none"></div>
 
-  <!-- conecta o javascript -->
-  <script src="../../componentes/navbar/navbar.js"></script>
+  <!-- Script do Stripe -->
+  <script src="https://js.stripe.com/v3/"></script>
   <script src="script.js"></script>
 </body>
 </html>

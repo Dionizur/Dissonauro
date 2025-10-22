@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Pedido - Dinoco</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/bones" rel="stylesheet">
+</head>
+<body>
+    <div class="top-actions">
+        <div class="user-badge">
+            <span id="userName" class="muted">🙍 Não conectado</span>
+            <button id="backToStore" class="btn secondary">← Voltar à Loja</button>
+        </div>
+    </div>
+
+    <main class="container">
+        <header>
+            <h1>🦕 Finalizar Pedido</h1>
+            <p class="lead">Complete sua compra pré-histórica!</p>
+        </header>
+
+        <div class="payment-layout">
+            <!-- Coluna da Esquerda - Resumo do Produto -->
+            <div class="product-summary">
+                <div class="card">
+                    <div class="body">
+                        <h2 class="title">📦 Seu Produto</h2>
+                        <div id="productDetails" class="product-details">
+                            <!-- Preenchido via JavaScript -->
+                        </div>
+                        
+                        <div class="quantity-section">
+                            <h3>Quantidade</h3>
+                            <div class="quantity-controls">
+                                <button id="decreaseQty" class="btn secondary qty-btn">−</button>
+                                <span id="quantityDisplay" class="qty-display">1</span>
+                                <button id="increaseQty" class="btn secondary qty-btn">+</button>
+                            </div>
+                        </div>
+
+                        <div class="price-summary">
+                            <div class="price-line">
+                                <span>Subtotal:</span>
+                                <span id="subtotalPrice">R$ 0,00</span>
+                            </div>
+                            <div class="price-line">
+                                <span>Frete:</span>
+                                <span id="shippingPrice">R$ 0,00</span>
+                            </div>
+                            <div class="price-line total">
+                                <span>Total:</span>
+                                <span id="totalPrice">R$ 0,00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna da Direita - Formulário de Pagamento -->
+            <div class="payment-form">
+                <div class="card">
+                    <div class="body">
+                        <h2 class="title">📍 Endereço de Entrega</h2>
+                        
+                        <div class="address-selection">
+                            <div class="address-options">
+                                <label class="address-option">
+                                    <input type="radio" name="address" value="home" checked>
+                                    <div class="address-card">
+                                        <strong>🏠 Casa</strong>
+                                        <span>Rua dos Dinossauros, 123</span>
+                                        <span>Jardim Jurássico - São Paulo, SP</span>
+                                        <span>01234-567</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="address-option">
+                                    <input type="radio" name="address" value="work">
+                                    <div class="address-card">
+                                        <strong>🏢 Trabalho</strong>
+                                        <span>Av. Pré-Histórica, 456</span>
+                                        <span>Centro - Rio de Janeiro, RJ</span>
+                                        <span>02345-678</span>
+                                    </div>
+                                </label>
+                                
+                                <label class="address-option">
+                                    <input type="radio" name="address" value="new">
+                                    <div class="address-card">
+                                        <strong>➕ Novo Endereço</strong>
+                                        <span>Adicionar um novo endereço</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Formulário de Novo Endereço -->
+                            <div id="newAddressForm" class="new-address-form" style="display: none;">
+                                <h3>Novo Endereço</h3>
+                                <div class="form-row">
+                                    <input type="text" id="street" placeholder="Rua, Avenida, etc." class="input-field">
+                                    <input type="text" id="number" placeholder="Número" class="input-field">
+                                </div>
+                                <div class="form-row">
+                                    <input type="text" id="complement" placeholder="Complemento (opcional)" class="input-field">
+                                    <input type="text" id="neighborhood" placeholder="Bairro" class="input-field">
+                                </div>
+                                <div class="form-row">
+                                    <input type="text" id="city" placeholder="Cidade" class="input-field">
+                                    <select id="state" class="input-field">
+                                        <option value="">Estado</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                    </select>
+                                </div>
+                                <div class="form-row">
+                                    <input type="text" id="zipcode" placeholder="CEP" class="input-field">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="body">
+                        <h2 class="title">💳 Método de Pagamento</h2>
+                        <div class="payment-methods">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="credit" checked>
+                                <div class="payment-card">
+                                    <span>💳 Cartão de Crédito</span>
+                                </div>
+                            </label>
+                            
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="pix">
+                                <div class="payment-card">
+                                    <span>📱 PIX</span>
+                                </div>
+                            </label>
+                            
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="boleto">
+                                <div class="payment-card">
+                                    <span>📄 Boleto Bancário</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Formulário do Cartão de Crédito -->
+                        <div id="creditCardForm" class="credit-card-form">
+                            <div class="form-row">
+                                <input type="text" id="cardNumber" placeholder="Número do Cartão" maxlength="19" class="input-field">
+                            </div>
+                            <div class="form-row">
+                                <input type="text" id="cardName" placeholder="Nome no Cartão" class="input-field">
+                            </div>
+                            <div class="form-row">
+                                <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5" class="input-field">
+                                <input type="text" id="cardCVC" placeholder="CVC" maxlength="3" class="input-field">
+                            </div>
+                        </div>
+
+                        <!-- Informações do PIX -->
+                        <div id="pixInfo" class="pix-info" style="display: none;">
+                            <div class="pix-code">
+                                <p>Chave PIX: <strong>loja@dinoco.com.br</strong></p>
+                                <p>Pagamento identificado automaticamente</p>
+                            </div>
+                        </div>
+
+                        <!-- Informações do Boleto -->
+                        <div id="boletoInfo" class="boleto-info" style="display: none;">
+                            <div class="boleto-code">
+                                <p>Boleto será gerado após a confirmação do pedido</p>
+                                <p>Vencimento: 3 dias úteis</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button id="confirmOrder" class="btn confirm-btn">
+                        🦖 Finalizar Pedido
+                    </button>
+                    <button id="cancelOrder" class="btn secondary">
+                        ❌ Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Confirmação -->
+    <div id="confirmationModal" class="modal-backdrop" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>🎉 Pedido Confirmado!</h2>
+            </div>
+            <div class="modal-body">
+                <div class="order-success">
+                    <div class="success-icon">✅</div>
+                    <h3>Obrigado pela sua compra!</h3>
+                    <p>Seu pedido <strong id="orderNumber">#DINO0001</strong> foi recebido com sucesso.</p>
+                    
+                    <div class="order-summary">
+                        <h4>Resumo do Pedido:</h4>
+                        <div id="finalOrderSummary">
+                            <!-- Preenchido via JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <p class="delivery-info">
+                        📦 Enviaremos uma confirmação para seu email e atualizações sobre a entrega.
+                    </p>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button id="backToHome" class="btn">🏠 Voltar à Loja</button>
+                <button id="printOrder" class="btn secondary">🖨️ Imprimir Recibo</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-wrap" id="toastWrap"></div>
+
+    <script src="payment.js"></script>
+</body>
+</html>
