@@ -5,10 +5,10 @@
             --emerald-500: #10b981;
             --emerald-600: #059669;
             --orange-600: #047857;
-            --stone-50: #fafaf9;
-            --stone-100: #f5f5f4;
-            --stone-200: #e7e5e4;
-            --stone-400: #a8a29e;
+            --stone-50: #f9faf9;
+            --stone-100: #fcfffc;
+            --stone-200: #e4e7e5;
+            --stone-400: #e5ffda;
             --stone-600: #57534e;
             --stone-800: #292524;
             --white: #ffffff;
@@ -18,13 +18,15 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Revalia", sans-serif;
         }
 
         body {
             color: var(--stone-800);
             background-color: var(--stone-50);
             line-height: 1.6;
+            font-family: "Revalia", sans-serif;
+            font-size: 13px;
         }
 
         .space-y-16 > * {
@@ -131,7 +133,7 @@
         }
 
         .hero-bg {
-            background: linear-gradient(to bottom right, #d1fae5, #fef3c7, #fed7aa);
+            background: linear-gradient(to bottom right, #d1fae5, #d4fec7, #aafeae);
         }
 
         .hero-pattern {
@@ -146,6 +148,7 @@
             z-index: 10;
             text-align: center;
             padding: 0 1rem;
+            font-family: 'Bone', sans-serif;
         }
 
         h1 {
@@ -166,6 +169,7 @@
             background-clip: text;
             color: transparent;
             display: block;
+            font-family: 'Bone', sans-serif;
         }
 
         .hero p {
@@ -173,7 +177,10 @@
             color: var(--stone-600);
             margin-bottom: 2rem;
             max-width: 48rem;
+            font-size: 30px;
         }
+
+    
 
         @media (min-width: 768px) {
             .hero p {
