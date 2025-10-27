@@ -41,7 +41,7 @@
         "cargo": "Diretora Científica",
         "descricao": "Especialista em dinossauros carnívoros com 40 anos de experiência em escavações.",
         "expertises": ["Paleontologia", "Anatomia Comparada", "Cretáceo"],
-        "imagem": ""
+        "imagem": "https://img.freepik.com/fotos-premium/conceito-de-retrato-de-pessoa-em-close-up_1194-625626.jpg?semt=ais_hybrid&w=740&q=80"
       },
       {
         "id": 2,
@@ -49,7 +49,7 @@
         "cargo": "Curador de Fósseis",
         "descricao": "Responsável por nossa impressionante coleção de fósseis autênticos e reconstruções.",
         "expertises": ["Geologia", "Estratigrafia", "Datação"],
-        "imagem": ""
+        "imagem": "https://thumbs.dreamstime.com/b/homem-consider%C3%A1vel-idoso-51318761.jpg"
       },
       {
         "id": 3,
@@ -57,7 +57,7 @@
         "cargo": "Diretora de Educação",
         "descricao": "Desenvolve conteúdos educativos para tornar a paleontologia acessível para todos.",
         "expertises": ["Educação", "Divulgação Científica", "Metodologia"],
-        "imagem": ""
+        "imagem": "https://img.freepik.com/fotos-premium/linda-linda-mulher-madura-de-50-anos-olhando-para-a-camera_941600-6253.jpg?semt=ais_hybrid&w=740&q=80"
       },
       {
         "id": 4,
@@ -65,7 +65,7 @@
         "cargo": "Diretor de Operações e Logística",
         "descricao": "Especialista em logística de expedições e gestão de operações em campo.",
         "expertises": ["Logística", "Gestão de Projetos", "Operações"],
-        "imagem": ""
+        "imagem": "https://st4.depositphotos.com/1325771/37979/i/450/depositphotos_379795446-stock-photo-portrait-of-smiling-mature-man.jpg"
       }
     ],
     "linhaDoTempo": [
