@@ -1,9 +1,9 @@
 :root {
-    --amber-500: #7bf08f;  /* Alterado de laranja para verde */
-    --amber-600: #64c63e;  /* Alterado de laranja para verde */
+    --amber-500: #7bf08f;
+    --amber-600: #64c63e; 
     --emerald-500: #10b981;
     --emerald-600: #059669;
-    --orange-600: #26732e;  /* Alterado de laranja para verde */
+    --orange-600: #26732e; 
     --stone-50: #fafaf9;
     --stone-100: #f5f5f4;
     --stone-200: #e7e5e4;
@@ -28,14 +28,12 @@ body {
     font-weight: 450;
 }
 
-/* Container */
 .container {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 1rem;
 }
 
-/* Header */
 header {
     background: linear-gradient(to bottom right, #d1fae5, #b8ffb8, #44dd51);
     color: var(--stone-800);
@@ -68,11 +66,11 @@ header::before {
     margin-bottom: 1rem;
     position: relative;
     z-index: 10;
-    color: var(--amber-600); 
+    Color: #109b6d;
 }
 
 .gradient-text {
-    color: var(--stone-800);
+    color: #109b6d;
     background: none;
     -webkit-background-clip: initial;
     background-clip: initial;
@@ -154,7 +152,6 @@ h2 {
     background-color: var(--amber-600);
 }
 
-/* Grid de dinossauros */
 .dino-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -208,7 +205,6 @@ h2 {
     color: #065f46;
 }
 
-/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -285,7 +281,6 @@ h2 {
     padding: 20px;
 }
 
-/* Footer */
 footer {
     background-color: var(--stone-800);
     color: var(--white);
@@ -297,7 +292,6 @@ footer {
 }
 
 
-/* Responsividade */
 @media (max-width: 768px) {
     .dino-header {
         font-size: 2rem;
