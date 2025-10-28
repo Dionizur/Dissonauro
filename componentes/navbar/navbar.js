@@ -52,10 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             <a href="${basePath}pages/busca de dinos/busca.html" class="navbar-link">Busca</a>
                         </li>
                         <li class="navbar-item" id="authNavItem">
-                            <a href="${basePath}login/login.html" class="navbar-link" id="authLink">
-                                <i class="fas fa-sign-in-alt" id="authIcon"></i>
-                                <span id="authText">Login</span>
-                            </a>
+                            <div class="auth-container" id="authContainer">
+                                <!-- Conteúdo será preenchido dinamicamente -->
+                            </div>
                         </li>
                     </ul>
                     <div class="navbar-toggle" id="navbarToggle">
@@ -139,12 +138,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Função para atualizar o estado de autenticação na navbar
 async function updateNavbarAuthState(basePath = '') {
-    const authLink = document.getElementById('authLink');
-    const authText = document.getElementById('authText');
-    const authIcon = document.getElementById('authIcon');
+    const authContainer = document.getElementById('authContainer');
     
-    if (!authLink || !authText || !authIcon) {
-        console.log('❌ Elementos da navbar não encontrados');
+    if (!authContainer) {
+        console.log('❌ Container de autenticação não encontrado');
         return;
     }
 
@@ -152,6 +149,7 @@ async function updateNavbarAuthState(basePath = '') {
         // Verificar se supabase está disponível
         if (!window.supabase) {
             console.log('⏳ Supabase não carregado ainda');
+            authContainer.innerHTML = getLoginHTML(basePath);
             return;
         }
 
@@ -159,57 +157,85 @@ async function updateNavbarAuthState(basePath = '') {
         
         if (error) {
             console.error('❌ Erro ao verificar sessão:', error);
-            setLoginState(basePath);
+            authContainer.innerHTML = getLoginHTML(basePath);
             return;
         }
         
         if (session) {
-            // Usuário está logado - mostrar "Perfil"
-            setProfileState(session.user, basePath);
+            // Usuário está logado - mostrar Perfil + Logout
+            authContainer.innerHTML = getProfileHTML(session.user, basePath);
+            setupLogoutButton();
         } else {
-            // Usuário não está logado - mostrar "Login"
-            setLoginState(basePath);
+            // Usuário não está logado - mostrar Login
+            authContainer.innerHTML = getLoginHTML(basePath);
         }
     } catch (error) {
         console.error('💥 Erro ao atualizar estado de auth:', error);
-        setLoginState(basePath);
+        authContainer.innerHTML = getLoginHTML(basePath);
     }
 }
 
-// Configurar estado de Login
-function setLoginState(basePath) {
-    const authLink = document.getElementById('authLink');
-    const authText = document.getElementById('authText');
-    const authIcon = document.getElementById('authIcon');
-    
-    if (authLink) authLink.href = `${basePath}login/index.html`;
-    if (authText) authText.textContent = 'Login';
-    if (authIcon) {
-        authIcon.className = 'fas fa-sign-in-alt';
-        authIcon.style.marginRight = '8px';
-    }
-    
-    console.log('🔓 Navbar: Estado de login definido');
+// HTML para estado de Login
+function getLoginHTML(basePath) {
+    return `
+        <a href="${basePath}login/index.html" class="login-btn">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Login</span>
+        </a>
+    `;
 }
 
-// Configurar estado de Perfil
-function setProfileState(user, basePath) {
-    const authLink = document.getElementById('authLink');
-    const authText = document.getElementById('authText');
-    const authIcon = document.getElementById('authIcon');
+// HTML para estado de Perfil (com botão de logout)
+function getProfileHTML(user, basePath) {
+    const userName = user.user_metadata?.name || user.email || 'Perfil';
+    const displayName = userName.length > 15 ? 'Perfil' : userName;
     
-    if (authLink) authLink.href = `${basePath}login/perfil/perfil.html`;
-    if (authText) {
-        // Mostrar nome do usuário ou "Perfil"
-        const userName = user.user_metadata?.name || user.email || 'Perfil';
-        authText.textContent = userName.length > 15 ? 'Perfil' : userName;
+    return `
+        <a href="${basePath}login/perfil/perfil.html" class="profile-btn">
+            <i class="fas fa-user"></i>
+            <span>${displayName}</span>
+        </a>
+        <button class="logout-btn" id="navbarLogoutBtn" title="Sair">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="logout-text">Sair</span>
+        </button>
+    `;
+}
+
+// Configurar o botão de logout
+function setupLogoutButton() {
+    const logoutBtn = document.getElementById('navbarLogoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', async function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Confirmar logout
+            if (confirm('Tem certeza que deseja sair?')) {
+                logoutBtn.disabled = true;
+                logoutBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span class="logout-text">Saindo...</span>';
+                
+                try {
+                    const { error } = await window.supabase.auth.signOut();
+                    if (error) {
+                        console.error('❌ Erro ao fazer logout:', error);
+                        alert('Erro ao fazer logout: ' + error.message);
+                        return;
+                    }
+                    
+                    console.log('✅ Logout realizado com sucesso');
+                    // A navbar será atualizada automaticamente pelo auth state change
+                    
+                } catch (error) {
+                    console.error('💥 Erro inesperado no logout:', error);
+                    alert('Erro inesperado ao fazer logout');
+                } finally {
+                    logoutBtn.disabled = false;
+                    logoutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i><span class="logout-text">Sair</span>';
+                }
+            }
+        });
     }
-    if (authIcon) {
-        authIcon.className = 'fas fa-user';
-        authIcon.style.marginRight = '8px';
-    }
-    
-    console.log('🔐 Navbar: Estado de perfil definido para:', user.email);
 }
 
 // Função de logout (para usar no perfil)
