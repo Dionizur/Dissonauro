@@ -31,7 +31,8 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Bone';
+
     background: linear-gradient(to bottom right, var(--purple-50), var(--blue-50));
     min-height: 100vh;
     color: var(--stone-800);
@@ -398,6 +399,7 @@ body {
     border-radius: 0.75rem;
     overflow: hidden;
     box-shadow: 0 1px 3px 0 rgba(21, 128, 55, 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    
 }
 
 .card-header {
@@ -412,7 +414,7 @@ body {
     font-size: 1.5rem;
     line-height: 2rem;
     font-weight: 700;
-    font-family: 'Bone', sans-serif;
+    
 
 }
 
@@ -434,12 +436,12 @@ body {
 .button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    
 }
 
 .button-lg {
     font-size: 1.125rem;
     padding: 1rem 2rem;
-    font-family: 'Bone', sans-serif;
 }
 
 .progress {
@@ -448,12 +450,14 @@ body {
     background-color: #ebe5e5;
     border-radius: 0.25rem;
     overflow: hidden;
+    
 }
 
 .progress-bar {
     height: 100%;
     background: linear-gradient(to right, var(--purple-500), var(--blue-500));
     transition: width 0.3s ease;
+    
 }
 
 /* Animações */
