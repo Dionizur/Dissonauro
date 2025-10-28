@@ -3,13 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Login - Sistema Profissional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --amber-500: #7bf08f;
+            --amber-600: #64c63e;
+            --emerald-500: #10b981;
+            --emerald-600: #059669;
+            --orange-600: #26732e;
+            --stone-50: #fafaf9;
+            --stone-100: #f5f5f4;
+            --stone-200: #e7e5e4;
+            --stone-400: #a8a29e;
+            --stone-600: #57534e;
+            --stone-800: #292524;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(to bottom, #000000, #dbfbd4, #c4faab);
+            background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            width: 100%;
+            max-width: 28rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--amber-500), var(--orange-600));
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--stone-800);
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--stone-600);
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--stone-200);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: var(--amber-500);
+            box-shadow: 0 0 0 3px rgba(123, 240, 143, 0.1);
+        }
+
+        button {
+            padding: 0.75rem 1rem;
+            background: linear-gradient(to right, var(--amber-500), var(--orange-600));
+            color: var(--white);
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(123, 240, 143, 0.3);
+        }
+
+        .error {
+            color: #dc2626;
+            font-size: 0.875rem;
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+            background-color: #fef2f2;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border-left: 4px solid #dc2626;
+            display: none;
+        }
+
+        .success {
+            color: var(--emerald-600);
+            font-size: 0.875rem;
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+            background-color: #f0fdf4;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border-left: 4px solid var(--emerald-600);
+            display: none;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--amber-500);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--orange-600);
+            text-decoration: underline;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--stone-200);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .user-info {
+            background-color: var(--stone-50);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .user-info h3 {
+            margin-bottom: 1rem;
+            color: var(--stone-800);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .user-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .user-detail {
+            padding: 0.75rem;
+            background-color: var(--white);
+            border-radius: 0.5rem;
+        }
+
+        .user-detail label {
+            font-weight: 600;
+            color: var(--stone-600);
+            font-size: 0.875rem;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .user-detail span {
+            color: var(--stone-800);
+            font-size: 1rem;
+        }
+
+        /* Elementos decorativos */
+        .container::after {
+            content: '🦕';
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            opacity: 0.1;
+        }
+
+        /* Responsividade */
+        @media (max-width: 640px) {
+            .container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            input[type="email"],
+            input[type="password"] {
+                padding: 0.625rem 0.875rem;
+            }
+
+            button {
+                padding: 0.625rem 0.875rem;
+            }
+
+            .user-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Login Form Section -->
     <div class="container">
         <h2>Fazer Login</h2>
-        <p style="text-align: center; color: var(--stone-600); margin-bottom: 1.5rem;">Entre na sua conta para explorar o mundo dos dinossauros</p>
+        <p style="text-align: center; color: var(--stone-600); margin-bottom: 1.5rem;">Entre na sua conta para acessar o sistema</p>
+        
+        <!-- User Info (visible after login) -->
+        <div class="user-info" id="userInfo">
+            <h3><i class="fas fa-user-circle"></i> Informações do Usuário</h3>
+            <div class="user-details">
+                <div class="user-detail">
+                    <label>Email:</label>
+                    <span id="userEmail"></span>
+                </div>
+                <div class="user-detail">
+                    <label>ID:</label>
+                    <span id="userId"></span>
+                </div>
+                <div class="user-detail">
+                    <label>Status:</label>
+                    <span id="userStatus">Ativo</span>
+                </div>
+                <div class="user-detail">
+                    <label>Membro desde:</label>
+                    <span id="userCreatedAt"></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Login Form -->
         <form id="form-login">
             <label for="email-login">Email:</label>
             <input type="email" id="email-login" placeholder="seu@email.com" required>
@@ -17,20 +301,270 @@
             <label for="senha-login">Senha:</label>
             <input type="password" id="senha-login" placeholder="Sua senha" required>
 
-            <button type="submit">Entrar</button>
-        </form>
-        <p>Esqueceu a senha? <a href="senha.html">Resetar senha</a></p>
-        <p>Ainda não tem uma conta? <a href="registro.html">Registre-se</a></p>
-    </div>
-    
-    <script type="module">
-        import { fazerLogin } from '../main.js';
+            <div class="error" id="loginError"></div>
+            <div class="success" id="loginSuccess"></div>
 
-        document.getElementById('form-login').addEventListener('submit', async (e) => {
+            <button type="submit" id="loginSubmitBtn">
+                <span class="btn-text">Entrar</span>
+            </button>
+        </form>
+        
+        <div class="form-footer">
+            <p>Esqueceu a senha? <a href="#" id="resetPasswordLink">Resetar senha</a></p>
+            <p>Ainda não tem uma conta? <a href="#" id="registerLink">Registre-se</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Configuração do Supabase
+        const SUPABASE_URL = 'https://nazfptanttjthhsiloau.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hemZwdGFudHRqdGhoc2lsb2F1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1NjE4ODAsImV4cCI6MjA3NzEzNzg4MH0.zHNyZfZuYftOGEqGsqXM_PO5r5IqlZT3WBJ66XxPm10';
+
+        // Inicializar o cliente Supabase
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Elementos DOM
+        const loginForm = document.getElementById('form-login');
+        const loginError = document.getElementById('loginError');
+        const loginSuccess = document.getElementById('loginSuccess');
+        const loginSubmitBtn = document.getElementById('loginSubmitBtn');
+        const userInfo = document.getElementById('userInfo');
+        const userEmail = document.getElementById('userEmail');
+        const userId = document.getElementById('userId');
+        const userCreatedAt = document.getElementById('userCreatedAt');
+        const resetPasswordLink = document.getElementById('resetPasswordLink');
+        const registerLink = document.getElementById('registerLink');
+
+        // Verificar se o usuário já está logado
+        async function checkAuthState() {
+            try {
+                const { data: { session }, error } = await supabase.auth.getSession();
+                
+                if (error) {
+                    console.error('Erro ao verificar sessão:', error);
+                    hideUserInfo();
+                    return;
+                }
+                
+                // Verifica se existe uma sessão válida com usuário
+                if (session && session.user && session.user.id) {
+                    console.log('Usuário logado:', session.user.email);
+                    showUserInfo(session.user);
+                } else {
+                    console.log('Nenhum usuário logado');
+                    hideUserInfo();
+                }
+            } catch (err) {
+                console.error('Erro na verificação de autenticação:', err);
+                hideUserInfo();
+            }
+        }
+
+        // Mostrar informações do usuário após login
+        function showUserInfo(user) {
+            userInfo.style.display = 'block';
+            userEmail.textContent = user.email;
+            userId.textContent = user.id.substring(0, 8) + '...';
+            
+            // Formatar data de criação
+            const createdAt = new Date(user.created_at);
+            userCreatedAt.textContent = createdAt.toLocaleDateString('pt-BR');
+            
+            // Alterar o formulário para mostrar opção de logout
+            loginForm.style.display = 'none';
+            document.querySelector('.form-footer').innerHTML = `
+                <button class="btn-logout" id="logoutBtn" style="background: #dc2626; width: 100%; margin-bottom: 1rem;">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </button>
+                <p><a href="#" id="backToLogin">Voltar para o login</a></p>
+            `;
+            
+            // Adicionar event listener para o botão de logout
+            document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+            document.getElementById('backToLogin').addEventListener('click', showLoginForm);
+        }
+
+        // Esconder informações do usuário
+        function hideUserInfo() {
+            userInfo.style.display = 'none';
+            showLoginForm();
+        }
+
+        // Mostrar formulário de login
+        function showLoginForm() {
+            userInfo.style.display = 'none';
+            loginForm.style.display = 'flex';
+            document.querySelector('.form-footer').innerHTML = `
+                <p>Esqueceu a senha? <a href="#" id="resetPasswordLink">Resetar senha</a></p>
+                <p>Ainda não tem uma conta? <a href="#" id="registerLink">Registre-se</a></p>
+            `;
+            
+            // Re-adicionar event listeners
+            document.getElementById('resetPasswordLink').addEventListener('click', showResetPassword);
+            document.getElementById('registerLink').addEventListener('click', showRegister);
+        }
+
+        // Login
+        loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            loginError.style.display = 'none';
+            loginSuccess.style.display = 'none';
+            
             const email = document.getElementById('email-login').value;
-            const senha = document.getElementById('senha-login').value;
-            await fazerLogin(email, senha);
+            const password = document.getElementById('senha-login').value;
+            
+            // Mostrar loading
+            const btnText = loginSubmitBtn.querySelector('.btn-text');
+            btnText.textContent = 'Entrando...';
+            loginSubmitBtn.disabled = true;
+            loginSubmitBtn.innerHTML = '<div class="spinner"></div> Entrando...';
+            
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password
+            });
+            
+            // Restaurar botão
+            btnText.textContent = 'Entrar';
+            loginSubmitBtn.disabled = false;
+            loginSubmitBtn.innerHTML = '<span class="btn-text">Entrar</span>';
+            
+            if (error) {
+                loginError.textContent = error.message;
+                loginError.style.display = 'block';
+            } else {
+                loginSuccess.textContent = 'Login realizado com sucesso!';
+                loginSuccess.style.display = 'block';
+                showUserInfo(data.user);
+            }
+        });
+
+        // Função para mostrar formulário de reset de senha
+        function showResetPassword() {
+            loginForm.style.display = 'none';
+            document.querySelector('.form-footer').innerHTML = `
+                <form id="form-reset">
+                    <label for="email-reset">Email:</label>
+                    <input type="email" id="email-reset" placeholder="seu@email.com" required>
+                    <button type="submit" id="resetSubmitBtn">
+                        <span class="btn-text">Enviar Email de Reset</span>
+                    </button>
+                </form>
+                <p><a href="#" id="backToLoginFromReset">Voltar para o login</a></p>
+            `;
+            
+            // Adicionar event listener para o formulário de reset
+            document.getElementById('form-reset').addEventListener('submit', handleResetPassword);
+            document.getElementById('backToLoginFromReset').addEventListener('click', showLoginForm);
+        }
+
+        // Função para resetar senha
+        async function handleResetPassword(e) {
+            e.preventDefault();
+            const email = document.getElementById('email-reset').value;
+            const resetSubmitBtn = document.getElementById('resetSubmitBtn');
+            
+            // Mostrar loading
+            const btnText = resetSubmitBtn.querySelector('.btn-text');
+            btnText.textContent = 'Enviando...';
+            resetSubmitBtn.disabled = true;
+            resetSubmitBtn.innerHTML = '<div class="spinner"></div> Enviando...';
+            
+            const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: window.location.href,
+            });
+            
+            // Restaurar botão
+            btnText.textContent = 'Enviar Email de Reset';
+            resetSubmitBtn.disabled = false;
+            resetSubmitBtn.innerHTML = '<span class="btn-text">Enviar Email de Reset</span>';
+            
+            if (error) {
+                alert('Erro ao enviar email de reset: ' + error.message);
+            } else {
+                alert('Email de reset enviado com sucesso! Verifique sua caixa de entrada.');
+                showLoginForm();
+            }
+        }
+
+        // Função para mostrar formulário de registro
+        function showRegister() {
+            loginForm.style.display = 'none';
+            document.querySelector('.form-footer').innerHTML = `
+                <form id="form-register">
+                    <label for="email-register">Email:</label>
+                    <input type="email" id="email-register" placeholder="seu@email.com" required>
+                    <label for="password-register">Senha:</label>
+                    <input type="password" id="password-register" placeholder="Mínimo 6 caracteres" required minlength="6">
+                    <button type="submit" id="registerSubmitBtn">
+                        <span class="btn-text">Registrar</span>
+                    </button>
+                </form>
+                <p><a href="#" id="backToLoginFromRegister">Voltar para o login</a></p>
+            `;
+            
+            // Adicionar event listener para o formulário de registro
+            document.getElementById('form-register').addEventListener('submit', handleRegister);
+            document.getElementById('backToLoginFromRegister').addEventListener('click', showLoginForm);
+        }
+
+        // Função para registrar usuário
+        async function handleRegister(e) {
+            e.preventDefault();
+            const email = document.getElementById('email-register').value;
+            const password = document.getElementById('password-register').value;
+            const registerSubmitBtn = document.getElementById('registerSubmitBtn');
+            
+            // Mostrar loading
+            const btnText = registerSubmitBtn.querySelector('.btn-text');
+            btnText.textContent = 'Registrando...';
+            registerSubmitBtn.disabled = true;
+            registerSubmitBtn.innerHTML = '<div class="spinner"></div> Registrando...';
+            
+            const { data, error } = await supabase.auth.signUp({
+                email,
+                password
+            });
+            
+            // Restaurar botão
+            btnText.textContent = 'Registrar';
+            registerSubmitBtn.disabled = false;
+            registerSubmitBtn.innerHTML = '<span class="btn-text">Registrar</span>';
+            
+            if (error) {
+                alert('Erro ao registrar: ' + error.message);
+            } else {
+                alert('Conta criada com sucesso! Verifique seu email para confirmar sua conta.');
+                showLoginForm();
+            }
+        }
+
+        // Logout
+        async function handleLogout() {
+            await supabase.auth.signOut();
+            hideUserInfo();
+            loginSuccess.textContent = 'Logout realizado com sucesso!';
+            loginSuccess.style.display = 'block';
+        }
+
+        // Event listeners para links
+        resetPasswordLink.addEventListener('click', showResetPassword);
+        registerLink.addEventListener('click', showRegister);
+
+        // Escutar mudanças no estado de autenticação
+        supabase.auth.onAuthStateChange((event, session) => {
+            console.log('Evento de auth:', event);
+            
+            if (event === 'SIGNED_IN' && session && session.user) {
+                showUserInfo(session.user);
+            } else if (event === 'SIGNED_OUT') {
+                hideUserInfo();
+            }
+        });
+
+        // Verificar estado de autenticação ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthState();
         });
     </script>
 </body>
