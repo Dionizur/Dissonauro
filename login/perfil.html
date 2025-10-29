@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Dissonauro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --amber-500: #7bf08f;
+            --amber-600: #64c63e;
+            --emerald-500: #10b981;
+            --emerald-600: #059669;
+            --orange-600: #26732e;
+            --stone-50: #fafaf9;
+            --stone-100: #f5f5f4;
+            --stone-200: #e7e5e4;
+            --stone-400: #a8a29e;
+            --stone-600: #57534e;
+            --stone-800: #292524;
+            --white: #ffffff;
+            --error-color: #dc2626;
+            --success-color: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .profile-header {
+            background: white;
+            border-radius: 1rem 1rem 0 0;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2.5rem;
+            color: white;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--stone-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-email {
+            color: var(--stone-600);
+            font-size: 1rem;
+        }
+
+        .profile-content {
+            background: white;
+            border-radius: 0 0 1rem 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--stone-800);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title i {
+            color: var(--emerald-500);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background: var(--stone-50);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--emerald-500);
+        }
+
+        .info-label {
+            font-size: 0.875rem;
+            color: var(--stone-600);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            color: var(--stone-800);
+            font-weight: 600;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: var(--stone-50);
+            border: 2px solid var(--stone-200);
+            border-radius: 0.75rem;
+            text-decoration: none;
+            color: var(--stone-700);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .action-btn:hover {
+            background: white;
+            border-color: var(--emerald-500);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-btn i {
+            font-size: 1.25rem;
+            color: var(--emerald-500);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--stone-50), white);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            border: 1px solid var(--stone-200);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--emerald-500);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--stone-600);
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            color: var(--stone-500);
+        }
+
+        .loading i {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .error-message {
+            background: #fef2f2;
+            color: var(--error-color);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--error-color);
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .success-message {
+            background: #f0fdf4;
+            color: var(--success-color);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--success-color);
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--stone-600);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--stone-800);
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+
+            .profile-header,
+            .profile-content {
+                padding: 1.5rem;
+            }
+
+            .info-grid,
+            .actions-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar será inserida aqui -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="profile-container">
+        <a href="../index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            Voltar para o Início
+        </a>
+
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <h1 class="profile-name" id="userName">Carregando...</h1>
+            <p class="profile-email" id="userEmail">carregando@email.com</p>
+        </div>
+
+        <div class="profile-content">
+            <!-- Mensagens -->
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+
+            <!-- Loading -->
+            <div class="loading" id="loadingSection">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Carregando informações...</span>
+            </div>
+
+            <!-- Conteúdo do perfil (visível após carregar) -->
+            <div id="profileContent" style="display: none;">
+                <!-- Informações do usuário -->
+                <div class="section-title">
+                    <i class="fas fa-info-circle"></i>
+                    Informações da Conta
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-label">Email</div>
+                        <div class="info-value" id="infoEmail">-</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">ID do Usuário</div>
+                        <div class="info-value" id="infoUserId">-</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Data de Criação</div>
+                        <div class="info-value" id="infoCreatedAt">-</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Status da Conta</div>
+                        <div class="info-value" id="infoStatus">-</div>
+                    </div>
+                </div>
+
+                <!-- Estatísticas (pode ser personalizado) -->
+                <div class="section-title">
+                    <i class="fas fa-chart-bar"></i>
+                    Minhas Estatísticas
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="statQuizzes">0</div>
+                        <div class="stat-label">Quizzes Realizados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="statDinosaurs">0</div>
+                        <div class="stat-label">Dinossauros Explorados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="statDays">1</div>
+                        <div class="stat-label">Dias como Membro</div>
+                    </div>
+                </div>
+
+                <!-- Ações rápidas -->
+                <div class="section-title">
+                    <i class="fas fa-cog"></i>
+                    Configurações
+                </div>
+
+                <div class="actions-grid">
+                    <a href="editar-perfil.html" class="action-btn">
+                        <i class="fas fa-user-edit"></i>
+                        <div>
+                            <div style="font-weight: 600;">Editar Perfil</div>
+                            <div style="font-size: 0.875rem; color: var(--stone-500);">Alterar informações pessoais</div>
+                        </div>
+                    </a>
+                    <a href="../pages/quiz/quiz.html" class="action-btn">
+                        <i class="fas fa-gamepad"></i>
+                        <div>
+                            <div style="font-weight: 600;">Fazer Quiz</div>
+                            <div style="font-size: 0.875rem; color: var(--stone-500);">Teste seus conhecimentos</div>
+                        </div>
+                    </a>
+                    <a href="../pages/loja/loja.html" class="action-btn">
+                        <i class="fas fa-store"></i>
+                        <div>
+                            <div style="font-weight: 600;">Loja</div>
+                            <div style="font-size: 0.875rem; color: var(--stone-500);">Compre itens especiais</div>
+                        </div>
+                    </a>
+                    <a href="historico.html" class="action-btn">
+                        <i class="fas fa-history"></i>
+                        <div>
+                            <div style="font-weight: 600;">Histórico</div>
+                            <div style="font-size: 0.875rem; color: var(--stone-500);">Veja suas atividades</div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Botões de ação -->
+                <button class="btn-primary" onclick="window.location.href='../index.html'">
+                    <i class="fas fa-home"></i>
+                    Voltar para o Início
+                </button>
+
+                <button class="btn-danger" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Sair da Conta
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../config/supabase-config.js"></script>
+    <script src="../components/navbar/navbar.js"></script>
+    <script>
+        // Configuração do Supabase
+        const SUPABASE_URL = 'https://nazfptanttjthhsiloau.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hemZwdGFudHRqdGhoc2lsb2F1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1NjE4ODAsImV4cCI6MjA3NzEzNzg4MH0.zHNyZfZuYftOGEqGsqXM_PO5r5IqlZT3WBJ66XxPm10';
+
+        // Inicializar Supabase
+        const supabase = window.supabase || window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Elementos DOM
+        const loadingSection = document.getElementById('loadingSection');
+        const profileContent = document.getElementById('profileContent');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Função para mostrar mensagem de erro
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        // Função para mostrar mensagem de sucesso
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        // Carregar informações do usuário
+        async function loadUserProfile() {
+            try {
+                console.log('🔍 Carregando perfil do usuário...');
+
+                // Verificar se o usuário está logado
+                const { data: { session }, error } = await supabase.auth.getSession();
+                
+                if (error) {
+                    throw new Error('Erro ao verificar sessão: ' + error.message);
+                }
+
+                if (!session) {
+                    // Usuário não está logado, redirecionar para login
+                    showError('Você precisa estar logado para acessar esta página');
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                    return;
+                }
+
+                const user = session.user;
+                console.log('✅ Usuário logado:', user);
+
+                // Atualizar informações na página
+                document.getElementById('userName').textContent = user.user_metadata?.name || user.email || 'Usuário';
+                document.getElementById('userEmail').textContent = user.email;
+                
+                document.getElementById('infoEmail').textContent = user.email;
+                document.getElementById('infoUserId').textContent = user.id.substring(0, 8) + '...';
+                
+                // Formatar data de criação
+                const createdAt = new Date(user.created_at);
+                document.getElementById('infoCreatedAt').textContent = createdAt.toLocaleDateString('pt-BR');
+                
+                document.getElementById('infoStatus').textContent = user.email_confirmed_at ? 'Verificado' : 'Não verificado';
+
+                // Calcular dias como membro
+                const today = new Date();
+                const createdDate = new Date(user.created_at);
+                const diffTime = Math.abs(today - createdDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                document.getElementById('statDays').textContent = diffDays;
+
+                // Simular estatísticas (em um sistema real, isso viria do banco de dados)
+                document.getElementById('statQuizzes').textContent = Math.floor(Math.random() * 20);
+                document.getElementById('statDinosaurs').textContent = Math.floor(Math.random() * 50);
+
+                // Mostrar conteúdo
+                loadingSection.style.display = 'none';
+                profileContent.style.display = 'block';
+
+                console.log('✅ Perfil carregado com sucesso');
+
+            } catch (error) {
+                console.error('❌ Erro ao carregar perfil:', error);
+                showError('Erro ao carregar perfil: ' + error.message);
+                loadingSection.innerHTML = `
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Erro ao carregar perfil</span>
+                `;
+            }
+        }
+
+        // Função de logout
+        async function handleLogout() {
+            if (!confirm('Tem certeza que deseja sair da sua conta?')) {
+                return;
+            }
+
+            try {
+                logoutBtn.disabled = true;
+                logoutBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saindo...';
+
+                const { error } = await supabase.auth.signOut();
+                
+                if (error) {
+                    throw error;
+                }
+
+                showSuccess('Logout realizado com sucesso!');
+                setTimeout(() => {
+                    window.location.href = '../index.html';
+                }, 1500);
+
+            } catch (error) {
+                console.error('❌ Erro ao fazer logout:', error);
+                showError('Erro ao fazer logout: ' + error.message);
+                logoutBtn.disabled = false;
+                logoutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Sair da Conta';
+            }
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Página de perfil carregada');
+            loadUserProfile();
+        });
+
+        logoutBtn.addEventListener('click', handleLogout);
+
+        // Listener para mudanças de autenticação
+        supabase.auth.onAuthStateChange((event, session) => {
+            console.log('🔄 Auth state changed in profile:', event);
+            
+            if (event === 'SIGNED_OUT') {
+                // Redirecionar se o usuário fizer logout de outra aba
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>
