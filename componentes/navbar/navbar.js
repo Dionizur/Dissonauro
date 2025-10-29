@@ -178,7 +178,7 @@ async function updateNavbarAuthState(basePath = '') {
 // HTML para estado de Login
 function getLoginHTML(basePath) {
     return `
-        <a href="${basePath}login/index.html" class="login-btn">
+        <a href="${basePath}login/login.html" class="login-btn">
             <i class="fas fa-sign-in-alt"></i>
             <span>Login</span>
         </a>
