@@ -199,15 +199,12 @@ function getLoginHTML(basePath) {
     `;
 }
 
-// HTML para estado de Perfil
+// HTML para estado de Perfil (botão Login que leva ao perfil)
 function getProfileHTML(user, basePath) {
-    const userName = user.user_metadata?.name || user.email || 'Perfil';
-    const displayName = userName.length > 15 ? 'Perfil' : userName;
-
     return `
-        <a href="${basePath}login/perfil.html" class="profile-btn">
+        <a href="${basePath}login/perfil.html" class="login-btn">
             <i class="fas fa-user"></i>
-            <span>${displayName}</span>
+            <span>Login</span>
         </a>
     `;
 }
