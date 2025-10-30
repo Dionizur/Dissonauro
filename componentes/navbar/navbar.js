@@ -1,14 +1,39 @@
 // componentes/navbar/navbar.js
 
+// Aguardar carregamento do Supabase
+function waitForSupabase(callback, maxAttempts = 50) {
+    let attempts = 0;
+
+    const checkSupabase = () => {
+        attempts++;
+        if (window.supabase) {
+            console.log('✅ Supabase carregado na navbar, executando callback');
+            callback();
+        } else if (attempts < maxAttempts) {
+            setTimeout(checkSupabase, 100);
+        } else {
+            console.error('❌ Supabase não carregou na navbar após', maxAttempts, 'tentativas');
+            // Fallback: mostrar botão de login mesmo sem Supabase
+            const basePath = getBasePath();
+            const authContainer = document.getElementById('authContainer');
+            if (authContainer) {
+                authContainer.innerHTML = getLoginHTML(basePath);
+            }
+        }
+    };
+
+    checkSupabase();
+}
+
 // Função para determinar o caminho base correto
 function getBasePath() {
     const currentPath = window.location.pathname;
-    
+
     // Se estiver na raiz
     if (currentPath === '/' || currentPath === '/index.html') {
         return '';
     }
-    
+
     // Conta quantos níveis de diretório temos que voltar
     const pathDepth = currentPath.split('/').length - 2;
     return '../'.repeat(pathDepth);
@@ -110,29 +135,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Atualizar estado de autenticação
-        updateNavbarAuthState(basePath);
+        // Inicializar autenticação após carregamento do Supabase
+        waitForSupabase(() => {
+            console.log('🚀 Inicializando autenticação na navbar');
 
-        // Listener para mudanças de autenticação
-        if (window.supabase) {
+            // Atualizar estado de autenticação
+            updateNavbarAuthState(basePath);
+
+            // Listener para mudanças de autenticação
             window.supabase.auth.onAuthStateChange((event, session) => {
                 console.log('🔄 Auth state changed in navbar:', event);
                 updateNavbarAuthState(basePath);
             });
-        }
-
-        // Verificar a cada 2 segundos se o Supabase carregou (fallback)
-        let checkAttempts = 0;
-        const checkSupabaseLoaded = setInterval(() => {
-            checkAttempts++;
-            if (window.supabase) {
-                clearInterval(checkSupabaseLoaded);
-                updateNavbarAuthState(basePath);
-            }
-            if (checkAttempts > 10) {
-                clearInterval(checkSupabaseLoaded);
-            }
-        }, 2000);
+        });
     }
 });
 
@@ -162,9 +177,8 @@ async function updateNavbarAuthState(basePath = '') {
         }
         
         if (session) {
-            // Usuário está logado - mostrar Perfil + Logout
+            // Usuário está logado - mostrar Perfil
             authContainer.innerHTML = getProfileHTML(session.user, basePath);
-            setupLogoutButton();
         } else {
             // Usuário não está logado - mostrar Login
             authContainer.innerHTML = getLoginHTML(basePath);
@@ -185,20 +199,16 @@ function getLoginHTML(basePath) {
     `;
 }
 
-// HTML para estado de Perfil (com botão de logout)
+// HTML para estado de Perfil
 function getProfileHTML(user, basePath) {
     const userName = user.user_metadata?.name || user.email || 'Perfil';
     const displayName = userName.length > 15 ? 'Perfil' : userName;
-    
+
     return `
-        <a href="${basePath}login/perfil/perfil.html" class="profile-btn">
+        <a href="${basePath}login/perfil.html" class="profile-btn">
             <i class="fas fa-user"></i>
             <span>${displayName}</span>
         </a>
-        <button class="logout-btn" id="navbarLogoutBtn" title="Sair">
-            <i class="fas fa-sign-out-alt"></i>
-            <span class="logout-text">Sair</span>
-        </button>
     `;
 }
 

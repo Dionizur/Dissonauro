@@ -32,18 +32,50 @@
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(to bottom, #000000, #dbfbd4, #c4faab);
+            background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            position: relative;
         }
 
-        .profile-container {
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             width: 100%;
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            max-width: 48rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--amber-500), var(--orange-600));
         }
 
         .profile-header {
@@ -283,9 +315,9 @@
         }
 
         @media (max-width: 768px) {
-            .profile-container {
+            .container {
                 margin: 1rem auto;
-                padding: 0 0.5rem;
+                padding: 1rem;
             }
 
             .profile-header,
@@ -311,7 +343,7 @@
     <!-- Navbar será inserida aqui -->
     <div id="navbar-placeholder"></div>
 
-    <div class="profile-container">
+    <div class="container">
         <a href="../index.html" class="back-btn">
             <i class="fas fa-arrow-left"></i>
             Voltar para o Início
@@ -437,14 +469,27 @@
 
     <!-- Scripts -->
     <script src="../config/supabase-config.js"></script>
-    <script src="../components/navbar/navbar.js"></script>
+    <script src="../componentes/navbar/navbar.js"></script>
     <script>
-        // Configuração do Supabase
-        const SUPABASE_URL = 'https://nazfptanttjthhsiloau.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hemZwdGFudHRqdGhoc2lsb2F1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1NjE4ODAsImV4cCI6MjA3NzEzNzg4MH0.zHNyZfZuYftOGEqGsqXM_PO5r5IqlZT3WBJ66XxPm10';
+        // Aguardar carregamento do Supabase
+        function waitForSupabase(callback, maxAttempts = 50) {
+            let attempts = 0;
 
-        // Inicializar Supabase
-        const supabase = window.supabase || window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            const checkSupabase = () => {
+                attempts++;
+                if (window.supabase) {
+                    console.log('✅ Supabase carregado, executando callback');
+                    callback();
+                } else if (attempts < maxAttempts) {
+                    setTimeout(checkSupabase, 100);
+                } else {
+                    console.error('❌ Supabase não carregou após', maxAttempts, 'tentativas');
+                    showError('Erro: Supabase não pôde ser carregado. Tente recarregar a página.');
+                }
+            };
+
+            checkSupabase();
+        }
 
         // Elementos DOM
         const loadingSection = document.getElementById('loadingSection');
@@ -564,22 +609,27 @@
             }
         }
 
-        // Event Listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 Página de perfil carregada');
-            loadUserProfile();
-        });
+        // Inicializar aplicação após carregamento do Supabase
+        waitForSupabase(() => {
+            console.log('🚀 Inicializando página de perfil');
 
-        logoutBtn.addEventListener('click', handleLogout);
+            // Event Listeners
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('🚀 Página de perfil carregada');
+                loadUserProfile();
+            });
 
-        // Listener para mudanças de autenticação
-        supabase.auth.onAuthStateChange((event, session) => {
-            console.log('🔄 Auth state changed in profile:', event);
-            
-            if (event === 'SIGNED_OUT') {
-                // Redirecionar se o usuário fizer logout de outra aba
-                window.location.href = 'login.html';
-            }
+            logoutBtn.addEventListener('click', handleLogout);
+
+            // Listener para mudanças de autenticação
+            supabase.auth.onAuthStateChange((event, session) => {
+                console.log('🔄 Auth state changed in profile:', event);
+
+                if (event === 'SIGNED_OUT') {
+                    // Redirecionar se o usuário fizer logout de outra aba
+                    window.location.href = 'login.html';
+                }
+            });
         });
     </script>
 </body>
