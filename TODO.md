@@ -1,5 +1,0 @@
-- [ ] Atualizar estilos do body para usar o mesmo fundo gradiente e imagem de fundo do login.html
-- [ ] Substituir .profile-container por .container com estilos do login (padding, border-radius, box-shadow, ::before)
-- [ ] Atualizar variáveis CSS para corresponder ao login.html
-- [ ] Ajustar layout interno para manter funcionalidade do perfil
-- [ ] Testar responsividade e aparência
